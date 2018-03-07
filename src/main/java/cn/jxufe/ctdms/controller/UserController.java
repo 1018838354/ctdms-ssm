@@ -15,13 +15,4 @@ public class UserController {
         return null;
     }
 
-    @GetMapping(value = "/login")
-    public ModelAndView loginPage(
-        @RequestParam(value = "error",required = false)String error){
-        ModelAndView modelv = new ModelAndView();
-        if(error != null)
-            modelv.addObject("error","账号或密码错误");
-        modelv.setViewName("login");
-        return modelv;
-    }
 }
