@@ -1,0 +1,196 @@
+body,
+html {
+	font-family: HiraginoSans-W3, Hiragino Kaku Gothic Pro, \\30E1\30A4\30EA\30AA, Meiryo, Verdana, sans-serif;
+	width: 100%;
+	-webkit-font-smoothing: subpixel-antialiased;
+}
+
+div {
+	display: block;
+}
+
+form {
+	display: block;
+	margin-top: 0em;
+}
+ 
+.wallpaper {
+	background: linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('http://www.jsdaima.com/Uploads/js/201707/1499914082/images/mountains_light_sun_sky_clouds_114136_2560x1080.jpg') no-repeat fixed;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	z-index: -1;
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	opacity: 1;
+	-webkit-transition-property: opacity;
+	transition-property: opacity;
+	-webkit-transition-duration: 1s;
+	transition-duration: 1s;
+	-webkit-transition-timing-function: ease;
+	transition-timing-function: ease;
+}
+
+.signup-form { 
+	margin:10% auto;
+	text-align: center;
+	background-color: hsla(0, 0%, 100%, 0.92);
+	width: 363px;
+	padding: 50px 0;
+	border-radius: 4px;
+}
+
+.signup-form .signup-form__logo-box {
+	margin-bottom: 40px;
+}
+
+.signup-form .signup-form__logo,
+.signup-form .signup-form__logo-booth {
+	margin-bottom: 6px;
+}
+
+.logo,
+.signup-form.popup .signup-form__logo-booth,
+.signup-form .signup-form__logo,
+.signup-form .signup-form__logo-booth {
+	display: inline-block;
+	width: 135px;
+	height: 70px;
+	background-image: url(../img/logo.png);
+	background-repeat: no-repeat;
+}
+
+.signup-form__submit,
+.signup-form__submit--login,
+.signup-form__submit--login--short,
+.signup-form__submit--short {
+	display: block;
+	margin: 0 auto;
+	margin-bottom: 8px;
+	width: 300px;
+	height: 40px;
+	line-height: 40px;
+	background-color: #25c6ff;
+	color: #fff;
+	font-weight: 700;
+	outline: none;
+	cursor: pointer;
+}
+
+.signup-form .input-field input {
+	width: 290px;
+	height: 40px;
+	color: #000;
+	display: block;
+	outline: 0;
+	margin: 0;
+	padding: 0;
+	padding-left: 10px;
+	line-height: normal;
+}
+
+
+.signup-form__catchphrase {
+	color: #757c80;
+	font-size: 12px;
+	font-weight: 700;
+}
+
+.signup-form .input-field-group>.input-field:first-child {
+	border-radius: 4px 4px 0 0;
+}
+
+.signup-form .input-field-group>.input-field {
+	margin: 0 auto;
+	margin-bottom: 0;
+	border-radius: 0;
+	border-bottom: none;
+}
+
+.signup-form .input-field {
+	position: relative;
+	margin: 0 auto;
+	width: 300px;
+	padding: 0;
+	border: 1px solid #dfebf2;
+	background-color: #fff;
+	border-radius: 4px;
+}
+
+.signup-form-nav a {
+	color: #666;
+	font-size: 12px;
+	text-decoration: none;
+}
+
+.signup-form-nav .right {
+	width: 50%;
+	float: right;
+	text-align: right;
+}
+
+.signup-form .error-msg-list {
+	list-style-type: none;
+	padding-left: 0;
+	margin: 8px auto;
+}
+
+.signup-form .error-msg-list__item {
+	width: 280px;
+	background-color: rgba(0, 0, 0, .3);
+	margin: 0 auto;
+	margin-bottom: 2px;
+	padding: 13px 10px;
+	font-size: 14px;
+	line-height: 1.5;
+	color: #fff;
+	text-align: left;
+}
+
+.btn-facebook,
+.btn-gplus,
+.btn-sns,
+.btn-twitter,
+.btn-weibo,
+.radius-flat-rectangle,
+.signup-form .error-msg-list__item,
+.signup-form .input-field input,
+.signup-form__submit,
+.signup-form__submit--login,
+.signup-form__submit--login--short,
+.signup-form__submit--short {
+	border: none;
+	border-radius: 4px;
+}
+
+[type=reset],
+[type=submit],
+button,
+html [type=button] {
+	-webkit-appearance: button;
+}
+
+.signup-form-nav {
+	list-style: none;
+	width: 300px;
+	margin: 0 auto;
+	color: #666;
+	font-size: 12px;
+	overflow: hidden;
+}
+
+
+.signup-form__sns-btn-area {
+    color: #666;
+    font-size: 12px;
+    width: 302px;
+    box-sizing: border-box;
+    margin: 0 auto;
+    margin-top: 16px;
+    padding: 20px 26px;
+    background-color: #fff;
+    border: 1px solid #dfebf2;
+    border-radius: 4px;
+}

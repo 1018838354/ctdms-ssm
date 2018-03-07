@@ -1,0 +1,103 @@
+table {
+    background-color: #EFEFEF;
+    color: #0795FE;
+    border-top: 1px solid #CCCCCC;
+    border-right: 1px solid #333333;
+    border-bottom: 1px solid #333333;
+    border-left: 1px solid #CCCCCC;
+}
+
+tbody {
+    display: table-row-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+TR {
+    font-family: "Verdana";
+    font-size: 9pt;
+    color: 000000;
+}
+
+TD {
+    font-family: "Verdana";
+    font-size: 9pt;
+    color: 000000;
+}
+.cell1 {
+    background-color: #666666;
+    color: #FFFFFF;
+    font-size: 12px;
+    text-align: center;
+    vertical-align: middle;
+    border-top: 1px solid #CCCCCC;
+    border-right: 1px solid #333333;
+    border-bottom: 1px solid #333333;
+    border-left: 1px solid #CCCCCC;
+    height: 14px;
+} 
+.morning {
+    background-color: #EFEFEF;
+    color: #000000;
+    font-size: 12px;
+    text-align: center;
+    vertical-align: middle;
+    border-top: 1px solid #F3F3F3;
+    border-right: 1px solid #DBDBDB;
+    border-bottom: 1px solid #DBDBDB;
+    border-left: 1px solid #F3F3F3;
+    height: 40px;
+}
+.afternoon {
+    background-color: #E1E1E1;
+    color: #000000;
+    font-size: 12px;
+    text-align: center;
+    vertical-align: middle;
+    border-top: 1px solid #E3E3E3;
+    border-right: 1px solid #CDCDCD;
+    border-bottom: 1px solid #CDCDCD;
+    border-left: 1px solid #E3E3E3;
+    height: 40px;
+}
+.night {
+    background-color: #C9C9C9;
+    color: #000000;
+    font-size: 12px;
+    text-align: center;
+    vertical-align: middle;
+    border-top: 1px solid #D9D9D9;
+    border-right: 1px solid #B0B0B0;
+    border-bottom: 1px solid #B0B0B0;
+    border-left: 1px solid #D9D9D9;
+    height: 40px;
+}
+.course {
+    background-color: #DFDFFF;
+    color: #000000;
+    border-top: 1px solid #DEE0FE;
+    border-right: 1px solid #B9BCFF;
+    border-bottom: 1px solid #B9BCFF;
+    border-left: 1px solid #DEE0FE;
+    text-align: left;
+    font-size: 12px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+td {
+    background-color: #EFEFEF;
+    color: #000000;
+    font-size: 12px;
+    text-align: center;
+    vertical-align: middle;
+    border-top: 1px solid #F3F3F3;
+    border-right: 1px solid #DBDBDB;
+    border-bottom: 1px solid #DBDBDB;
+    border-left: 1px solid #F3F3F3;
+}
+.caption {
+    font-size: 12px;
+    color: #666666;
+    filter: DropShadow(Color=#000000, OffX=2, OffY=2, Positive=1);
+}

@@ -1,0 +1,131 @@
+.msg-container {
+    width: 300px;
+    font: 14px/21px "Open Sans", Arial, sans-serif;
+    padding: 2px;
+    margin: 15px 15px;
+    float:left; 
+    position: relative;
+    border-radius: 5px;
+    background-color: #f8f8f8; 
+}
+.msgtype{
+	margin:0 auto;
+	font-size: 12px;
+	font-weight: bold;
+	color:black;
+	background-color: #EEF0F3;
+	padding: 2px 0;
+}
+p {
+    margin-bottom: 10px;
+    font-size: 12px;
+} 
+dt {
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    margin-left: 26px;
+    cursor: pointer;
+}
+ 
+dd {
+    padding: 10px 20px;
+    background: #FDFCFA;
+    border-radius: 5px;
+    border: 1px solid #F2EEE6;
+    margin: 20px 0 10px; 
+    display: none;
+    position: relative;
+}
+dt:before {
+  content: "";
+  border-color: transparent #ccc;
+  border-style: solid;
+  border-width: 5px 0 5px 8px;
+  display: block;
+  height: 0;
+  width: 0;
+  left: -16px;
+  top: 17px;
+  position: relative;
+}
+dd:after, dd:before {
+  bottom: 100%;
+  left: 6%;
+  border: solid transparent;
+  content: "";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+}
+ 
+dd:after {
+  border-color: rgba(136, 183, 213, 0);
+  border-color: transparent;
+  border-bottom-color: #FDFCFA;
+  border-width: 15px;
+  margin-left: -15px;
+}
+ 
+dd:before {
+  border-color: rgba(194, 225, 245, 0);
+  border-color: transparent;
+  border-bottom-color: #F2EEE6;
+  border-width: 17px;
+  margin-left: -17px;
+}
+span.user{
+	float:right;
+}
+div.more {
+    clear: both;
+    margin: 4px 8px;
+    text-align: right;
+    font-size: 10px;
+} 
+a {
+    color: #258fb8;
+    text-decoration: none;
+}
+
+
+/**
+ * 最顶部的 消息
+ */
+
+.newsticker {
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  background: #e58e8a;
+  color: #402726;
+  cursor: default;
+  font-family: verdana;
+  font-weight: bold;
+  font-size: 13px;
+  line-height: 15.6px;
+  padding: 0 10px 0 10px;
+  height: 30px;
+  position: relative;
+  overflow: hidden;
+}
+
+.newsticker:hover {
+  background: #ff9e9a;
+}
+
+.newsticker .newsticker-list {
+  position: absolute;
+  top: 7px;
+}
+
+.newsticker .newsticker-list .newsticker-item {
+  height: 30px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+
+
+ 

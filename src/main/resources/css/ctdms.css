@@ -1,0 +1,158 @@
+			body{
+				cursor: url(https://limh.me/content/templates/limh.me/style/default.cur),default;
+			} 
+			#iframe{  
+				width: auto;
+				height: 100%;
+			} 
+			
+			.module-frame{
+				border-top: 1px solid #d8dfea;
+			    border-left: 1px solid #d8dfea;
+			    border-right: 1px solid #d8dfea;
+			    margin-left: -1px;    
+			    top: 52px;
+			    left: 182px;
+			    bottom: 0px;
+			    right: 0px;
+			    height:100%;
+			    border-top-left-radius: 5px;
+			    border-top-right-radius: 5px;
+			    position: absolute;
+			}
+			
+			.frame-title {
+			    border-bottom: 1px solid #e7eaec;
+			    color: inherit;
+			    margin-bottom: 1px;
+			    
+			    min-height: 48px;
+			}
+			.frame-title h5 {
+			    display: inline-block;
+			    font-size: 16px;
+			    margin: 16px 0px;
+			    font-weight: 500;
+			    text-indent: 8px;
+			    text-overflow: ellipsis;
+			    border-left: 2px solid #88B7E0;
+			}
+			.table{
+			    border: 1px solid #e1e6eb;
+			}
+			.frame-content {
+				padding: 15px 0; 
+			}
+			.nowrap {
+			    white-space: nowrap !important; 
+			}
+			.pull-right {
+			    float: right!important;
+			}
+			
+			.ctdms-btn-small{
+				    height: 30px;
+				    float:left;
+				    line-height: 29px;
+				    background-color: #3B8CFF;
+				    color:white;
+				    margin-left: 10px;
+				    padding: 0 10px;
+				    font-size: 14px;
+				    cursor:pointer;
+				    text-align: center;
+			}
+			.ctdms-btn{
+			    display: inline-block;
+			    padding: 5px 18px;
+			    font-size: 14px; 
+			    color: #fff;
+			    background: #e7989a;
+			    border-bottom-right-radius: 10px;
+			    text-transform: capitalize;
+			    transition: all 0.30s linear;
+			    cursor: pointer;
+    		}
+    		.btn-ban{
+    			 
+    		}
+    		
+    		.ctdms-btn:hover{
+			    background: #333;
+			    text-decoration: none;
+			}
+			.btn-danger{
+			    background-color: #FF5722;
+			}
+			.ctdms-btn-small i {
+			    font-size: 16px!important;
+			}
+			 .form-search .col-xs-3 {
+			    width: 200px !important;  
+			}
+			 .btn{outline:none !important}
+.btn-primary{background-color:#1ab394;border-color:#1ab394;color:#FFFFFF}
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active{background-image:none !important;background-color:#18a689 !important;border-color:#18a689 !important;color:#FFFFFF !important;box-shadow:none !important}
+.btn-primary.disabled, .btn-primary.disabled:hover, .btn-primary.disabled:focus, .btn-primary.disabled:active{background-color:#1dc5a3;border-color:#1dc5a3}
+.btn-white{color:inherit;background:white;border:1px solid #e7eaec}
+.btn-white:hover, .btn-white:focus, .btn-white:active{color:inherit;border:1px solid #d2d2d2}
+.btn-white.disabled, .btn-white.disabled:hover, .btn-white.disabled:focus, .btn-white.disabled.active{color:#cacaca}
+			 
+			 
+			 
+			th{
+				font-weight: normal;
+		   		color: #999;
+				background-color: #F5F6FA;
+			}
+			.text-explode {
+				color: #CCC !important;
+				font-weight: normal !important;
+				margin: 0px 4px !important;
+			}
+			
+			/**
+			* 动画
+			*/
+			.animated {
+			    -webkit-animation-duration: 1s;
+			    animation-duration: 1s;
+			    -webkit-animation-fill-mode: both;
+			    animation-fill-mode: both;
+			    z-index: 100;
+			}
+			@-webkit-keyframes fadeInUp {
+			    0% {
+			        opacity: 0;
+			        -webkit-transform: translateY(20px);
+			        transform: translateY(20px);
+			    }
+			
+			    100% {
+			        opacity: 1;
+			        -webkit-transform: translateY(0);
+			        transform: translateY(0);
+			    }
+			}
+			
+			@keyframes fadeInUp {
+			    0% {
+			        opacity: 0;
+			        -webkit-transform: translateY(20px);
+			        -ms-transform: translateY(20px);
+			        transform: translateY(20px);
+			    }
+			
+			    100% {
+			        opacity: 1;
+			        -webkit-transform: translateY(0);
+			        -ms-transform: translateY(0);
+			        transform: translateY(0);
+			    }
+			}
+			
+			.fadeInUp {
+			    -webkit-animation-name: fadeInUp;
+			    /* animation-name: fadeInUp; */
+			}
+			

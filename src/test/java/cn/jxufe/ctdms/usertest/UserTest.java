@@ -46,7 +46,7 @@ public class UserTest {
     //模拟登录测试
     @Test
     public void login_test() throws Exception {
-        String json = mockMvc.perform(post("/signin")
+        String json = mockMvc.perform(post("/login")
         .param("username","张驰")
         .param("password","123").contentType(MediaType.APPLICATION_JSON_UTF8)
         ).andExpect(status().isOk())
@@ -58,7 +58,7 @@ public class UserTest {
     @Test
     public void selectUserTest(){
         User user = userDao.findByUsername("张驰");
-        System.out.println(user.getUsername());
+
         Assert.isTrue(user.getUsername().equals("张驰"),"查找张驰 错误");
     }
 }
