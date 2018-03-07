@@ -9,7 +9,13 @@
 <link rel="stylesheet" href="css/ctdms.css" /> 
 </head>
 <body>
-	<div class="wallpaper">
+<div class="wallpaper">
+	<div class="wrapper">
+		<div class="main-content">
+			<h1>Smart document management</h1>
+			<p>GitHub is a development platform inspired by the way you work. From open source to business, you can host and review code.</p>
+		</div>
+
 		<div class="signup-form">
 			<div class="signup-form__logo-box">
 				<div class="signup-form__logo"></div>
@@ -20,24 +26,24 @@
 					<span>
 						<form action="<c:url value='login' />" method="post">
 							<input type="hidden" name="${_csrf.parameterName}"
-								value="${_csrf.token}" />
+								   value="${_csrf.token}" />
 							<div class="input-field-group">
 								<div class="input-field">
 									<input type="text"  name="userName" placeholder="教师姓名/ctdms ID"
-										autocomplete="false" value autocapitalize="off">
+										   autocomplete="false" value autocapitalize="off">
 								</div>
 								<div class="input-field">
 									<input type="password"  name="passWord" placeholder="密码"
-										autocomplete="false" autocapitalize="off">
+										   autocomplete="false" autocapitalize="off">
 								</div>
 							</div>
 
 							<ul class="error-msg-list fadeInUp animated">
 								<c:if test="${!empty error }">
-									<li class="error-msg-list__item">${error }</li>
+									<li class="error-msg-list__item">登陆失败</li>
 								</c:if>
 								<c:if test="${!empty logout }">
-									<li class="error-msg-list__item">${logout }</li>
+									<li class="error-msg-list__item">退出登录</li>
 								</c:if>
 							</ul>
 
@@ -54,42 +60,43 @@
 			</div>
 			<div class="signup-form__sns-btn-area">
 				<div>江西财经大学-软通学院</div>
-				<div class="sns-button-list"> 
-				
+				<div class="sns-button-list">
+
 				</div>
 			</div>
 		</div>
 	</div>
+</div>
 </body>
- <script type="text/javascript" src="js/jquery.min.js"></script> 
- <script type="text/javascript" src="js/preload.min.js"></script> 
- <script type="text/javascript">
- $.pageLoad.PageLoading({
-	 delayTime: 500
-	}); 
- function check(btn){
-	 var pw = $("input[type='password']").val();
-	 var un = $("input[type='text']").val(); 
-	 console.log(un);
-	 var list = document.getElementsByClassName("error-msg-list")[0]; 
-	 while(list.lastChild) //当div下还存在末尾节点时 循环继续
-	 {list.removeChild(list.lastChild) }
-	 var b1 = addErrorMsg(un,'您所输入的账号过短');
-	 var b2 = addErrorMsg(pw,'密码为2～25文字以内');
-	 console.log(b1 +" " +b2);
-	 console.log(un.length); 
-	 return b1&&b2; 
- }
- function addErrorMsg(check,msg){ 
-	 if(check.length>=2){ return true;}
-	 var list = document.getElementsByClassName("error-msg-list")[0]; 
-	 var newNode = document.createElement("li");
-	 newNode.className = 'error-msg-list__item fadeInUp animated';
-	 newNode.innerHTML = msg; 
-	 list.appendChild(newNode); 
-	 return false;
- }
- </script>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/preload.min.js"></script>
+<script type="text/javascript">
+    $.pageLoad.PageLoading({
+        delayTime: 500
+    });
+    function check(btn){
+        var pw = $("input[type='password']").val();
+        var un = $("input[type='text']").val();
+        console.log(un);
+        var list = document.getElementsByClassName("error-msg-list")[0];
+        while(list.lastChild) //当div下还存在末尾节点时 循环继续
+        {list.removeChild(list.lastChild) }
+        var b1 = addErrorMsg(un,'您所输入的账号过短');
+        var b2 = addErrorMsg(pw,'密码为2～25文字以内');
+        console.log(b1 +" " +b2);
+        console.log(un.length);
+        return b1&&b2;
+    }
+    function addErrorMsg(check,msg){
+        if(check.length>=2){ return true;}
+        var list = document.getElementsByClassName("error-msg-list")[0];
+        var newNode = document.createElement("li");
+        newNode.className = 'error-msg-list__item fadeInUp animated';
+        newNode.innerHTML = msg;
+        list.appendChild(newNode);
+        return false;
+    }
+</script>
 <!-- 这骚操作 吃电脑配置
 	<script type="text/javascript" src="js/jquery.min.js" ></script>
 	<script type="text/javascript" src="js/ios-parallax.js" ></script>
