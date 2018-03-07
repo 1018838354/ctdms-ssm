@@ -15,7 +15,11 @@ form {
 }
  
 .wallpaper {
-	background: linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('http://www.jsdaima.com/Uploads/js/201707/1499914082/images/mountains_light_sun_sky_clouds_114136_2560x1080.jpg') no-repeat fixed;
+	color: rgba(255, 255, 255, 0.6);
+    background: url(https://github.com/images/modules/site/heroes/simple-codelines.svg), #2b3137;
+    background-position: center 10%;
+    background-size: cover;
+
 	left: 0;
 	right: 0;
 	top: 0;
@@ -32,13 +36,37 @@ form {
 	-webkit-transition-timing-function: ease;
 	transition-timing-function: ease;
 }
-
+.wrapper{
+		width: 1014px;
+		height: auto;
+		margin: 0 auto;
+		margin-top: 10%;
+		padding: 22px;
+}
+.main-content{
+	width: calc(100% - 383px);
+	overflow: hidden;
+	float: left;
+	text-align:left;
+	color: white;
+	
+}
+.main-content h1{
+	font-size: 78px;
+	font-weight: 300;
+	
+}
+.main-content p{
+	font-size: 26px;
+	font-weight: 300;
+}
+	
 .signup-form { 
-	margin:10% auto;
+	float: right;
 	text-align: center;
-	background-color: hsla(0, 0%, 100%, 0.92);
+	background-color: white;
 	width: 363px;
-	padding: 50px 0;
+	padding: 50px 10px;
 	border-radius: 4px;
 }
 
