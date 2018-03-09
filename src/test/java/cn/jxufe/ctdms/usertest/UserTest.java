@@ -3,6 +3,7 @@ package cn.jxufe.ctdms.usertest;
 
 import cn.jxufe.ctdms.bean.User;
 import cn.jxufe.ctdms.dao.UserDao;
+import cn.jxufe.ctdms.service.UserService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -36,8 +37,9 @@ public class UserTest {
     private MockMvc mockMvc ;
 
     @Autowired
+    private UserService userService;
+    @Autowired
     private UserDao userDao;
-
     @Before
     public void setup(){
         mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
@@ -54,11 +56,26 @@ public class UserTest {
         System.out.print(json);
     }
 
-    // Dao 测试
+    //findByUsername Dao 测试
     @Test
     public void selectUserTest(){
         User user = userDao.findByUsername("张驰");
 
         Assert.isTrue(user.getUsername().equals("张驰"),"查找张驰 错误");
+    }
+
+    //register findByUid Dao 测试
+    @Test
+    public void registerUserTest(){
+        User user = new User();
+        user.setUsername("test_user");
+        user.setPassword("123");
+        try {
+            Long userId = userService.register(user);
+        }catch (Exception e){
+            //用户已存在
+        }
+        User user2 = userDao.findByUsername(user.getUsername());
+        Assert.isTrue(user.getUsername().equals(user2.getUsername()),"test_user");
     }
 }

@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
@@ -48,18 +49,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
-        auth.userDetailsService(customUserService()).passwordEncoder(new PasswordEncoder() {
-
-            @Override
-            public String encode(CharSequence rawPassword) {
-                return (String)rawPassword;//MD5Util.encode((String) rawPassword);
-            }
-
-            @Override
-            public boolean matches(CharSequence rawPassword, String encodedPassword) {
-                return true;//encodedPassword.equals((String) rawPassword);
-            }
-        });
+        auth.userDetailsService(customUserService()).passwordEncoder(new BCryptPasswordEncoder());
     }
 
 

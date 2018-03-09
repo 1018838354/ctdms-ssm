@@ -7,8 +7,9 @@ import java.util.List;
 public interface UserService {
 	/*
 		注册用户
+		@return userID
 	*/
-	User register(User user);
+	Long register(User user);
 
 	/*
 		根据用户名查找用户
