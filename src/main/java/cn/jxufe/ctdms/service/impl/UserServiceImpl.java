@@ -2,6 +2,8 @@ package cn.jxufe.ctdms.service.impl;
 
 import cn.jxufe.ctdms.bean.User;
 import cn.jxufe.ctdms.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
