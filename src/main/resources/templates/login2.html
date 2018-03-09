@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="css/ctdms.css" /> 
 </head>
 <body>
+
 <div class="wallpaper">
 	<div class="wrapper">
 		<div class="main-content">
@@ -24,27 +25,22 @@
 			<div id="container-login">
 				<div data-reactroot="" id="LoginComponent">
 					<span>
-						<form action="<c:url value='login' />" method="post">
-							<input type="hidden" name="${_csrf.parameterName}"
-								   value="${_csrf.token}" />
+						<form th:action="@{/login}" method="POST">
+							<input type="hidden"  />
 							<div class="input-field-group">
 								<div class="input-field">
-									<input type="text"  name="userName" placeholder="教师姓名/ctdms ID"
-										   autocomplete="false" value autocapitalize="off">
+									<input type="text"  name="username" placeholder="教师姓名/ctdms ID"
+										   autocomplete="false" autocapitalize="off">
 								</div>
 								<div class="input-field">
-									<input type="password"  name="passWord" placeholder="密码"
+									<input type="password"  name="password" placeholder="密码"
 										   autocomplete="false" autocapitalize="off">
 								</div>
 							</div>
 
 							<ul class="error-msg-list fadeInUp animated">
-								<c:if test="${!empty error }">
-									<li class="error-msg-list__item">登陆失败</li>
-								</c:if>
-								<c:if test="${!empty logout }">
-									<li class="error-msg-list__item">退出登录</li>
-								</c:if>
+								<li th:if="${param.error}" class="error-msg-list__item">登陆失败</li>
+								<li th:if="${param.logout}" class="error-msg-list__item">退出登录</li>
 							</ul>
 
 							<input type="submit" onclick="return check(this)" class="signup-form__submit" value="登录">

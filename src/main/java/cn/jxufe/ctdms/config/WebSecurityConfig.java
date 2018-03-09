@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.User;
@@ -44,11 +45,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new CustomUserService();
     }
 
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        //这里是新增一个默认用户
-        auth.inMemoryAuthentication().withUser("admin").password("0000").roles("ADMIN");
-    }
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
@@ -64,5 +60,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 return true;//encodedPassword.equals((String) rawPassword);
             }
         });
+    }
+
+
+    public void configure(WebSecurity webSecurity) throws Exception {
+        webSecurity.ignoring().antMatchers("/css/**","/js/**","/img/**");
     }
 }

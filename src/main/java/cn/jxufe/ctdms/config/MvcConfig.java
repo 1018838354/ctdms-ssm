@@ -16,11 +16,12 @@ public class MvcConfig implements WebMvcConfigurer {
         registry.addResourceHandler("/js/**").addResourceLocations("classpath:/static/js/");
     }
 
+    @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/").setViewName("home");
         registry.addViewController("/home").setViewName("home");
-        registry.addViewController("/login2").setViewName("login2");
-        registry.addViewController("/login").setViewName("login");
+        registry.addViewController("/login").setViewName("login2");
+//        registry.addViewController("/login").setViewName("login");
     }
 
 }
