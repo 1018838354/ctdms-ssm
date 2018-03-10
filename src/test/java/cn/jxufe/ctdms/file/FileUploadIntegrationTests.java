@@ -1,6 +1,6 @@
 package cn.jxufe.ctdms.file;
 
-import cn.jxufe.ctdms.service.StorageService;
+import cn.jxufe.ctdms.storage.StorageService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -45,7 +45,7 @@ public class FileUploadIntegrationTests {
 		File file = new File("/Users/ye2moe/Desktop/login.html");
 		MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
 		map.add("file", file);
-		ResponseEntity<String> response = this.restTemplate.postForEntity("/file", map,
+		ResponseEntity<String> response = this.restTemplate.postForEntity("/upload", map,
 				String.class);
 
 		assertThat(response.getStatusCode()).isEqualByComparingTo(HttpStatus.FOUND);

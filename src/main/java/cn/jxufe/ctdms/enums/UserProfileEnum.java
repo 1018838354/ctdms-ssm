@@ -6,7 +6,7 @@ package cn.jxufe.ctdms.enums;
  * @author Moe
  *
  */
-public enum UserProfileType {
+public enum UserProfileEnum {
 	USER(1,"USER","用户"),
 	TEACHER(10,"TEACHER","教师"),
 	TEACHER_MASTER(40,"TEACHER_MASTER","教师负责人"),
@@ -19,12 +19,12 @@ public enum UserProfileType {
 	String userProfileMsg;
 	private int profileTypeId; 
 	
-	UserProfileType(int id,String msg,String type){
+	UserProfileEnum(int id, String msg, String type){
 		this.profileTypeId = id;
 		this.userProfileMsg = msg;
 		this.userProfileType = type ;
 	}
-	private UserProfileType(String userProfileType){
+	private UserProfileEnum(String userProfileType){
 		this.userProfileType = userProfileType;
 	}
 	

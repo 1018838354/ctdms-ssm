@@ -1,4 +1,4 @@
-package cn.jxufe.ctdms.service.impl;
+package cn.jxufe.ctdms.storage;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -8,7 +8,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.stream.Stream;
 
-import cn.jxufe.ctdms.service.StorageService;
+import cn.jxufe.ctdms.storage.StorageService;
 import cn.jxufe.ctdms.storage.StorageException;
 import cn.jxufe.ctdms.storage.StorageFileNotFoundException;
 import cn.jxufe.ctdms.storage.StorageProperties;
