@@ -68,14 +68,17 @@ public class UserTest {
     @Test
     public void registerUserTest(){
         User user = new User();
-        user.setUsername("test_user");
+        user.setUsername("fsaf");
         user.setPassword("123");
         try {
             Long userId = userService.register(user);
+            System.out.println(userId);
+            User user2 = userDao.findByUId(userId);
+            Assert.isTrue(user.getUsername().equals(user2.getUsername()),"test_user");
+
         }catch (Exception e){
             //用户已存在
+            e.printStackTrace();
         }
-        User user2 = userDao.findByUsername(user.getUsername());
-        Assert.isTrue(user.getUsername().equals(user2.getUsername()),"test_user");
-    }
+     }
 }
