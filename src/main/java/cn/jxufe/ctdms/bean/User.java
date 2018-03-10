@@ -43,7 +43,7 @@ public class User implements UserDetails{
 		List<GrantedAuthority> auths = new ArrayList<>();
 
 		for (UserProfile role : userProfiles) {
-			auths.add(new SimpleGrantedAuthority(role.getType()));
+			auths.add(new SimpleGrantedAuthority("ROLE_"+role.getType()));
 		}
 		return auths;
 	}
@@ -75,7 +75,7 @@ public class User implements UserDetails{
 
 	@Override
 	public boolean isEnabled() {
-		return true;
+		return state.equals(UserState.ACTIVE);
 	}
 
 	public void setUsername(String username) {
