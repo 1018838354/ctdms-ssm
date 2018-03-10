@@ -7,13 +7,12 @@ package cn.jxufe.ctdms.enums;
  *
  */
 public enum UserProfileEnum {
-	USER(1,"USER","用户"),
-	TEACHER(10,"TEACHER","教师"),
-	TEACHER_MASTER(40,"TEACHER_MASTER","教师负责人"),
-	SECRETARY(80,"SECRETARY","教学秘书"),
-	DIRECTOR(100,"DIRECTOR","系主任"),
-	DEAN(300,"DEAN","教学院长"),
-	ADMIN(999,"ADMIN","管理员");
+	TEACHER(1,"TEACHER","教师"),
+	TEACHER_MASTER(11,"TEACHER_MASTER","教师负责人"),
+	SECRETARY(111,"SECRETARY","教学秘书"),
+	DIRECTOR(111,"DIRECTOR","系主任"),
+	DEAN(1111,"DEAN","教学院长"),
+	ADMIN(9999,"ADMIN","管理员");
 	
 	String userProfileType;
 	String userProfileMsg;
