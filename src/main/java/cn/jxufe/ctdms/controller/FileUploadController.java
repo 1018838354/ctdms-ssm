@@ -1,5 +1,6 @@
 package cn.jxufe.ctdms.controller;
 
+import cn.jxufe.ctdms.service.DocService;
 import cn.jxufe.ctdms.util.storage.StorageFileNotFoundException;
 import cn.jxufe.ctdms.service.StorageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,8 @@ import java.util.stream.Collectors;
 public class FileUploadController {
 
     private final StorageService storageService;
-
+    @Autowired
+    private DocService docService;
     @Autowired
     public FileUploadController(StorageService storageService) {
         this.storageService = storageService;
@@ -50,6 +52,19 @@ public class FileUploadController {
     public String handleFileUpload(@RequestParam("file") MultipartFile file,
             RedirectAttributes redirectAttributes) {
         storageService.store(file);
+        redirectAttributes.addFlashAttribute("message",
+                "You successfully uploaded " + file.getOriginalFilename() + "!");
+
+        return "redirect:/";
+    }
+    @PostMapping("/cp")
+    public String handleCPFileUpload(@RequestParam("file") MultipartFile file,
+                                   RedirectAttributes redirectAttributes) {
+        try {
+            docService.cp(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         redirectAttributes.addFlashAttribute("message",
                 "You successfully uploaded " + file.getOriginalFilename() + "!");
 

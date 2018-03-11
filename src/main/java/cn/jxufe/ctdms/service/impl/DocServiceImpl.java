@@ -49,14 +49,10 @@ public class DocServiceImpl implements DocService{
             setUploadTask(e,uId,cId,tasks);
         }
         //保存任务至数据库
-        saveUploadTask(tasks);
         //引用置空 ，让虚拟机gc回收。
         excels = null;
     }
 
-    private void saveUploadTask(List<UploadTask> tasks) {
-        uploadTaskDao.saveTasks(tasks);
-    }
 
 
     private long createTeacher(MyExcelCourse e, List<User> dbUsers, List<User> saveUsers) {
@@ -88,6 +84,9 @@ public class DocServiceImpl implements DocService{
             task.setType(DocTypeEnum.TEACH.getTypeId());
         else
             task.setType(DocTypeEnum.SYLLABUS.getTypeId());
+        Long taskId = uploadTaskDao.save(task);
+        e.getCourseTimes().forEach(ct->{ct.setTaskId(taskId);});
+        courseService.saveCourseTimes(e.getCourseTimes());
     }
     private boolean checkTermHasCp() {
         return true;

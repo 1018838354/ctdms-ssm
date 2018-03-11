@@ -7,5 +7,6 @@ import java.util.List;
 
 @Mapper
 public interface UploadTaskDao {
-    void saveTasks(List<UploadTask>tasks);
+    void saves(List<UploadTask>tasks);
+    Long save(UploadTask task);
 }

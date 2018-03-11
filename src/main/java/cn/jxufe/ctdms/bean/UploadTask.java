@@ -1,6 +1,9 @@
 package cn.jxufe.ctdms.bean;
 
-//教师上传文档 任务
+/**
+ *  TODO create table upload_task
+ *  教师上传文档 任务
+ */
 public class UploadTask {
     //任务 id
     long taskId;

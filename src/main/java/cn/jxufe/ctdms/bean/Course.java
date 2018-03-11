@@ -1,5 +1,6 @@
 package cn.jxufe.ctdms.bean;
 
+//TODO create table course
 //课程信息
 public class Course {
     //课程id
@@ -12,6 +13,7 @@ public class Course {
     String term;
     //教师名
     String teacherName;
+
 
     String classCode;
 
