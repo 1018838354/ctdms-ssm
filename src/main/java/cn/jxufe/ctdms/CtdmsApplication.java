@@ -1,6 +1,6 @@
 package cn.jxufe.ctdms;
 
-import cn.jxufe.ctdms.storage.StorageProperties;
+import cn.jxufe.ctdms.util.storage.StorageProperties;
 import cn.jxufe.ctdms.service.StorageService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;

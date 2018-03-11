@@ -9,9 +9,9 @@ import java.nio.file.StandardCopyOption;
 import java.util.stream.Stream;
 
 import cn.jxufe.ctdms.service.StorageService;
-import cn.jxufe.ctdms.storage.StorageException;
-import cn.jxufe.ctdms.storage.StorageFileNotFoundException;
-import cn.jxufe.ctdms.storage.StorageProperties;
+import cn.jxufe.ctdms.util.storage.StorageException;
+import cn.jxufe.ctdms.util.storage.StorageFileNotFoundException;
+import cn.jxufe.ctdms.util.storage.StorageProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;

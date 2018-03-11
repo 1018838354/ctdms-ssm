@@ -1,4 +1,4 @@
-package cn.jxufe.ctdms.storage;
+package cn.jxufe.ctdms.util.storage;
 
 public class StorageFileNotFoundException extends StorageException {
 

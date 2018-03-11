@@ -1,4 +1,4 @@
-package cn.jxufe.ctdms.storage;
+package cn.jxufe.ctdms.util.storage;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 

@@ -1,6 +1,6 @@
 package cn.jxufe.ctdms.controller;
 
-import cn.jxufe.ctdms.storage.StorageFileNotFoundException;
+import cn.jxufe.ctdms.util.storage.StorageFileNotFoundException;
 import cn.jxufe.ctdms.service.StorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
