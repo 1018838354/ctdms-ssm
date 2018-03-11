@@ -1,20 +1,18 @@
 package cn.jxufe.ctdms.bean;
 
 
-import cn.jxufe.ctdms.enums.UserProfileEnum;
+import cn.jxufe.ctdms.enums.UserProfileType;
 
 /**
- * table user_profile
  * 用户 角色 映射表
  * @author Moe
  *
  */
-
 public class UserProfile {
 
 	private int id;	
 
-	private String type = UserProfileEnum.USER.getUserProfileType();
+	private String type = UserProfileType.USER.getUserProfileType();
 	
 	public UserProfile(){
 		

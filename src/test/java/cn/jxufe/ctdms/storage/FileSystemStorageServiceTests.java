@@ -17,6 +17,7 @@ package cn.jxufe.ctdms.storage;
 
 import java.util.Random;
 
+import cn.jxufe.ctdms.service.impl.FileSystemStorageService;
 import org.junit.Before;
 import org.junit.Test;
 

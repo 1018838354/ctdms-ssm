@@ -1,4 +1,4 @@
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"> 
 <body>
 
 	<div th:if="${message}">
@@ -13,10 +13,7 @@
 			</table>
 		</form>
 	</div>
-	  <!--
-    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
-	post
-     -->
+
 	<div>
 		<ul>
 			<li th:each="file : ${files}">

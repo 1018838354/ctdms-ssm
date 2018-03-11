@@ -14,7 +14,7 @@
 	<div class="wrapper">
 		<div class="main-content">
 			<h1>Smart document management</h1>
-			<p>Ctdms is a teacher platform inspired by the way you work. From open source to business, you can upload and review document.</p>
+			<p>GitHub is a development platform inspired by the way you work. From open source to business, you can host and review code.</p>
 		</div>
 
 		<div class="signup-form">
@@ -39,8 +39,8 @@
 							</div>
 
 							<ul class="error-msg-list fadeInUp animated">
-								<li th:if="${param.error}" class="error-msg-list__item">登陆失败，账号或密码错误！</li>
-								<li th:if="${param.logout}" class="error-msg-list__item">退出登录成功</li>
+								<li th:if="${param.error}" class="error-msg-list__item">登陆失败</li>
+								<li th:if="${param.logout}" class="error-msg-list__item">退出登录</li>
 							</ul>
 
 							<input type="submit" onclick="return check(this)" class="signup-form__submit" value="登录">
@@ -93,7 +93,7 @@
         return false;
     }
 </script>
-<!--
+<!-- 这骚操作 吃电脑配置
 	<script type="text/javascript" src="js/jquery.min.js" ></script>
 	<script type="text/javascript" src="js/ios-parallax.js" ></script>
 	<script> 
