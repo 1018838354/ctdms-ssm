@@ -12,4 +12,13 @@
     </foreach>
 </insert>
 
+    <resultMap type="cn.jxufe.ctdms.bean.User" id="userList">
+        <result property="uId" column="uId"/>
+        <result property="username" column="username"/>
+        <result property="password" column="password"/>
+    </resultMap>
+    <select id="findAll" resultMap="userList">
+            select * from user
+    </select>
+
 </mapper>

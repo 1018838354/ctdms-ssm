@@ -57,6 +57,11 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
+    public List<User> findAll() {
+        return userDao.findAll();
+    }
+
+    @Override
     public void forbid(long uid, int forbid) {
 
     }

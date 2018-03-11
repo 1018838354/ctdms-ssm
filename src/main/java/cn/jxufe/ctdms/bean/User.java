@@ -18,6 +18,11 @@ public class User implements UserDetails{
 
 	private Set<UserProfile> userProfiles = new HashSet<UserProfile>();
 
+	public User(String username, String password) {
+		this.username = username;
+		this.password = password;
+	}
+
 	@Override
 	public String toString() {
 		return "User{" +
@@ -129,11 +134,11 @@ public class User implements UserDetails{
 	}
 
 
-	public long getuId() {
+	public long getUId() {
 		return uId;
 	}
 
-	public void setuId(long uId) {
+	public void setUId(long uId) {
 		this.uId = uId;
 	}
 	@Override

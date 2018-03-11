@@ -21,6 +21,14 @@ public class UploadTask {
     //文档状态
     int state;
 
+    public UploadTask() {
+    }
+
+    public UploadTask(long uId,long cId) {
+        this.cId = cId;
+        this.uId = uId;
+    }
+
     public int getState() {
         return state;
     }

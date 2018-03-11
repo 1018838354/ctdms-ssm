@@ -37,4 +37,7 @@ public interface UserDao {
     User findByUId(@Param("uId") Long uId);
 
     void saves(List<User> users);
+
+
+    List<User> findAll();
 }

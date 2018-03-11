@@ -18,6 +18,8 @@ public interface UserService {
 
 	void registerTeachers(List<User> users);
 
+	List<User> findAll();
+
 	//List<CourseTeacherTime> getCTT(long userId);
 
 	void forbid(long uid, int forbid);
