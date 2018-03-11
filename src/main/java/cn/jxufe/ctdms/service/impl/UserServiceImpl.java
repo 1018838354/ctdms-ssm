@@ -16,7 +16,6 @@ import java.util.Set;
 
 
 
-
 @Service
 public class UserServiceImpl implements UserService{
 
@@ -50,8 +49,11 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public void registerTearchers(List<User> users) {
-
+    public void registerTeachers(List<User> users) {
+        for (User u : users){
+            setUserInfo(u);
+        }
+        userDao.saves(users);
     }
 
     @Override

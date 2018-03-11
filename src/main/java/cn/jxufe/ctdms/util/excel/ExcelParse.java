@@ -62,8 +62,10 @@ public class ExcelParse {
 			/**
 			 * 检查文档 是否 符合规范
 			 */
-			Method method = cls.getMethod("check",Row.class);
-			if (!(boolean)method.invoke(null,sheet.getRow(0))) {
+			T excel = cls.getDeclaredConstructor().newInstance();
+			if(!excel.check(sheet.getRow(0))){
+			//Method method = cls.getMethod("check",Row.class);
+			//if (!(boolean)method.invoke(null,sheet.getRow(0))) {
 				System.err.println("不规范的教学计划");
 				return Collections.emptyList();
 			} 

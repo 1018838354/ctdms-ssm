@@ -18,6 +18,15 @@ public class User implements UserDetails{
 
 	private Set<UserProfile> userProfiles = new HashSet<UserProfile>();
 
+	@Override
+	public String toString() {
+		return "User{" +
+				"uId=" + uId +
+				", username='" + username + '\'' +
+				", password='" + password + '\'' +
+				", state='" + state + '\'' +
+				'}';
+	}
 
 	public User() {
 		

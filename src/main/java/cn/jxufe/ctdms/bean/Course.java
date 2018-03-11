@@ -6,14 +6,32 @@ public class Course {
     long cId;
     //课程名
     String cName;
-    //学期
-    String term;
     //课程代码
     String cCode;
-    //校区
-    String district;
-    //周次
-    String weekly;
+    //学期
+    String term;
+    //教师名
+    String teacherName;
+
+    String classCode;
+
+    String district;	//校区
+
+    String weekly;		//周次
+
+    @Override
+    public String toString() {
+        return "Course{" +
+                "cId=" + cId +
+                ", cName='" + cName + '\'' +
+                ", cCode='" + cCode + '\'' +
+                ", term='" + term + '\'' +
+                ", teacherName='" + teacherName + '\'' +
+                ", classCode='" + classCode + '\'' +
+                ", district='" + district + '\'' +
+                ", weekly='" + weekly + '\'' +
+                '}';
+    }
 
     public String getcName() {
         return cName;
@@ -39,6 +57,31 @@ public class Course {
         this.cCode = cCode;
     }
 
+    public long getcId() {
+
+        return cId;
+    }
+
+    public void setcId(long cId) {
+        this.cId = cId;
+    }
+
+    public String getClassCode() {
+        return classCode;
+    }
+
+    public void setClassCode(String classCode) {
+        this.classCode = classCode;
+    }
+
+    public String getTeacherName() {
+        return teacherName;
+    }
+
+    public void setTeacherName(String teacherName) {
+        this.teacherName = teacherName;
+    }
+
     public String getDistrict() {
         return district;
     }
@@ -53,14 +96,5 @@ public class Course {
 
     public void setWeekly(String weekly) {
         this.weekly = weekly;
-    }
-
-    public long getcId() {
-
-        return cId;
-    }
-
-    public void setcId(long cId) {
-        this.cId = cId;
     }
 }

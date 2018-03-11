@@ -3,6 +3,8 @@ package cn.jxufe.ctdms.dao;
 import cn.jxufe.ctdms.bean.User;
 import org.apache.ibatis.annotations.*;
 
+import java.util.List;
+
 @Mapper
 public interface UserDao {
     @Select("SELECT * FROM user where username = #{username}")
@@ -33,4 +35,6 @@ public interface UserDao {
             @Result(property = "password" ,column ="password")
     })
     User findByUId(@Param("uId") Long uId);
+
+    void saves(List<User> users);
 }

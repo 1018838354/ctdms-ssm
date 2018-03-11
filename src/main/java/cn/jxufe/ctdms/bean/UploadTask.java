@@ -10,8 +10,8 @@ public class UploadTask {
     long uId;
     //任务类型，待上传文档类型
     int type;
-    //班级 : B04
-    String className;
+    //班级代码 : B04
+    String classCode;
     //上传记录 id
     long recordId;
     //上传次数
@@ -20,7 +20,6 @@ public class UploadTask {
     String term;
     //文档状态
     int state;
-
 
     public int getState() {
         return state;
@@ -70,12 +69,12 @@ public class UploadTask {
         this.type = type;
     }
 
-    public String getClassName() {
-        return className;
+    public String getClassCode() {
+        return classCode;
     }
 
-    public void setClassName(String className) {
-        this.className = className;
+    public void setClassCode(String classCode) {
+        this.classCode = classCode;
     }
 
     public long getRecordId() {

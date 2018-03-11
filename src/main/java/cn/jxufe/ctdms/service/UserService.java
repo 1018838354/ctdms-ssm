@@ -16,7 +16,7 @@ public interface UserService {
 	 */
 	User findByUserName(String userName);
 
-	void registerTearchers(List<User> users);
+	void registerTeachers(List<User> users);
 
 	//List<CourseTeacherTime> getCTT(long userId);
 

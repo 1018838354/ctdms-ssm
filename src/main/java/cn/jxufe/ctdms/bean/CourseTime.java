@@ -3,15 +3,27 @@ package cn.jxufe.ctdms.bean;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
- * 上课时间
+ * 教师上课时间,课程表
  * @author Moe
  *
  */
 public class CourseTime {
-	private long id;
+	long uId;			//用户id
 
-	public static final int MORNING = 0,AFTERNOON = 1,NIGHT = 2 ,MORING_MAX_LENGTH = 4;
-	public static void main(String[] args) { 
+	long ctId;			//课程时间id
+
+	long cId;			//课程id
+
+	int lastTime ;  	//几节课
+
+	int day ;  			//星期几
+
+	int classIndex; 	//上,中,下午的 第几节课
+
+	String classRoom;	//教室
+
+
+	public static void main(String[] args) {
 		System.out.println(new CourseTime("2-123"));
 		System.out.println(new CourseTime("2-567"));
 		System.out.println(new CourseTime("4-89A"));
@@ -29,38 +41,29 @@ public class CourseTime {
 		}else{
 			classIndex = 10;
 		}
-		
-		if(classTime.endsWith("A")){ 
-			this.classTime = NIGHT ;
-		}else{
-			if(classIndex > MORING_MAX_LENGTH ){
-				this.classTime = AFTERNOON;
-			}else{
-				this.classTime = MORNING;
-			}
-		}
-			
 	}
-	private int lastTime ;  //几节课
-	private int day ;  //星期几
-
-	private int classTime;  //上,中,下 午
-	private int classIndex; //上,中,下午的 第几节课
-	private String classRoom;
 	
 	@Override
 	public String toString() { 
-		return "星期"+day+"-时候:"+classTime+"-"+classIndex+"-"+lastTime+"节课"+"-"+classRoom;
-	}
-	@JsonIgnore
-	public long getId() {
-		return id;
+		return "星期"+day+"-"+classIndex+"-"+lastTime+"节课"+"-"+classRoom;
 	}
 
-	public void setId(long id) {
-		this.id = id;
+	public long getuId() {
+		return uId;
 	}
- 
+
+	public void setuId(long uId) {
+		this.uId = uId;
+	}
+
+	public long getCtId() {
+		return ctId;
+	}
+
+	public void setCtId(long ctId) {
+		this.ctId = ctId;
+	}
+
 	public int getLastTime() {
 		return lastTime;
 	}
@@ -69,26 +72,12 @@ public class CourseTime {
 		this.lastTime = lastTime;
 	}
 
-	public String getClassRoom() {
-		return classRoom;
-	}
-	public void setClassRoom(String classRoom) {
-		this.classRoom = classRoom;
-	}
 	public int getDay() {
 		return day;
 	}
 
 	public void setDay(int day) {
 		this.day = day;
-	}
-
-	public int getClassTime() {
-		return classTime;
-	}
-
-	public void setClassTime(int classTime) {
-		this.classTime = classTime;
 	}
 
 	public int getClassIndex() {
@@ -98,7 +87,21 @@ public class CourseTime {
 	public void setClassIndex(int classIndex) {
 		this.classIndex = classIndex;
 	}
- 
-	
+
+	public long getcId() {
+		return cId;
+	}
+
+	public void setcId(long cId) {
+		this.cId = cId;
+	}
+
+	public String getClassRoom() {
+		return classRoom;
+	}
+
+	public void setClassRoom(String classRoom) {
+		this.classRoom = classRoom;
+	}
 }
 

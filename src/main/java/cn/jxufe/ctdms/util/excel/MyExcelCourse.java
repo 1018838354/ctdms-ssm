@@ -20,49 +20,49 @@ public class MyExcelCourse implements ExcelOperation {
 		String strCell = cellValueToString(cell);
 		switch (cell.getColumnIndex()) {
 		case 0:
-			setCourseCode(strCell);
+			course.setcCode(strCell);
 			break;
 		case 1:
-			setShift(strCell);
+			course.setClassCode(strCell);
 			break;
 		case 3:
-			setCourseName(strCell);
+			course.setcName(strCell);
 			break;
 		case 4:
-			setTeacherName(strCell);
+			course.setTeacherName(strCell);
 			break;
 		case 5: 
 		case 6: 
 		case 7:
-			setCourseTime(getCourseTimes(),strCell);
+			setCourseTimes(strCell);
 			break;
 		case 8: 
 		case 9: 
 		case 10:
-			setClassRoom(getCourseTimes(),strCell, cell.getColumnIndex() - 8);
+			setClassRooms(strCell, cell.getColumnIndex() - 8);
 			break;
 		case 11:
-			setWeekly(strCell);
+			course.setWeekly(strCell);
 			break;
 		case 14:
-			setDistrict(strCell);
+			course.setDistrict(strCell);
 			break;
 		default:
 			break;
 		}
 	}
-	private void setCourseTime(List<CourseTime> cts ,String str){
+	private void setCourseTimes(String str){
 		if("".equals(str))
 			return;
 		CourseTime ct = new CourseTime(str);
-		cts.add(ct);
+		courseTimes.add(ct);
 	}
-	private void setClassRoom(List<CourseTime> cts ,String str,int index){
+	private void setClassRooms(String str,int index){
 		if("".equals(str))
 			return;
-		if(cts.size() -1 < index )
+		if(courseTimes.size() -1 < index )
 			return;
-		cts.get(index).setClassRoom(str);
+		courseTimes.get(index).setClassRoom(str);
 	}
 
 	public String cellValueToString(Cell cell) {
@@ -99,66 +99,18 @@ public class MyExcelCourse implements ExcelOperation {
 		return true;
 	}
 
-	public Course toCourse(){
-		course.setcName(courseName);
-		course.setcCode(courseCode);
-		course.setDistrict(district); 
-		course.setWeekly(weekly);
-		return course;
+
+	@Override
+	public String toString() {
+		//return courseCode+"-["+shift+"]:"+courseName+":"+teacherName;
+		return course.toString();
 	}
 
-	private String courseName="";
-	private String teacherName="";
-	private String courseCode=""; 
-	private String shift="";
-	private String district="";		//校区
-	private String weekly="";
-	@Override
-	public String toString() { 
-		return courseCode+"-["+shift+"]:"+courseName+":"+teacherName;
-	}
-	public String getShift() {
-		return shift;
-	}
-	public void setShift(String shift) {
-		this.shift = shift;
-	}   
-	public String getCourseName() {
-		return courseName;
-	}
-	public void setCourseName(String name) {
-		this.courseName = name;
-	}
-	public String getCourseCode() {
-		return courseCode;
-	}
-	public void setCourseCode(String courseCode) {
-		this.courseCode = courseCode;
-	}
-	public String getTeacherName() {
-		return teacherName;
-	}
-	public void setTeacherName(String teacherName) {
-		this.teacherName = teacherName;
-	} 
-	public String getDistrict() {
-		return district;
-	}
-	public void setDistrict(String district) {
-		this.district = district;
-	}
-	public String getWeekly() {
-		return weekly;
-	}
-	public void setWeekly(String weekly) {
-		this.weekly = weekly;
-	}
 	public List<CourseTime> getCourseTimes() {
 		return courseTimes;
 	}
-	public void setCourseTimes(List<CourseTime> courseTimes) {
-		this.courseTimes = courseTimes;
-	}
 
-	
+	public Course getCourse() {
+		return course;
+	}
 }
