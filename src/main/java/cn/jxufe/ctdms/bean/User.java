@@ -3,8 +3,6 @@ package cn.jxufe.ctdms.bean;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import java.util.*;
 
@@ -31,7 +29,7 @@ public class User implements UserDetails{
 		List<GrantedAuthority> auths = new ArrayList<>();
 
 		for (UserProfile role : userProfiles) {
-			auths.add(new SimpleGrantedAuthority(role.getProfile()));
+			auths.add(new SimpleGrantedAuthority("ROLE_"+role.getProfile()));
 		}
 		return auths;
 	}

@@ -29,7 +29,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .passwordParameter("password")
                 .loginProcessingUrl("/login")
                 .failureUrl("/login?error")
-
                 .defaultSuccessUrl("/home")
                 .permitAll()
                 .and()
@@ -44,11 +43,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(customUserService()).passwordEncoder(new BCryptPasswordEncoder());
+        auth
+                .userDetailsService(customUserService())
+                .passwordEncoder(new BCryptPasswordEncoder());
     }
 
 
-    public void configure(WebSecurity webSecurity) throws Exception {
-        webSecurity.ignoring().antMatchers("/css/**","/js/**","/img/**");
+    public void configure(WebSecurity webSecurity){
+        webSecurity
+                .ignoring()
+                .antMatchers("/css/**","/js/**","/img/**");
     }
 }
