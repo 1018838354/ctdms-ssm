@@ -16,18 +16,6 @@ public class User implements UserDetails{
 
 	private String password;
 
-	private String realname;
-
-
-	//额外待定需求
-	private int loginTimes = 0 ; //登陆次数
-
-	private String loginIPaddr;
-
-	private String loginRealAddr="未知";
-
-	private String loginDate ="从未登录"; //最后一次登录时间
-
 	private String state = UserState.ACTIVE.getState();
 
 	private Set<UserProfile> userProfiles = new HashSet<UserProfile>();
@@ -43,7 +31,7 @@ public class User implements UserDetails{
 		List<GrantedAuthority> auths = new ArrayList<>();
 
 		for (UserProfile role : userProfiles) {
-			auths.add(new SimpleGrantedAuthority(role.getType()));
+			auths.add(new SimpleGrantedAuthority(role.getProfile()));
 		}
 		return auths;
 	}
@@ -86,13 +74,6 @@ public class User implements UserDetails{
 		this.password = password;
 	}
 
-	public void setRealname(String realname) {
-		this.realname = realname;
-	}
-
-	public String getRealname() {
-		return realname;
-	}
 
 	public enum UserState {
 
@@ -148,39 +129,6 @@ public class User implements UserDetails{
 	public void setuId(long uId) {
 		this.uId = uId;
 	}
-
-	public int getLoginTimes() {
-		return loginTimes;
-	}
-
-	public void setLoginTimes(int loginTimes) {
-		this.loginTimes = loginTimes;
-	}
-
-	public String getLoginDate() {
-		return loginDate;
-	}
-
-	public void setLoginDate(String loginDate) {
-		this.loginDate = loginDate;
-	}
-
-	public String getLoginIPaddr() {
-		return loginIPaddr;
-	}
-
-	public void setLoginIPaddr(String loginIPaddr) {
-		this.loginIPaddr = loginIPaddr;
-	}
-
-	public String getLoginRealAddr() {
-		return loginRealAddr;
-	}
-
-	public void setLoginRealAddr(String loginRealAddr) {
-		this.loginRealAddr = loginRealAddr;
-	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

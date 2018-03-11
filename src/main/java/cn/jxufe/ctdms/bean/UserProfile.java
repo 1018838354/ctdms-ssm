@@ -12,14 +12,14 @@ public class UserProfile {
 
 	private int id;	
 
-	private String type = UserProfileType.USER.getUserProfileType();
+	private String profile = UserProfileType.USER.getUserProfileType();
 	
 	public UserProfile(){
 		
 	}
-	public UserProfile(int id ,String type){
+	public UserProfile(int id ,String profile){
 		this.id=id;
-		this.type=type;
+		this.profile=profile;
 	}
 	
 	public int getId() {
@@ -30,12 +30,12 @@ public class UserProfile {
 		this.id = id;
 	}
 
-	public String getType() {
-		return type;
+	public String getProfile() {
+		return profile;
 	}
 
-	public void setType(String type) {
-		this.type = type;
+	public void setProfile(String profile) {
+		this.profile = profile;
 	}
 
 
@@ -44,7 +44,7 @@ public class UserProfile {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + id;
-		result = prime * result + ((type == null) ? 0 : type.hashCode());
+		result = prime * result + ((profile == null) ? 0 : profile.hashCode());
 		return result;
 	}
 
@@ -59,17 +59,17 @@ public class UserProfile {
 		UserProfile other = (UserProfile) obj;
 		if (id != other.id)
 			return false;
-		if (type == null) {
-			if (other.type != null)
+		if (profile == null) {
+			if (other.profile != null)
 				return false;
-		} else if (!type.equals(other.type))
+		} else if (!profile.equals(other.profile))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "UserProfile [id=" + id + ",  type=" + type	+ "]";
+		return "UserProfile [id=" + id + ",  profile=" + profile	+ "]";
 	}
 	
 

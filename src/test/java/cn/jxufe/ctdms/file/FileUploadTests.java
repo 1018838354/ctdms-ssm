@@ -1,6 +1,6 @@
 package cn.jxufe.ctdms.file;
 
-import cn.jxufe.ctdms.storage.StorageFileNotFoundException;
+import cn.jxufe.ctdms.util.storage.StorageFileNotFoundException;
 import cn.jxufe.ctdms.service.StorageService;
 import org.hamcrest.Matchers;
 import org.junit.Test;

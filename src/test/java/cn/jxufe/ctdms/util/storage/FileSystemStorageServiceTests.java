@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package cn.jxufe.ctdms.storage;
+package cn.jxufe.ctdms.util.storage;
 
 import java.util.Random;
 
