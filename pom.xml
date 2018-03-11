@@ -97,7 +97,12 @@
             <optional>true</optional>
             <scope>true</scope>
         </dependency>
-
+		<!-- poi 操作excel -->
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>3.9</version>
+		</dependency>
     </dependencies>
 
 	<build>
