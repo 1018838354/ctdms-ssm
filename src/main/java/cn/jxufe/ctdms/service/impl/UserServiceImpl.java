@@ -3,7 +3,7 @@ package cn.jxufe.ctdms.service.impl;
 import cn.jxufe.ctdms.bean.User;
 import cn.jxufe.ctdms.bean.UserProfile;
 import cn.jxufe.ctdms.dao.UserDao;
-import cn.jxufe.ctdms.enums.UserProfileType;
+import cn.jxufe.ctdms.enums.UserProfileEnum;
 import cn.jxufe.ctdms.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -36,8 +36,8 @@ public class UserServiceImpl implements UserService{
     private void setUserInfo(User user) {
         //分配权限  默认用户
         Set<UserProfile> userProfiles = new HashSet<>();
-        userProfiles.add(new UserProfile(UserProfileType.TEACHER.getProfileTypeId(),UserProfileType.TEACHER.getUserProfileType()));
-        userProfiles.add(new UserProfile(UserProfileType.USER.getProfileTypeId(),UserProfileType.USER.getUserProfileType()));
+        userProfiles.add(new UserProfile(UserProfileEnum.TEACHER.getProfileTypeId(), UserProfileEnum.TEACHER.getUserProfileType()));
+        userProfiles.add(new UserProfile(UserProfileEnum.USER.getProfileTypeId(), UserProfileEnum.USER.getUserProfileType()));
         user.setUserProfiles(userProfiles);
         setUserPassWord(user);
     }

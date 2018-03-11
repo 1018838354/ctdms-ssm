@@ -1,7 +1,7 @@
 package cn.jxufe.ctdms.bean;
 
 
-import cn.jxufe.ctdms.enums.UserProfileType;
+import cn.jxufe.ctdms.enums.UserProfileEnum;
 
 /**
  * 用户 角色 映射表
@@ -12,7 +12,7 @@ public class UserProfile {
 
 	private int id;	
 
-	private String profile = UserProfileType.USER.getUserProfileType();
+	private String profile = UserProfileEnum.USER.getUserProfileType();
 	
 	public UserProfile(){
 		
