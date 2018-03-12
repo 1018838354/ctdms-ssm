@@ -1,7 +1,7 @@
 package cn.jxufe.ctdms.bean;
 
 /**
- *  TODO create table upload_task
+ *  table upload_task
  *  教师上传文档 任务
  */
 public class UploadTask {
@@ -17,8 +17,6 @@ public class UploadTask {
     String classCode;
     //上传记录 id
     long recordId;
-    //上传次数
-    int times;
     //学期
     String term;
     //文档状态
@@ -96,11 +94,4 @@ public class UploadTask {
         this.recordId = recordId;
     }
 
-    public int getTimes() {
-        return times;
-    }
-
-    public void setTimes(int times) {
-        this.times = times;
-    }
 }

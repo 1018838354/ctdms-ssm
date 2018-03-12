@@ -43,7 +43,7 @@ public class DocServiceImpl implements DocService{
         List<User> saveUsers = new ArrayList<>(20); // 准备保存的用户
 
         List<UploadTask>tasks = new ArrayList<>();
-        RunTimeHelp rt = new RunTimeHelp();
+        RunTimeHelp rt = new RunTimeHelp();//检查函数运行时间
         rt.start();
         for (MyExcelCourse e : excels) {
             //新建老师
@@ -117,7 +117,6 @@ public class DocServiceImpl implements DocService{
         UploadTask task = new UploadTask(uId,cId);
         task.setClassCode(classCode);
         task.setState(DocStateEnum.WAIT.getState());
-        task.setTimes(0);
         task.setTaskId( type );
         Long taskId = SnowflakeIdWorkerSingleton.getInstance().nextId();
         task.setTaskId(taskId);
@@ -141,7 +140,5 @@ public class DocServiceImpl implements DocService{
         }
         return null;
     }
-
-
 
 }

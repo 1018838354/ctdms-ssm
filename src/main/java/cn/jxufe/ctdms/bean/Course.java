@@ -1,6 +1,6 @@
 package cn.jxufe.ctdms.bean;
 
-//TODO create table course
+// table course
 //课程信息
 public class Course {
     //课程id

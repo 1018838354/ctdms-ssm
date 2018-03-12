@@ -2,6 +2,11 @@ package cn.jxufe.ctdms.dao;
 
 import cn.jxufe.ctdms.bean.UploadTask;
 import cn.jxufe.ctdms.dto.CourseDto;
+import cn.jxufe.ctdms.dto.UploadTaskDto;
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Options;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -47,4 +52,19 @@ public interface UploadTaskDao {
             " where upload_task.taskId = course_time.taskId and upload_task.cId = course.cId and " +
             "upload_task.uId = #{uId}")
     List<CourseDto> findByUId(@Param("uId") long uId);
+
+
+    @Select("select ut.taskId,ut.state,ut.type,c.classCode,c.cName from upload_task ut " +
+            "INNER join course c on c.cId = ut.cId " +
+            "where ut.uId =#{uId}")
+    @Results(value = {
+            @Result(property = "taskId", column = "taskId"),
+            @Result(property = "state", column = "state"),
+            @Result(property = "type", column = "type"),
+            @Result(property = "classCode", column = "classCode"),
+            @Result(property = "cName", column = "cName")
+    })
+    List<UploadTaskDto> getUploadTaskByUId(long uId);
+
+
 }

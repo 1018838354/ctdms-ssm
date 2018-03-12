@@ -1,7 +1,7 @@
 package cn.jxufe.ctdms.bean;
 
 /**
- * TODO create table course_time
+ * table course_time
  * 教师上课时间,课程表
  * @author Moe
  *

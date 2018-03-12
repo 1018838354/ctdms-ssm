@@ -3,7 +3,7 @@ package cn.jxufe.ctdms.bean;
 import java.util.Date;
 
 /**
-  * TODO create table upload_record
+  *  table upload_record
   *  上传文件记录
   */
 public class UploadRecord {

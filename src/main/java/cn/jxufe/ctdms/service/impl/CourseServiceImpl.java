@@ -5,6 +5,7 @@ import cn.jxufe.ctdms.bean.CourseTime;
 import cn.jxufe.ctdms.dao.CourseDao;
 import cn.jxufe.ctdms.dao.UploadTaskDao;
 import cn.jxufe.ctdms.dto.CourseDto;
+import cn.jxufe.ctdms.dto.UploadTaskDto;
 import cn.jxufe.ctdms.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,5 +38,10 @@ public class CourseServiceImpl implements CourseService{
     @Override
     public List<CourseDto> getCourseDto(long uId) {
         return uploadTaskDao.findByUId(uId);
+    }
+
+    @Override
+    public List<UploadTaskDto> getTasks(long uId) {
+        return uploadTaskDao.getUploadTaskByUId(uId);
     }
 }

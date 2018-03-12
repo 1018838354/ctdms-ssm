@@ -2,6 +2,7 @@ package cn.jxufe.ctdms.controller;
 
 import cn.jxufe.ctdms.dto.CourseDto;
 import cn.jxufe.ctdms.dto.Result;
+import cn.jxufe.ctdms.dto.UploadTaskDto;
 import cn.jxufe.ctdms.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,5 +31,19 @@ public class CourseController {
         result.setData(cts);
         result.setSuccess(true);
         return  result;
+    }
+
+
+    /**
+     * 教师上传任务 url
+     * @param uId
+     * @return
+     */
+    @GetMapping("/{uId}/tasks")
+    @ResponseBody
+    public Result<List<UploadTaskDto>> tasks(@PathVariable("uId") long uId){
+        List<UploadTaskDto> utd = courseService.getTasks(uId);
+
+        return new Result<>(true,utd);
     }
 }

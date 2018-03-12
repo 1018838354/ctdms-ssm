@@ -4,7 +4,7 @@ package cn.jxufe.ctdms.bean;
 import cn.jxufe.ctdms.enums.UserProfileEnum;
 
 /**
- * TODO create table user_profile
+ * table user_profile
  * 用户 角色 映射表
  * @author Moe
  *
