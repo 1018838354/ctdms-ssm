@@ -15,12 +15,17 @@ public class CourseServiceImpl implements CourseService{
     @Autowired
     CourseDao courseDao;
     @Override
-    public long save(Course course) {
+    public Long save(Course course) {
         return courseDao.save(course);
     }
 
     @Override
     public void saveCourseTimes(List<CourseTime> courseTimes) {
         courseDao.saveCourseTimes(courseTimes);
+    }
+
+    @Override
+    public void saveCourses(List<Course> saveCourses) {
+        courseDao.saveCourses(saveCourses);
     }
 }

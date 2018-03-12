@@ -11,6 +11,8 @@ public class UploadRecord {
     long recordId;
     //用户id
     long uId;
+    //任务Id
+    long taskId;
     //上传文件类型
     int type;
     //文件url
@@ -67,5 +69,13 @@ public class UploadRecord {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public long getTaskId() {
+        return taskId;
+    }
+
+    public void setTaskId(long taskId) {
+        this.taskId = taskId;
     }
 }

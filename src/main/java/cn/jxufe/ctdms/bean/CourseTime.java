@@ -7,9 +7,9 @@ package cn.jxufe.ctdms.bean;
  *
  */
 public class CourseTime {
-	long ctId;			//课程时间id
+	long ctId;			//课程时间CourseTime id
 
-	long taskId;			//task id
+	long taskId;		//task id
 
 	int lastTime ;  	//几节课
 

@@ -33,4 +33,13 @@ public class UserDaoTest {
         System.out.println(users);
         userDao.saves(users);
     }
+
+    @Autowired
+    TestDao testDao;
+    @Test
+    public void test_insert(){
+        cn.jxufe.ctdms.bean.Test t = new cn.jxufe.ctdms.bean.Test("hehe");
+        long id = testDao.save(t);
+        System.out.println(id+ " "+t.getcId());
+    }
 }

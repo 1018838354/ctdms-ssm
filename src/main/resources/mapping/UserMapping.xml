@@ -4,11 +4,10 @@
 
 <mapper namespace="cn.jxufe.ctdms.dao.UserDao">
 
-<insert id="saves" useGeneratedKeys="true"
-        keyProperty="id">
-    insert into user (username, password) values
+<insert id="saves" >
+    insert into user (uId,username, password) values
     <foreach item="item" collection="list" separator=",">
-        (#{item.username}, #{item.password})
+        (#{item.uId}, #{item.username}, #{item.password})
     </foreach>
 </insert>
 

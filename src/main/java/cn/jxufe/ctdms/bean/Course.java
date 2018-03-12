@@ -13,13 +13,12 @@ public class Course {
     String term;
     //教师名
     String teacherName;
-
-
+    //班级代码
     String classCode;
-
-    String district;	//校区
-
-    String weekly;		//周次
+    //校区
+    String district;
+    //周次
+    String weekly;
 
     @Override
     public String toString() {
@@ -29,7 +28,6 @@ public class Course {
                 ", cCode='" + cCode + '\'' +
                 ", term='" + term + '\'' +
                 ", teacherName='" + teacherName + '\'' +
-                ", classCode='" + classCode + '\'' +
                 ", district='" + district + '\'' +
                 ", weekly='" + weekly + '\'' +
                 '}';
@@ -68,13 +66,6 @@ public class Course {
         this.cId = cId;
     }
 
-    public String getClassCode() {
-        return classCode;
-    }
-
-    public void setClassCode(String classCode) {
-        this.classCode = classCode;
-    }
 
     public String getTeacherName() {
         return teacherName;
@@ -98,5 +89,13 @@ public class Course {
 
     public void setWeekly(String weekly) {
         this.weekly = weekly;
+    }
+
+    public String getClassCode() {
+        return classCode;
+    }
+
+    public void setClassCode(String classCode) {
+        this.classCode = classCode;
     }
 }

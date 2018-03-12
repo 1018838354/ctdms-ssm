@@ -23,8 +23,8 @@ public interface UserDao {
     - keyProperty：实体类id属性
     - keyColumn：实体类属性对应数据库的字段
      */
-    @Insert("insert into user(username,password) values(#{user.username},#{user.password})")
-    @Options(useGeneratedKeys = true)
+    @Insert("insert into user(uId,username,password) values(#{user.uId},#{user.username},#{user.password})")
+    @Options(useGeneratedKeys = true , keyProperty = "uId")
     Long save(@Param("user") User user);
 
 

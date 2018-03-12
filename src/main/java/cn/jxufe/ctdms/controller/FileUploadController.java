@@ -60,6 +60,7 @@ public class FileUploadController {
     @PostMapping("/cp")
     public String handleCPFileUpload(@RequestParam("file") MultipartFile file,
                                    RedirectAttributes redirectAttributes) {
+        long start = System.currentTimeMillis();
         try {
             docService.cp(file);
         } catch (IOException e) {
@@ -67,7 +68,7 @@ public class FileUploadController {
         }
         redirectAttributes.addFlashAttribute("message",
                 "You successfully uploaded " + file.getOriginalFilename() + "!");
-
+        System.out.println( (System.currentTimeMillis() - start) / 1000 +"s");
         return "redirect:/";
     }
 

@@ -1,0 +1,21 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.jxufe.ctdms.dao.CourseDao">
+
+<insert id="saveCourseTimes">
+    insert into course_time (taskId, day,classIndex,lastTime,classRoom) values
+    <foreach item="item" collection="list" separator=",">
+        (#{item.taskId}, #{item.day}, #{item.classIndex}, #{item.lastTime}, #{item.classRoom})
+    </foreach>
+</insert>
+
+    <insert id="saveCourses">
+        insert into course(cId,cName,cCode,classCode,teacherName,district,weekly) values
+        <foreach item="course" collection="list" separator=",">
+            (#{course.cId},#{course.cName},#{course.cCode},#{course.classCode},#{course.teacherName}
+            ,#{course.district},#{course.weekly})
+        </foreach>
+    </insert>
+</mapper>

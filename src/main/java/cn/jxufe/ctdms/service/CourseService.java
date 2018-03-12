@@ -6,7 +6,9 @@ import cn.jxufe.ctdms.bean.CourseTime;
 import java.util.List;
 
 public interface CourseService {
-    long save(Course course);
+    Long save(Course course);
 
     void saveCourseTimes(List<CourseTime> courseTime);
+
+    void saveCourses(List<Course> saveCourses);
 }

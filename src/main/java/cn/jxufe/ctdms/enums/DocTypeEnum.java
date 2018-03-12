@@ -1,9 +1,9 @@
 package cn.jxufe.ctdms.enums;
 
 public enum DocTypeEnum {
-    TEACH(1,"doc","教学进度表"),
-    SYLLABUS(11,"doc","教学大纲");
-
+    TEACH(0,"doc","教学进度表"),
+    SYLLABUS(11,"doc","教学大纲"),
+    CP(100,"xls","排课计划");
     private int typeId;
     private String suffix;
     private String typeInfo;

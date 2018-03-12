@@ -62,7 +62,7 @@ public class MyExcelCourse implements ExcelOperation {
 			return;
 		if(courseTimes.size() -1 < index )
 			return;
-		courseTimes.get(index).setClassRoom(str);
+		courseTimes.get(index).setClassRoom(str.replace(".0",""));
 	}
 
 	public String cellValueToString(Cell cell) {
