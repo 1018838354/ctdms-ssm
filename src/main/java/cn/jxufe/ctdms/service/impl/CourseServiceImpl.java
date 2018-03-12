@@ -3,6 +3,8 @@ package cn.jxufe.ctdms.service.impl;
 import cn.jxufe.ctdms.bean.Course;
 import cn.jxufe.ctdms.bean.CourseTime;
 import cn.jxufe.ctdms.dao.CourseDao;
+import cn.jxufe.ctdms.dao.UploadTaskDao;
+import cn.jxufe.ctdms.dto.CourseDto;
 import cn.jxufe.ctdms.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +16,9 @@ public class CourseServiceImpl implements CourseService{
 
     @Autowired
     CourseDao courseDao;
+
+    @Autowired
+    UploadTaskDao uploadTaskDao;
     @Override
     public Long save(Course course) {
         return courseDao.save(course);
@@ -27,5 +32,10 @@ public class CourseServiceImpl implements CourseService{
     @Override
     public void saveCourses(List<Course> saveCourses) {
         courseDao.saveCourses(saveCourses);
+    }
+
+    @Override
+    public List<CourseDto> getCourseDto(long uId) {
+        return uploadTaskDao.findByUId(uId);
     }
 }
