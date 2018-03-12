@@ -2,10 +2,7 @@ package cn.jxufe.ctdms.dao;
 
 import cn.jxufe.ctdms.bean.Course;
 import cn.jxufe.ctdms.bean.CourseTime;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Options;
-import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -20,4 +17,7 @@ public interface CourseDao {
     void saveCourses(List<Course>courses);
 
     void saveCourseTimes(List<CourseTime> courseTimes);
+
+    @Select("select cId,cName,cCode,classCode,teacherName,district,weekly FORM course where cId=#{cId}")
+    Course findById(@Param("cId") Long cId);
 }
