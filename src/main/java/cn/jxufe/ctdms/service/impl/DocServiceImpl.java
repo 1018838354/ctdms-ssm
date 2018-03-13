@@ -98,15 +98,9 @@ public class DocServiceImpl implements DocService{
 
     private void setUploadTask(MyExcelCourse e, long uId,long cId, List<UploadTask> tasks) {
         UploadTask task = initTask(uId,cId,e.getCourse().getClassCode(),DocTypeEnum.TEACH.getTypeId());
-        boolean typeChose = false;
-        for(UploadTask u : tasks){
-            if(task.getClassCode().equals(u.getClassCode()))
-                typeChose = true;
-        }
-        if(!typeChose) {
-            UploadTask s = initTask(uId,cId,e.getCourse().getClassCode(),DocTypeEnum.SYLLABUS.getTypeId());
-            tasks.add(s);
-        }
+
+        //UploadTask s = initTask(uId,cId,e.getCourse().getClassCode(),DocTypeEnum.SYLLABUS.getTypeId());
+
         //uploadTaskDao.save(task);
         long taskId = task.getTaskId();
         e.getCourseTimes().forEach(ct->{ct.setTaskId(taskId);});
