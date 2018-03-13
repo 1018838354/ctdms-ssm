@@ -14,7 +14,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-
+    @Bean
+    public UserSuccessHandler authenticationSuccessHandler() {
+        return new UserSuccessHandler();
+    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -28,7 +31,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .usernameParameter("username")
                 .passwordParameter("password")
                 .loginProcessingUrl("/login")
-                .successHandler(new UserSuccessHandler())
+                .successHandler(authenticationSuccessHandler())
                 .failureUrl("/login?error")
                 .permitAll()
                 .and()

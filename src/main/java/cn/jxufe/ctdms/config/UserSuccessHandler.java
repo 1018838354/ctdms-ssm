@@ -20,6 +20,9 @@ import org.springframework.security.web.RedirectStrategy;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
+/**
+ * 用户登录成功 处理
+ */
 
 @Component
 public class UserSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
@@ -30,13 +33,13 @@ public class UserSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 		String userName;
 		Object principal = SecurityContextHolder.getContext()
 				.getAuthentication().getPrincipal();
-
 		if (principal instanceof UserDetails) {
-			userName = ((UserDetails) principal).getUsername();
+			//userName = ((UserDetails) principal).getUsername();
+			return (User)principal;
 		} else {
 			userName = principal.toString();
+			return userService.findByUserName(userName);
 		}
-		return userService.findByUserName(userName);
 	}
 
 	private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
@@ -46,10 +49,14 @@ public class UserSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 			HttpServletResponse response, Authentication authentication)
 			throws IOException {
 		String targetUrl = determineTargetUrl(authentication); 
-		User user =getUser();
-		targetUrl = "/" + user.getUId() + targetUrl;
-		request.getSession().setAttribute("uId", user.getUId());
-		System.out.println("登录:"+user.getUsername());
+		User user = getUser();
+		if(user != null) {
+			targetUrl = "/" + user.getUId() + targetUrl;
+			request.getSession().setAttribute("uId", user.getUId());
+			System.out.println("登录:" + user.getUsername());
+		}else{
+			targetUrl = "/Access-Denied";
+		}
 		/*TODO 登录  记录 异步
 		userService.loginRecord(user, getIpAddr(request));
 		*/
@@ -62,7 +69,7 @@ public class UserSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 	}
 
 	protected String determineTargetUrl(Authentication authentication) {
-		String url = "/";
+		String url = "/home";
 		Collection<? extends GrantedAuthority> authorities = authentication
 				.getAuthorities();
 
