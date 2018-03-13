@@ -5,7 +5,7 @@ import cn.jxufe.ctdms.bean.UserProfile;
 import cn.jxufe.ctdms.dao.UserDao;
 import cn.jxufe.ctdms.enums.UserProfileEnum;
 import cn.jxufe.ctdms.service.UserService;
-import cn.jxufe.ctdms.util.SnowflakeIdWorkerSingleton;
+import cn.jxufe.ctdms.util.IDGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -29,7 +29,7 @@ public class UserServiceImpl implements UserService{
     @Override
     public Long register(User user) {
         setUserInfo(user);
-        Long id = SnowflakeIdWorkerSingleton.getInstance().nextId();
+        Long id = IDGenerator.nextId();
         user.setUId(id);
         userDao.save(user);
         return id;

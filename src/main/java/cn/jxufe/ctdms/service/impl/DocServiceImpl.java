@@ -10,7 +10,7 @@ import cn.jxufe.ctdms.service.CourseService;
 import cn.jxufe.ctdms.service.DocService;
 import cn.jxufe.ctdms.service.UserService;
 import cn.jxufe.ctdms.util.RunTimeHelp;
-import cn.jxufe.ctdms.util.SnowflakeIdWorkerSingleton;
+import cn.jxufe.ctdms.util.IDGenerator;
 import cn.jxufe.ctdms.util.excel.ExcelParse;
 import cn.jxufe.ctdms.util.excel.MyExcelCourse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,7 +78,7 @@ public class DocServiceImpl implements DocService{
         User user = getEobj(teacherName,User.class,saveUsers,dbUsers);
         if(user == null){
             User n = new User(teacherName,"123");
-            long uId = SnowflakeIdWorkerSingleton.getInstance().nextId();
+            long uId = IDGenerator.nextId();
             n.setUId(uId);
             saveUsers.add(n);
             user = n;
@@ -90,7 +90,7 @@ public class DocServiceImpl implements DocService{
 
     private long importCourse(MyExcelCourse e, List<Course> saveCourses) {
         //courseService.save(e.getCourse());
-        long cId = SnowflakeIdWorkerSingleton.getInstance().nextId();
+        long cId = IDGenerator.nextId();
         e.getCourse().setcId(cId);
         saveCourses.add(e.getCourse());
         return cId;
@@ -112,7 +112,7 @@ public class DocServiceImpl implements DocService{
         task.setClassCode(classCode);
         task.setState(DocStateEnum.WAIT.getState());
         task.setTaskId( type );
-        Long taskId = SnowflakeIdWorkerSingleton.getInstance().nextId();
+        Long taskId = IDGenerator.nextId();
         task.setTaskId(taskId);
         return task;
     }
