@@ -6,7 +6,7 @@ import cn.jxufe.ctdms.enums.DocStateEnum;
  * 课程信息
  */
 public class CourseInfo {
-    long cId;
+    long ciId;
     String cName;
     String cCode;
     //大纲状态
@@ -17,19 +17,12 @@ public class CourseInfo {
     public CourseInfo() {
     }
 
-    public CourseInfo(long cId, String cName, String cCode, int state, long recordId) {
-        this.cId = cId;
-        this.cName = cName;
-        this.cCode = cCode;
-        this.state = state;
-        this.recordId = recordId;
-    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if(o instanceof  String){
-            if(cCode.equals((String)o))return true;
+        if(o instanceof Course){
+            if(cCode.equals(((Course)o).getcCode())) return true;
         }
         if (o == null || getClass() != o.getClass()) return false;
 
@@ -47,11 +40,18 @@ public class CourseInfo {
     }
 
     public CourseInfo(Course c) {
-        this.cId = c.getcId();
         this.cName = c.getcName();
         this.cCode = c.getcCode();
         this.state = DocStateEnum.WAIT.getState();
-        this.recordId = -1;
+        this.recordId = 0;
+    }
+
+    public long getCiId() {
+        return ciId;
+    }
+
+    public void setCiId(long ciId) {
+        this.ciId = ciId;
     }
 
     public int getState() {
@@ -68,14 +68,6 @@ public class CourseInfo {
 
     public void setRecordId(long recordId) {
         this.recordId = recordId;
-    }
-
-    public long getcId() {
-        return cId;
-    }
-
-    public void setcId(long cId) {
-        this.cId = cId;
     }
 
     public String getcName() {

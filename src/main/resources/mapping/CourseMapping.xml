@@ -4,18 +4,32 @@
 
 <mapper namespace="cn.jxufe.ctdms.dao.CourseDao">
 
-<insert id="saveCourseTimes">
-    insert into course_time (taskId, day,classIndex,lastTime,classRoom) values
-    <foreach item="item" collection="list" separator=",">
-        (#{item.taskId}, #{item.day}, #{item.classIndex}, #{item.lastTime}, #{item.classRoom})
-    </foreach>
-</insert>
+    <insert id="saveCourseTimes">
+        insert into course_time (cId, day,classIndex,lastTime,classRoom) values
+        <foreach item="item" collection="list" separator=",">
+            (#{item.cId}, #{item.day}, #{item.classIndex}, #{item.lastTime}, #{item.classRoom})
+        </foreach>
+    </insert>
+
+    <insert id="saveCourseInfos">
+        insert into course_info (ciId, recordId,state,cName,cCode) values
+        <foreach item="item" collection="list" separator=",">
+            (#{item.ciId}, #{item.recordId}, #{item.state}, #{item.cName}, #{item.cCode})
+        </foreach>
+    </insert>
 
     <insert id="saveCourses">
-        insert into course(cId,cName,cCode,classCode,uId,district,weekly) values
+        insert into course(cId,ciId,recordId,state,classCode,uId,district,weekly) values
         <foreach item="course" collection="list" separator=",">
-            (#{course.cId},#{course.cName},#{course.cCode},#{course.classCode},#{course.uId}
+            (#{course.cId},#{course.ciId},#{course.recordId},#{course.state},#{course.classCode},#{course.uId}
             ,#{course.district},#{course.weekly})
         </foreach>
     </insert>
+
+    <resultMap type="cn.jxufe.ctdms.dto.UploadTaskDto" id="tasks">
+        <result property="cId" column="cId"/>
+        <result property="state" column="state"/>
+        <result property="classCode" column="classCode"/>
+        <result property="cName" column="cName"/>
+    </resultMap>
 </mapper>

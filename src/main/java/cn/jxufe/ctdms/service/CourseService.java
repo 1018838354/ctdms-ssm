@@ -1,6 +1,7 @@
 package cn.jxufe.ctdms.service;
 
 import cn.jxufe.ctdms.bean.Course;
+import cn.jxufe.ctdms.bean.CourseInfo;
 import cn.jxufe.ctdms.bean.CourseTime;
 import cn.jxufe.ctdms.dto.CourseDto;
 import cn.jxufe.ctdms.dto.UploadTaskDto;
@@ -13,6 +14,8 @@ public interface CourseService {
     void saveCourseTimes(List<CourseTime> courseTime);
 
     void saveCourses(List<Course> saveCourses);
+
+    void saveCourseInfos(List<CourseInfo> courseInfos);
 
     List<CourseDto> getCourseDto(long uId);
 

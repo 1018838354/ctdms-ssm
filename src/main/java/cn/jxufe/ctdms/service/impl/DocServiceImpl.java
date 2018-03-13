@@ -16,10 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class DocServiceImpl implements DocService{
@@ -32,6 +29,8 @@ public class DocServiceImpl implements DocService{
     UploadTaskDao uploadTaskDao;
     @Override
     public void cp(MultipartFile file) throws IOException {
+        RunTimeHelp rt = new RunTimeHelp();//检查函数运行时间
+        rt.start();
         //解析excels
         List<MyExcelCourse> excels = ExcelParse.parse(file.getBytes(),file.getOriginalFilename(), MyExcelCourse.class);
         //检查当前学期是否已上传，已上传则清空之前课程并覆盖更新。
@@ -39,14 +38,14 @@ public class DocServiceImpl implements DocService{
             deleteNowCp();
         }
         List<Course> saveCourses = new ArrayList<>(30); // 准备保存的课程
-        Set<CourseInfo> saveCourseInfos = new HashSet<>(20);
+        List<CourseInfo> saveCourseInfos = new ArrayList<>(20);
         List<User> dbUsers = userService.findAll();//检查是否已存在该教师用户
         List<User> saveUsers = new ArrayList<>(20); // 准备保存的用户
 
         List<UploadTask> tasks = new ArrayList<>();
 
         List<CourseTime> cts = new ArrayList<>();
-        RunTimeHelp rt = new RunTimeHelp();//检查函数运行时间
+        rt.end("解析excel ");
         rt.start();
         for (MyExcelCourse e : excels) {
             //新建老师
@@ -58,25 +57,30 @@ public class DocServiceImpl implements DocService{
             //设置上传任务
            // setUploadTask(e,uId,cId,tasks);
         }
-        rt.end("解析excelBean");
+        rt.end("解析excel bean");
         rt.start();
         if(!saveUsers.isEmpty())
             userService.registerTeachers(saveUsers);
-        rt.end("insert user");
+        rt.end("新建用户-"+saveUsers.size());
         rt.start();
         if(!saveCourses.isEmpty())
             courseService.saveCourses(saveCourses);
-        rt.end("课程导入");
+        rt.end("课程导入-"+saveCourses.size());
 
         rt.start();
         if(!cts.isEmpty())
             courseService.saveCourseTimes(cts);
-        rt.end("cts 导入");
+        rt.end("course_time 导入-"+cts.size());
+
+        rt.start();
+        if(!cts.isEmpty())
+            courseService.saveCourseInfos(saveCourseInfos);
+        rt.end("course_Info 导入-"+saveCourseInfos.size());
 
         rt.start();
         if(!tasks.isEmpty())
             uploadTaskDao.saves(tasks);
-        rt.end("task 导入");
+        rt.end("task 导入-"+tasks.size());
 
         //保存任务至数据库
         //引用置空 ，让虚拟机gc回收。
@@ -104,16 +108,27 @@ public class DocServiceImpl implements DocService{
 
 
 
-    private long importCourse(Course c, long uId, List<Course> saveCourses, Set<CourseInfo> saveCourseInfos) {
-        //courseService.save(e.getCourse());
-        long cId = IDGenerator.nextId();
+    private long importCourse(Course c, long uId, List<Course> saveCourses, List<CourseInfo> saveCourseInfos) {
+        CourseInfo ci = null;
+        boolean notFind = true;
+        for (CourseInfo courseInfo: saveCourseInfos){
+            if(courseInfo.getcCode().equals(c.getcCode())){
+                notFind = false;
+                ci = courseInfo;
+            }
+        }
+        if(notFind){
+            ci = new CourseInfo(c);
+            ci.setCiId(IDGenerator.nextId());
+            saveCourseInfos.add(ci);
+        }
 
+        long cId = IDGenerator.nextId();
+        c.setCiId(ci.getCiId());
         c.setuId(uId);
         c.setcId(cId);
+        c.setRecordId(0);
         c.setState(DocStateEnum.WAIT.getState());
-
-        CourseInfo ci = new CourseInfo(c);
-        saveCourseInfos.add(ci);
 
         saveCourses.add(c);
         return cId;

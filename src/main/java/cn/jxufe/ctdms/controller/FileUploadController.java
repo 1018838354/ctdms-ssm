@@ -59,7 +59,7 @@ public class FileUploadController {
         redirectAttributes.addFlashAttribute("message",
                 "You successfully uploaded " + file.getOriginalFilename() + "!");
 
-        return "redirect:/";
+        return "/";
     }
     @PostMapping("/cp")
     public String handleCPFileUpload(@RequestParam("file") MultipartFile file,

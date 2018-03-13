@@ -9,13 +9,19 @@ public class DateFormat {
 	public static String getFormatDate(){
 		return timeMillisToString(System.currentTimeMillis());
 	}
+	private static SimpleDateFormat dateformat;
+	private static SimpleDateFormat getSimpleDateForma(){
+		if(dateformat == null)
+			dateformat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		return dateformat;
+	}
 	/**
 	 * (毫秒)转为日期
 	 * @param millis
 	 * @return
 	 */
 	public static String timeMillisToString(long millis){
-		SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		SimpleDateFormat dateformat = getSimpleDateForma();
 		return  dateformat.format(millis);
 	}
 	/**
@@ -24,7 +30,7 @@ public class DateFormat {
 	 * @return
 	 */  
 	public static long timeStringToMillisSec(String str){
-		SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		SimpleDateFormat dateformat = getSimpleDateForma();
 		try {
 		    long time = dateformat.parse(str).getTime(); 
 			return time;

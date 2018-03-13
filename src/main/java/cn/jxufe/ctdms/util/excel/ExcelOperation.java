@@ -5,10 +5,12 @@ import org.apache.poi.ss.usermodel.Row;
 
 public interface ExcelOperation {
 
+
 	/**
 	 * 对每个cell 进行操作
+	 * @param cell
+	 * @return
 	 */
-
 	void fillByCell(Cell cell);
 
 	/**

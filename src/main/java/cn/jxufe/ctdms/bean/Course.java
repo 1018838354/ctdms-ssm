@@ -5,6 +5,8 @@ package cn.jxufe.ctdms.bean;
 public class Course {
     //课程id
     long cId;
+    //课程信息id
+    long ciId;
     //课程名
     String cName;
     //课程代码
@@ -37,6 +39,32 @@ public class Course {
                 ", district='" + district + '\'' +
                 ", weekly='" + weekly + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if(o instanceof CourseInfo){
+            if(((CourseInfo)o).getcCode().equals(cCode))return true;
+        }
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Course course = (Course) o;
+
+        return cCode.equals(course.cCode);
+    }
+
+    @Override
+    public int hashCode() {
+        return cCode.hashCode();
+    }
+
+    public long getCiId() {
+        return ciId;
+    }
+
+    public void setCiId(long ciId) {
+        this.ciId = ciId;
     }
 
     public int getState() {

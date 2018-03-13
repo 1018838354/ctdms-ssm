@@ -1,6 +1,7 @@
 package cn.jxufe.ctdms.service.impl;
 
 import cn.jxufe.ctdms.bean.Course;
+import cn.jxufe.ctdms.bean.CourseInfo;
 import cn.jxufe.ctdms.bean.CourseTime;
 import cn.jxufe.ctdms.dao.CourseDao;
 import cn.jxufe.ctdms.dto.CourseDto;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class CourseServiceImpl implements CourseService{
@@ -31,6 +33,11 @@ public class CourseServiceImpl implements CourseService{
     @Override
     public void saveCourses(List<Course> saveCourses) {
         courseDao.saveCourses(saveCourses);
+    }
+
+    @Override
+    public void saveCourseInfos(List<CourseInfo> courseInfos) {
+        courseDao.saveCourseInfos(courseInfos);
     }
 
     @Override
