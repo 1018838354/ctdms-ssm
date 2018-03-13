@@ -1,8 +1,6 @@
 package cn.jxufe.ctdms.service.impl;
 
-import cn.jxufe.ctdms.bean.Course;
-import cn.jxufe.ctdms.bean.UploadTask;
-import cn.jxufe.ctdms.bean.User;
+import cn.jxufe.ctdms.bean.*;
 import cn.jxufe.ctdms.dao.UploadTaskDao;
 import cn.jxufe.ctdms.enums.DocStateEnum;
 import cn.jxufe.ctdms.enums.DocTypeEnum;
@@ -19,7 +17,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class DocServiceImpl implements DocService{
@@ -38,20 +38,25 @@ public class DocServiceImpl implements DocService{
         if(checkTermHasCp()){
             deleteNowCp();
         }
-        List<Course> saveCourses = new ArrayList<>(); // 准备保存的课程
+        List<Course> saveCourses = new ArrayList<>(30); // 准备保存的课程
+        Set<CourseInfo> saveCourseInfos = new HashSet<>(20);
         List<User> dbUsers = userService.findAll();//检查是否已存在该教师用户
         List<User> saveUsers = new ArrayList<>(20); // 准备保存的用户
 
-        List<UploadTask>tasks = new ArrayList<>();
+        List<UploadTask> tasks = new ArrayList<>();
+
+        List<CourseTime> cts = new ArrayList<>();
         RunTimeHelp rt = new RunTimeHelp();//检查函数运行时间
         rt.start();
         for (MyExcelCourse e : excels) {
             //新建老师
             long uId = createTeacher( e.getCourse().getTeacherName(),dbUsers,saveUsers);
             //导入课程
-            long cId = importCourse(e,saveCourses);
+            long cId = importCourse(e.getCourse(),uId,saveCourses,saveCourseInfos);
+            //设置课程表信息
+            importCourseTime(cId,e.getCourseTimes(),cts);
             //设置上传任务
-            setUploadTask(e,uId,cId,tasks);
+           // setUploadTask(e,uId,cId,tasks);
         }
         rt.end("解析excelBean");
         rt.start();
@@ -62,15 +67,26 @@ public class DocServiceImpl implements DocService{
         if(!saveCourses.isEmpty())
             courseService.saveCourses(saveCourses);
         rt.end("课程导入");
+
+        rt.start();
+        if(!cts.isEmpty())
+            courseService.saveCourseTimes(cts);
+        rt.end("cts 导入");
+
         rt.start();
         if(!tasks.isEmpty())
             uploadTaskDao.saves(tasks);
         rt.end("task 导入");
+
         //保存任务至数据库
         //引用置空 ，让虚拟机gc回收。
         excels = null;
     }
 
+    private void importCourseTime(long cId, List<CourseTime> courseTimes, List<CourseTime> cts) {
+        courseTimes.forEach(ct->{ct.setcId(cId);});
+        cts.addAll(courseTimes);
+    }
 
 
     private long createTeacher(String teacherName, List<User> dbUsers, List<User> saveUsers) {
@@ -88,14 +104,21 @@ public class DocServiceImpl implements DocService{
 
 
 
-    private long importCourse(MyExcelCourse e, List<Course> saveCourses) {
+    private long importCourse(Course c, long uId, List<Course> saveCourses, Set<CourseInfo> saveCourseInfos) {
         //courseService.save(e.getCourse());
         long cId = IDGenerator.nextId();
-        e.getCourse().setcId(cId);
-        saveCourses.add(e.getCourse());
+
+        c.setuId(uId);
+        c.setcId(cId);
+        c.setState(DocStateEnum.WAIT.getState());
+
+        CourseInfo ci = new CourseInfo(c);
+        saveCourseInfos.add(ci);
+
+        saveCourses.add(c);
         return cId;
     }
-
+    @Deprecated
     private void setUploadTask(MyExcelCourse e, long uId,long cId, List<UploadTask> tasks) {
         UploadTask task = initTask(uId,cId,e.getCourse().getClassCode(),DocTypeEnum.TEACH.getTypeId());
 
@@ -103,7 +126,7 @@ public class DocServiceImpl implements DocService{
 
         //uploadTaskDao.save(task);
         long taskId = task.getTaskId();
-        e.getCourseTimes().forEach(ct->{ct.setTaskId(taskId);});
+        //e.getCourseTimes().forEach(ct->{ct.setTaskId(taskId);});
         tasks.add(task);
         courseService.saveCourseTimes(e.getCourseTimes());
     }

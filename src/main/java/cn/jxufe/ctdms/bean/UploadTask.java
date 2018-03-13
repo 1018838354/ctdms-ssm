@@ -4,6 +4,7 @@ package cn.jxufe.ctdms.bean;
  *  table upload_task
  *  教师上传文档 任务
  */
+@Deprecated
 public class UploadTask {
     //任务 id
     long taskId;

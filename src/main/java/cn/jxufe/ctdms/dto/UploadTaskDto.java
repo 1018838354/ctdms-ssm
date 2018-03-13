@@ -1,7 +1,7 @@
 package cn.jxufe.ctdms.dto;
 
 public class UploadTaskDto {
-    long taskId ; //id
+    long cId ; //id
     int type; //上传文件类型
     int state; //文档状态
     String classCode; //班级代码
@@ -12,7 +12,7 @@ public class UploadTaskDto {
 
 
     public UploadTaskDto(long taskId, int type, int state, String classCode, String cName) {
-        this.taskId = taskId;
+        this.cId = taskId;
         this.type = type;
         this.state = state;
         this.classCode = classCode;
@@ -27,12 +27,12 @@ public class UploadTaskDto {
         this.state = state;
     }
 
-    public long getTaskId() {
-        return taskId;
+    public long getcId() {
+        return cId;
     }
 
-    public void setTaskId(long taskId) {
-        this.taskId = taskId;
+    public void setcId(long cId) {
+        this.cId = cId;
     }
 
     public int getType() {

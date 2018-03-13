@@ -12,9 +12,9 @@
 </insert>
 
     <insert id="saveCourses">
-        insert into course(cId,cName,cCode,classCode,teacherName,district,weekly) values
+        insert into course(cId,cName,cCode,classCode,uId,district,weekly) values
         <foreach item="course" collection="list" separator=",">
-            (#{course.cId},#{course.cName},#{course.cCode},#{course.classCode},#{course.teacherName}
+            (#{course.cId},#{course.cName},#{course.cCode},#{course.classCode},#{course.uId}
             ,#{course.district},#{course.weekly})
         </foreach>
     </insert>

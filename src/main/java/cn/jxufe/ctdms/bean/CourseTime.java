@@ -9,7 +9,7 @@ package cn.jxufe.ctdms.bean;
 public class CourseTime {
 	long ctId;			//课程时间CourseTime id
 
-	long taskId;		//task id
+	long cId;		//cid
 
 	int lastTime ;  	//几节课
 
@@ -87,12 +87,12 @@ public class CourseTime {
 		this.classRoom = classRoom;
 	}
 
-	public long getTaskId() {
-		return taskId;
+	public long getcId() {
+		return cId;
 	}
 
-	public void setTaskId(long taskId) {
-		this.taskId = taskId;
+	public void setcId(long cId) {
+		this.cId = cId;
 	}
 }
 

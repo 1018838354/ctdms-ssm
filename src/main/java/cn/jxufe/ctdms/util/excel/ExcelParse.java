@@ -18,11 +18,11 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class ExcelParse {
 
+	//测试
 	public static void main(String[] args) {
-		System.out
-				.println(parse(
+		parse(
 						"E:\\QQ\\QQmessage\\1059654342\\FileRecv\\软通学院本科162学期课表_撤班后.xls",
-						MyExcelCourse.class));
+						MyExcelCourse.class);
 	}
 
 	public static <T extends ExcelOperation> List<T> parse(String ExcelPath,

@@ -11,6 +11,7 @@ import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
+@Deprecated
 @Mapper
 public interface UploadTaskDao {
     void saves(List<UploadTask>tasks);
@@ -20,7 +21,8 @@ public interface UploadTaskDao {
     Long save(@Param("task") UploadTask task);
 
     /**
-     * @author:pxf
+     * @apiNote
+     * pxf
      */
     @Select("select taskId,cId,uId,type,classCode,recordId,state FROM upload_task WHERE taskId=#{taskId}")
     @Results({
@@ -35,36 +37,6 @@ public interface UploadTaskDao {
     UploadTask findByTaskId(@Param("taskId") Long taskId);
 
 
-    @Results(value = {
-            @Result(property = "classCode", column = "classCode"),
-            @Result(property = "cName", column = "cName"),
-            @Result(property = "teacherName", column = "teacherName"),
-            @Result(property = "district", column = "district"),
-            @Result(property = "cCode", column = "cCode"),
-            @Result(property = "weekly", column = "weekly"),
-            @Result(property = "day", column = "day"),
-            @Result(property = "classIndex", column = "classIndex"),
-            @Result(property = "lastTime", column = "lastTime"),
-            @Result(property = "classRoom", column = "classRoom"),
-    })
-    @Select("select course.classCode,course.cName,course.teacherName,course.district,course.cCode,course.weekly,course_time.day,course_time.classIndex,course_time.lastTime,course_time.classRoom"+
-            " from upload_task,course,course_time" +
-            " where upload_task.taskId = course_time.taskId and upload_task.cId = course.cId and " +
-            "upload_task.uId = #{uId}")
-    List<CourseDto> findByUId(@Param("uId") long uId);
-
-
-    @Select("select ut.taskId,ut.state,ut.type,c.classCode,c.cName from upload_task ut " +
-            "INNER join course c on c.cId = ut.cId " +
-            "where ut.uId =#{uId}")
-    @Results(value = {
-            @Result(property = "taskId", column = "taskId"),
-            @Result(property = "state", column = "state"),
-            @Result(property = "type", column = "type"),
-            @Result(property = "classCode", column = "classCode"),
-            @Result(property = "cName", column = "cName")
-    })
-    List<UploadTaskDto> getUploadTaskByUId(long uId);
 
 
 }

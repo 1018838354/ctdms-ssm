@@ -3,9 +3,9 @@ package cn.jxufe.ctdms.service.impl;
 import cn.jxufe.ctdms.bean.Course;
 import cn.jxufe.ctdms.bean.CourseTime;
 import cn.jxufe.ctdms.dao.CourseDao;
-import cn.jxufe.ctdms.dao.UploadTaskDao;
 import cn.jxufe.ctdms.dto.CourseDto;
 import cn.jxufe.ctdms.dto.UploadTaskDto;
+import cn.jxufe.ctdms.enums.DocTypeEnum;
 import cn.jxufe.ctdms.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,11 +18,9 @@ public class CourseServiceImpl implements CourseService{
     @Autowired
     CourseDao courseDao;
 
-    @Autowired
-    UploadTaskDao uploadTaskDao;
     @Override
     public Long save(Course course) {
-        return courseDao.save(course);
+        return null;
     }
 
     @Override
@@ -37,11 +35,21 @@ public class CourseServiceImpl implements CourseService{
 
     @Override
     public List<CourseDto> getCourseDto(long uId) {
-        return uploadTaskDao.findByUId(uId);
+        return courseDao.findCourseTimeByUId(uId);
     }
 
     @Override
     public List<UploadTaskDto> getTasks(long uId) {
-        return uploadTaskDao.getUploadTaskByUId(uId);
+        List<UploadTaskDto> tasks = courseDao.getTeachingScheduleByUId(uId);
+        tasks.forEach(s->{
+            s.setType(DocTypeEnum.TEACH.getTypeId());
+        });
+
+        List<UploadTaskDto> syllabus = courseDao.getTeachingSYLLABUSByUId(uId);
+        syllabus.forEach(s->{
+            s.setType(DocTypeEnum.SYLLABUS.getTypeId());
+        });
+        tasks.addAll(syllabus);
+        return tasks;
     }
 }

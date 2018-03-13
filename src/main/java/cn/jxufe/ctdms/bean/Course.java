@@ -9,10 +9,16 @@ public class Course {
     String cName;
     //课程代码
     String cCode;
+    // 进度表状态
+    int state;
+    // 文件record id
+    long recordId;
     //学期
     String term;
     //教师名
     String teacherName;
+    //uId
+    long uId;
     //班级代码
     String classCode;
     //校区
@@ -31,6 +37,22 @@ public class Course {
                 ", district='" + district + '\'' +
                 ", weekly='" + weekly + '\'' +
                 '}';
+    }
+
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
+    }
+
+    public long getRecordId() {
+        return recordId;
+    }
+
+    public void setRecordId(long recordId) {
+        this.recordId = recordId;
     }
 
     public String getcName() {
@@ -60,6 +82,14 @@ public class Course {
     public long getcId() {
 
         return cId;
+    }
+
+    public long getuId() {
+        return uId;
+    }
+
+    public void setuId(long uId) {
+        this.uId = uId;
     }
 
     public void setcId(long cId) {
