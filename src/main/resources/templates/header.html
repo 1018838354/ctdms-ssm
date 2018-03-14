@@ -207,7 +207,12 @@
 
             <link href='/plugins/calendar/fullcalendar.min.css' rel='stylesheet' />
             <link href='/plugins/calendar/fullcalendar.print.min.css' rel='stylesheet' media='print' />
+                
+                <script src="/plugins/chart/circleChart.min.js" type="text/javascript" charset="utf-8"></script>
 
+                <script src="/plugins/chart/js/Chart.min.js"></script>
+                <script src='/plugins/calendar/moment.min.js'></script>
+                <script src='/plugins/calendar/fullcalendar.min.js'></script>
             <div class="help-pannel">
                 <div class="hd clearfix">
                     <div class="l bread"><i class="fa fa-home" aria-hidden="true"></i> Home&nbsp;\&nbsp;<i class="fa fa-user-circle" aria-hidden="true"></i> 管理员 &nbsp;\&nbsp;<span><i class="fa fa-tachometer" aria-hidden="true"></i> 管理首页</span></div>
@@ -1077,11 +1082,7 @@
                 </div>
             </div>
 
-            <script src="/plugins/chart/circleChart.min.js" type="text/javascript" charset="utf-8"></script>
 
-            <script src="/plugins/chart/js/Chart.min.js"></script>
-            <script src='/plugins/calendar/moment.min.js'></script>
-            <script src='/plugins/calendar/fullcalendar.min.js'></script>
         </div>
     </div>
 
@@ -1144,6 +1145,9 @@
     </a>
 </div>
 </div>
+
+
+
 <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
 
 <a href="tasks"><span>查看上传任务</span></a>
