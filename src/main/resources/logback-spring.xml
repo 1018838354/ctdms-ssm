@@ -58,7 +58,7 @@
     </logger>
 
     <!-- 全局，控制台遇到INFO及以上级别就进行输出 -->
-    <root level="INFO">
+    <root level="ERROR">
         <appender-ref ref="STDOUT" />
     </root>
 

@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" >
+<head th:include="header :: pattern">
+    <title></title>
+</head>
+<body>
+<header></header>
+
+<h1 th:include="header :: #header"></h1>
+
+<div id="main">
+
+    <div class="help-layout clearfix">
+        <div th:include="header :: leftnav"></div>
+
+
+        <div class="help-main">
+            <div class="help-pannel">
+                <div class="hd clearfix">
+                    <div class="l bread"><i class="fa fa-home" aria-hidden="true"></i> Home&nbsp;\&nbsp;<i class="fa fa-user-circle" aria-hidden="true"></i> 管理员 &nbsp;\&nbsp;<i class="fa fa-cab" aria-hidden="true"></i> 课程 &nbsp;\&nbsp;<span><i class="fa fa-tachometer" aria-hidden="true"></i> 我的课程</span></div>
+                    <div class="r bread"><a href="/about/faq?t=7">返回</a></div>
+                    <div class="clearfix cl">
+                        <h3 class="content-title">我的课程</h3>
+                        <!-- DATE RANGE PICKER -->
+                        <span class="title-sec">
+											Overview, Statistics and more
+										</span>
+                        <!-- /DATE RANGE PICKER -->
+                    </div>
+                </div>
+                <div class="bd">
+                    <style>
+                        /*--排序选择---*/
+                        .index-main{
+                            width: 100%;
+                            max-width: 1152px;
+                            position: relative;
+                            padding-bottom: 70px;
+                            margin: 0 auto;
+                        }
+                        .index-main .screening-box {
+                            position: relative;
+                            width: 100%;
+                            padding: 13px 12px;
+                            height: 50px;
+                            box-sizing: border-box;
+                        }
+                        .index-main .screening-box .screening-time a {
+                            float: left;
+                            padding: 4px 12px;
+                            font-size: 12px;
+                            line-height: 16px;
+                            color: #4D555D;
+                            margin-right: 12px;
+                            border-radius: 12px;
+                        }
+                        .index-main .screening-box .screening-time a.on {
+                            background: #93999F;
+                            color: #FFFFFF;
+                        }
+                        /*---------*/
+                        .index-main .index-list-wrap {
+                            width: 100%;
+                            margin: 0 auto;
+                        }
+                        .index-main .index-list-wrap .course-list {
+                            width: 1152px;
+                        }
+                        .index-main .index-list-wrap .course-list .course-wrap {
+                            position: relative;
+                            margin-right: 24px;
+                            margin-bottom: 36px;
+                            width: 270px;
+                        }
+                        .index-main .index-list-wrap .course-list .course-wrap a {
+                            display: block;
+                        }
+                        .index-main .index-list-wrap .course-list .course-wrap .course-box {
+                            position: relative;
+                            width: 100%;
+                            height: 100%;
+                        }
+                        .index-main .index-list-wrap .course-list .course-wrap .course-box .img-box {
+                            height: 152px;
+                            max-height: 152px;
+                            transition: .3s all linear;
+                            position: relative;
+                            border-radius: 12px;
+                            overflow: hidden;
+                        }
+                        .index-main .index-list-wrap .course-list .course-wrap .course-box .course-gradient {
+                            position: absolute;
+                            z-index: 0;
+                            background-image: linear-gradient(-180deg, rgba(7, 17, 27, 0) 0%, rgba(7, 17, 27, 0.6) 97%);
+                            left: 0;
+                            bottom: 0;
+                            right: 0;
+                            height: 152px;
+                        }
+                        .index-main .index-list-wrap .course-list .course-wrap .course-box .img-box img {
+                            width: 100%;
+                        }
+                        .index-main .index-list-wrap .course-list .course-wrap .course-box .lecturer-info {
+                            position: absolute;
+                            left: 16px;
+                            right: 16px;
+                            top: 16px;
+                        }
+                        .index-main .index-list-wrap .course-list .course-wrap .course-box .lecturer-info .code{
+                            color: #FFFFFF;
+                        }
+                        .index-main .index-list-wrap .course-list .course-wrap .course-box .lecturer-info .title{
+                            font-size: 16px;
+                            line-height: 24px;
+                            font-weight: 700;
+                            max-height: 48px;
+                            transition: .3s all linear;
+                            word-break: break-all;
+                            word-wrap: break-word;
+                            overflow: hidden;
+                            text-overflow: -o-ellipsis-lastline;
+                            display: -webkit-box;
+                            -webkit-line-clamp: 2;
+                            -webkit-box-orient: vertical;
+                            color: #2B333B;
+                            text-shadow: 1px 1px 6px #ffffff, -1px 1px 0px #949bbb;
+                        }
+                        .index-main .index-list-wrap .course-list .course-wrap .course-box .lecturer-info .clas{
+                            margin-top: 4px;
+                            color: #FFFFFF;
+                        }
+                        .index-main .index-list-wrap .course-list .course-wrap .course-box .lecturer-info span {
+                            float: left;
+                            margin-top: 4px;
+                            font-size: 14px;
+                            color: #FFFFFF;
+                            line-height: 18px;
+                            text-shadow: 0 2px 4px rgba(7, 17, 27, 0.5);
+                            font-weight: 700;
+                        }
+                        /*---小标签-----*/
+                        .index-main .course-stat {
+                            position: absolute;
+                            border: 2px solid #FFFFFF;
+                            border-radius: 12px;
+                            top: -8px;
+                            left: -8px;
+                            z-index: 4;
+                            font-family: 'dincondm';
+                            font-size: 12px;
+                            color: #FFFFFF;
+                            line-height: 20px;
+                            padding: 0 8px;
+                        }
+                        .index-main .course-stat.unfinish {
+                            background-image: linear-gradient(-90deg, #f68688 0%, #f02930 100%);
+                        }
+                        /*----页码-----*/
+                        .index-main .page {
+                            margin: 25px 0 auto;
+                            overflow: hidden;
+                            clear: both;
+                            text-align: center;
+                            margin-top: 0;
+                            padding: 25px 0 0 0;
+                        }
+                        .index-main .page span, .page-disabled {
+                            display: inline-block;
+                            padding: 0 12px;
+                            min-width: 20px;
+                            height: 39px;
+                            line-height: 39px;
+                            font-size: 14px;
+                            color: #93999f;
+                            text-align: center;
+                        }
+                        .index-main .page a {
+                            display: inline-block;
+                            padding: 0;
+                            margin: 0 12px;
+                            width: 36px;
+                            height: 36px;
+                            line-height: 36px;
+                            font-size: 14px;
+                            color: #4d555d;
+                            text-align: center;
+                            border-radius: 50%;
+                            -webkit-transition: border-color 0.2s;
+                            -moz-transition: border-color 0.2s;
+                            transition: border-color 0.2s;
+                        }
+                        .index-main .page a:hover {
+                            text-decoration: none;
+                            background-color: #d9dde1;
+                        }
+                        .index-main .page a:first-child,.index-main .page a:nth-child(2),.index-main .page a:nth-last-child(2),.index-main .page a:last-child {
+                            width: auto;
+                        }
+                        .index-main .page a:first-child:hover,.index-main .page a:nth-child(2):hover, .index-main .page a:nth-last-child(2):hover, .index-main .page a:last-child:hover {
+                            background-color: transparent;
+                        }
+                        .index-main .page a.active {
+                            background: #4d555d;
+                            color: #ffffff;
+                        }
+                    </style>
+                    <div class="index-main">
+
+                        <div class="screening-box">
+                            <div class="screening-time l">
+                                <a href="/" class="on">待上传</a>
+                                <a href="/?sort=2">全部课程</a>
+                                <a href="/?sort=1">已上传</a>
+                                <a href="/?sort=3">已完成</a>
+                            </div>
+                            <!-- 判断登录 && 并且购买过实战课程 -->
+                            <div class="screenjing-type r">
+                                <a href="/?unlearn=4" class="my-collect ">我的收藏 <span id="follow_count">0</span></a>
+                            </div>
+                        </div>
+
+
+                        <div class="index-list-wrap">
+                            <div class="course-list clearfix">
+                                <!-- 前4个课程追加渠道统计链接 -->
+
+
+                                <div class="course-wrap l ">
+                                    <a href="upcourse">
+                                        <div class="course-box">
+                                            <!-- 学习进度 -->
+                                            <div class="box">
+                                                <div class="img-box">
+                                                    <div class="course-gradient"></div>
+                                                    <img class="course-img" alt="Google资深工程师深度讲解Go语言" src="//img.mukewang.com/szimg/5a7127370001a8fa05400300-360-202.jpg">
+                                                    <div class="lecturer-info">
+                                                        <p class="code">1243214</p>
+                                                        <h4 class="title">基于Python玩转人工智能最火框架 TensorFlow应用实践</h4>
+                                                        <p class="clas">B03 B05 B08</p>
+                                                        <span>未完成2项 已完成1项</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <!-- 前4个课程追加渠道统计链接 -->
+
+
+                                <div class="course-wrap l ">
+                                    <a href="upcourse">
+                                        <div class="course-box">
+                                            <!-- 学习进度 -->
+                                            <div class="box">
+                                                <div class="img-box">
+                                                    <div class="course-gradient"></div>
+                                                    <img class="course-img" alt="系统学习Docker 践行DevOps理念" src="//img.mukewang.com/szimg/5a9614850001bc3405400300-360-202.jpg">
+                                                    <div class="lecturer-info">
+                                                        <p class="code">1243214</p>
+                                                        <h4 class="title">基于Python玩转人工智能最火框架 TensorFlow应用实践</h4>
+                                                        <p class="clas">B03 B05 B08</p>
+                                                        <span>未完成2项 已完成1项</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <!-- 前4个课程追加渠道统计链接 -->
+
+
+                                <div class="course-wrap l ">
+                                    <a href="/class/129.html">
+
+                                        <div class="course-box">
+                                            <!-- 学习进度 -->
+                                            <div class="box">
+                                                <div class="img-box">
+                                                    <div class="course-gradient"></div>
+                                                    <img class="course-img" alt="前端跳槽面试必备技巧" src="//img.mukewang.com/szimg/59897b1600011ec805400300-360-202.jpg">
+                                                    <div class="lecturer-info">
+                                                        <p class="code">1243214</p>
+                                                        <h4 class="title">基于Python玩转人工智能最火框架 TensorFlow应用实践</h4>
+                                                        <p class="clas">B03 B05 B08</p>
+                                                        <span>未完成2项 已完成1项</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <!-- 前4个课程追加渠道统计链接 -->
+
+
+                                <div class="course-wrap l nomr">
+                                    <a href="/class/136.html">
+
+                                        <div class="course-box">
+                                            <!-- 学习进度 -->
+                                            <div class="box">
+                                                <div class="img-box">
+                                                    <div class="course-gradient"></div>
+                                                    <img class="course-img" alt="全网最热Python3入门+进阶 更快上手实际开发" src="//img.mukewang.com/szimg/59b8a486000107fb05400300-360-202.jpg">
+                                                    <div class="lecturer-info">
+                                                        <p class="code">6324523</p>
+                                                        <h4 class="title">全网最热Python3入门+进阶 更快上手实际开发</h4>
+                                                        <p class="clas">B03 B05 B08</p>
+                                                        <span>未完成2项 已完成1项</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <!-- 前4个课程追加渠道统计链接 -->
+
+
+                                <div class="course-wrap l ">
+                                    <a href="/class/107.html">
+
+                                        <div class="course-box">
+                                            <!-- 学习进度 -->
+                                            <div class="box">
+                                                <div class="img-box">
+                                                    <div class="course-gradient"></div>
+                                                    <img class="course-img" alt="全网稀缺Vue 2.0高级实战 独立开发专属音乐WebAPP" src="//img.mukewang.com/szimg/592e2eab0001302505660314-360-202.jpg">
+                                                    <div class="lecturer-info">
+                                                        <p class="code">1243214</p>
+                                                        <h4 class="title">全网稀缺Vue 2.0高级实战 独立开发专属音乐WebAPP</h4>
+                                                        <p class="clas">B03 B05 B08</p>
+                                                        <span>未完成2项 已完成1项</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <!-- 前4个课程追加渠道统计链接 -->
+
+
+                                <div class="course-wrap l ">
+                                    <a href="/class/176.html">
+
+                                        <div class="course-box">
+                                            <!-- 学习进度 -->
+                                            <div class="box">
+                                                <div class="img-box">
+                                                    <div class="course-gradient"></div>
+                                                    <img class="course-img" alt="基于Python玩转人工智能最火框架 TensorFlow应用实践" src="//img.mukewang.com/szimg/5a5ddeda000145b405400300-360-202.jpg">
+                                                    <div class="lecturer-info">
+                                                        <p class="code">1243214</p>
+                                                        <h4 class="title">基于Python玩转人工智能最火框架 TensorFlow应用实践</h4>
+                                                        <p class="clas">B03 B05 B08</p>
+                                                        <span>未完成2项 已完成1项</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <!-- 前4个课程追加渠道统计链接 -->
+
+
+                                <div class="course-wrap l ">
+                                    <a href="/class/187.html">
+
+                                        <div class="course-box">
+                                            <!-- 学习进度 -->
+                                            <div class="course-stat unfinish">未完成</div>
+                                            <div class="box">
+                                                <div class="img-box">
+                                                    <div class="course-gradient"></div>
+                                                    <img class="course-img" alt="Spring Cloud微服务实战" src="//img.mukewang.com/szimg/5a9ca4e80001786305400300-360-202.jpg">
+                                                    <div class="lecturer-info">
+                                                        <p class="code">1243214</p>
+                                                        <h4 class="title">基于Python玩转人工智能最火框架 TensorFlow应用实践</h4>
+                                                        <p class="clas">B03 B05 B08</p>
+                                                        <span>未完成2项 已完成1项</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+
+                            </div>
+                            <div class="page"><span class="disabled_page">首页</span><span class="disabled_page">上一页</span><a href="javascript:void(0)" class="active">1</a><a href="/?sort=0&amp;unlearn=0&amp;page=2">2</a><a href="/?sort=0&amp;unlearn=0&amp;page=3">3</a><a href="/?sort=0&amp;unlearn=0&amp;page=2">下一页</a><a href="/?sort=0&amp;unlearn=0&amp;page=3">尾页</a></div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div th:include="header :: #footer"></div>
+<div th:include="header :: #J_GotoTop"></div>
+
+</body>
+</html>

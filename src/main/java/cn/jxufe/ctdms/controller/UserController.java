@@ -4,6 +4,7 @@ import cn.jxufe.ctdms.bean.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import javax.websocket.server.PathParam;
 import java.util.List;
 
 /**
@@ -19,8 +20,17 @@ public class UserController {
 
 
     @GetMapping("/{uId}/home")
-    public String home(){
+    public String home(@PathParam("uId")Integer uId){
         return "home";
+    }
+
+    @GetMapping("/{uId}/mycourses")
+    public String courses(@PathParam("uId")Integer uId){
+        return "mycourses";
+    }
+    @GetMapping("/{uId}/upcourse")
+    public String upcourse(@PathParam("uId")Integer uId){
+        return "upcourse";
     }
 
 }

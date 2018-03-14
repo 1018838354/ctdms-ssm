@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" >
+<head th:include="header :: pattern">
+    <title></title>
+</head>
+<body>
+<link rel="stylesheet" href="/plugins/modal/modal.css" media="screen" type="text/css" />
+<style type="text/css">
+    /*---遮罩背景---*/
+    .black_overlay {
+        display: none;
+        width: 100%;
+        height: 100%;
+        background: rgba(7, 17, 27, 0.5);
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 999;
+        opacity: 0.7;
+    }
+    .bubble{
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        margin-top: -224px;
+        margin-left: -274px;
+        padding: 24px 32px 32px;
+        width: 548px;
+        min-height: 448px;
+        background: #FFFFFF;
+        box-shadow: 0 8px 16px 0 rgba(7, 17, 27, 0.2);
+        border-radius: 4px;
+        box-sizing: border-box;
+        z-index: 1000;
+    }
+    .bubble .close{
+        background: #474747;
+        height: 30px;
+        width: 30px;
+        border: 3px solid #FFF;
+        border-radius: 50%;
+        position: absolute;
+        top: -15px;
+        right: -15px;
+        cursor: pointer;
+        transition: .4s .3s;
+    }
+    .bubble .close:before,.bubble .close:after {
+        content: '';
+        background: #FFF;
+        height: 80%;
+        width: 3px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(-45deg);
+    }
+    .bubble .close:after {
+        transform: translate(-50%, -50%) rotate(45deg);
+    }
+    .bubble .bubble-title{
+        margin-bottom: 20px;
+        font-size: 16px;
+        color: #07111B;
+        line-height: 24px;
+        font-weight: 700;
+    }
+    .bubble .bubble-content{
+        position: relative;
+
+    }
+    .bubble .include-clas{
+        position: relative;
+        width: 374px;
+        min-height: 148px;
+        margin-bottom: 8px;
+        overflow: hidden;
+    }
+    .bubble .include-clas .clas-name{
+        font-size: 16px;
+        line-height: 30px;
+    }
+    .bubble .include-clas .clas-num{
+        font-size: 12px;
+        color: #4D555D;
+        line-height: 16px;
+    }
+    .bubble .include-clas .clas-list{
+        width: 100%;
+        padding: 6px 0;
+    }
+    .bubble .include-clas .clas-item{
+        margin: 2px;
+        float: left;
+        display: block;
+        width: 110px;
+        height: 80px;
+        color: white;
+        background-color: #b3b3b3;
+        position: relative;
+        padding: 6px;
+    }
+    .bubble .include-clas .clas-item .item-check{
+        position: absolute;
+        right: 0px;
+        top: 3px;
+        width: 20px;
+        height: 20px;
+    }
+    .bubble .include-clas .clas-item .course-info{
+
+    }
+    .bubble .include-clas .clas-item .course-key{
+        margin-bottom: 4px;
+        font-size: 16px;
+        color: #07111B;
+        line-height: 24px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    .bubble .submit-btn{
+        position: absolute;
+        right: 0px;
+        background: linear-gradient(-45deg, #f857a6, #ff5858);
+        padding: 8px 20px;
+        border: none;
+        border-radius: 21px;
+        outline: none;
+        overflow: hidden;
+        top: -4px;
+        color: #FFF;
+        font-size: 18px;
+        cursor: pointer;
+    }
+    .bubble .submit-btn:before {
+        content: '';
+        background: rgba(255, 255, 255, 0.3);
+        height: 100%;
+        width: 65px;
+        position: absolute;
+        top: 0;
+        left: -100%;
+        transform: skew(-45deg);
+        transition: 0s;
+    }
+    .bubble .submit-btn:hover:before {
+        left: 110%;
+        transition: .3s;
+    }
+    .bubble .file>h4{
+        float: left;
+        font-size: 16px;
+        line-height: 30px;
+        text-indent: 4px;
+    }
+    .bubble .file .add-btns{
+        float: right;
+    }
+    .bubble .file .add-btns button{
+        border-radius: 40px;
+        padding: 3px 14px;
+        color: white;
+        background-color: #2f8cff;
+        margin: 0 4px;
+        font-size: 15px;
+        font-weight: 400;
+        cursor: pointer;
+    }
+    .bubble .file .file-box{
+        border: 1px solid lightgray;
+        padding: 4px;
+        clear: both;
+    }
+    .bubble .file-box .file-item{
+        box-shadow: 0px 1px 2px lightgrey;
+        font-size: 14px;
+        padding: 4px 0;
+        color: #3f7a94b3;
+    }
+    .bubble .file-box .file-item .checkbox{
+        height: 15px;
+        width: 20px;
+        float: left;
+    }
+    .bubble .file-box .file-item .file-name{
+        max-width: 260px;
+        float: left;
+        overflow: hidden;
+        text-overflow:ellipsis;
+        white-space: nowrap;
+        padding: 0 6px;
+        color: black;
+    }
+    .bubble .file-box .file-item .up-time{
+        float: right;
+        color: #949393;
+        font-weight: 300;
+    }
+    .bubble .controls{
+        padding: 2px 6px;
+        margin-bottom: 15px;
+    }
+    .bubble .confirm-info{
+        position: relative;
+    }
+    .bubble .confirm-info .confirm-box{
+
+    }
+    .bubble .confirm-info .choosesum-box{
+        color: #4D555D;
+    }
+
+
+
+</style>
+<div id="overlay" class="black_overlay"></div>
+<div class="md-modal md-effect-18" id="modal">
+
+    <div class="md-content bubble" style="display: block;">
+        <div title="关闭弹窗" onclick="dismissModal()" class="close"></div>
+        <p class="bubble-title">选择文件和班级</p>
+        <div class="bubble-content">
+            <div class="file">
+                <h4>文件列表</h4>
+                <div class="add-btns"><button class="addpan">从云盘添加</button><button class="upload">上传</button></div>
+                <ul class="file-box">
+                    <li data-packageid="262" class="file-item" data-cid="180"><input type="checkbox" class="checkbox" /><h4 class="file-name">C#文档加萨福萨了解对方卢萨卡江东父老撒江东父老；阿是江东父老；撒酒疯；拉撒酒疯掉了；阿是江东父老看撒酒疯；了.doc</h4>1.2mb<span class="up-time">2018-09-06 22:32</span></li>
+                    <li data-packageid="262" class="file-item" data-cid="180"><input type="checkbox" class="checkbox" /><h4 class="file-name">用户体验设计.doc</h4>3mb<span class="up-time">2018-09-06 22:32</span></li>
+                    <li data-packageid="262" class="file-item" data-cid="180"><input type="checkbox" class="checkbox" /><h4 class="file-name">完美图解物联网IoT实操.doc</h4>695kb<span class="up-time">2018-09-06 22:32</span></li>
+                </ul>
+            </div>
+            <div class="controls"><input type="checkbox" class="checkbox" >全选</input> <span></span> </div>
+            <div class="include-clas">
+                <p class="clas-name">C#多线程编程实战</p>
+                <p class="clas-num">包含2个班级</p>
+                <ul class="clas-list">
+                    <li class="clas-item">
+                        <input type="checkbox" class="item-check" />
+                        <div class="course-info">
+                            <p class="course-key">B02</p>
+                            <div class="course-detail"> <span class="level l">3-89、4-34</span>
+                                <div class="learn-num l"> <i class="imv2-set-sns"></i> <span class="nums">533</span> </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="clas-item">
+                        <input type="checkbox" class="item-check" />
+                        <div class="course-info">
+                            <p class="course-key">B05</p>
+                            <div class="course-detail"> <span class="level l">1-123、5-89A</span>
+                                <div class="learn-num l"> <i class="imv2-set-sns"></i> <span class="nums">2103</span> </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="confirm-info">
+                <div class="confirm-box l">
+                    <div class="choosesum-box">
+                        <p class="l">当前选择文件数：2 个</p>
+                        <p class="r">当前选择班级数：1 个</p>
+                    </div>
+                    <p class="tip">上传文件后将进入审核阶段，请确认文件无误</p>
+                </div>
+                <a class="submit-btn" href="javascript:dismissModal();" data-typeid="262">立即提交</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function showModal(elem) {
+        var sel = document.getElementsByClassName('md-modal');
+        if(elem != null) {
+            sel = new Array(document.getElementById(elem));
+        }
+        document.getElementById('overlay').style.display = 'block';
+        console.log(sel.length);
+        for(var i = 0; i < sel.length; i++) {
+            sel[i].setAttribute("class", sel[i].getAttribute("class") + " md-show");
+        }
+    }
+
+    function dismissModal(elem) {
+        var sel = document.getElementsByClassName('md-modal');
+
+        if(elem != null) {
+            sel = new Array(document.getElementById(elem));
+        }
+        document.getElementById('overlay').style.display = 'none';
+        for(var i = 0; i < sel.length; i++) {
+            sel[i].setAttribute("class", sel[i].getAttribute("class").replace(" md-show", "").replace("md-show", ""));
+        };
+    }</script>
+
+<div th:include="header :: #header"></div>
+
+<div id="main">
+
+    <div class="help-layout clearfix">
+        <div th:include="header :: leftnav"></div>
+
+
+        <div class="help-main">
+            <div class="help-pannel">
+                <div class="hd clearfix">
+                    <div class="l bread"><i class="fa fa-home" aria-hidden="true"></i> Home&nbsp;\&nbsp;<i class="fa fa-user-circle" aria-hidden="true"></i> 管理员 &nbsp;\&nbsp;<i class="fa fa-cab" aria-hidden="true"></i> 课程 &nbsp;\&nbsp;<span><i class="fa fa-tachometer" aria-hidden="true"></i> C#多线程编程实战</span></div>
+                    <div class="r bread"><a href="/about/faq?t=7">返回</a></div>
+                    <div class="clearfix cl">
+                        <h3 class="content-title">C#多线程编程实战</h3>
+                        <!-- DATE RANGE PICKER -->
+                        <span class="title-sec">
+											Overview, Statistics and more
+										</span>
+                        <!-- /DATE RANGE PICKER -->
+                    </div>
+                </div>
+                <div class="bd">
+                    <style>
+                        .up-course{
+                            padding: 6px;
+                        }
+                        .up-course-item{
+                            padding: 24px 0px 32px;
+                            width: 25%;
+                            float: left;
+                            margin: 4px;
+                            background: #F3F5F7;
+                            border-radius: 4px;
+                            box-sizing: border-box;
+                            text-align: center;
+                        }
+                        .up-course-item .amount-box{
+                            position: relative;
+                        }
+                        .up-course-item h3{
+                            font-size: 14px;
+                            color: #07111B;
+                            line-height: 24px;
+                        }
+                        .up-course-item .amount{
+                            margin: 8px 0px 12px;
+                            font-size: 36px;
+                            color: #14a3f0;
+                            line-height: 48px;
+                            font-weight: bold;
+                        }
+                        .up-course-item .btn-up{
+                            background: #b7bbbf;
+                            color: #fff;
+                            cursor: not-allowed;
+                            padding: 0px;
+                            width: 120px;
+                            height: 36px;
+                            line-height: 36px;
+                            text-align: center;
+                            border-radius: 18px;
+                            display: inline-block;
+                        }
+                        .up-course-item li{
+                            float: left;
+                            margin: 15px 13px;
+                            width: 100px;
+                            height: 105px;
+                            text-align: center;
+                            position: relative;
+                            overflow: visible;
+                            border: 1px dashed transparent;
+                            border-radius: 5px
+                        }
+                        .up-course-item .deadline{
+                            position: absolute;
+                            right: 1px;
+                            font-size: 12px;
+                            color: #f8fafc;
+                            top: -21px;
+                            line-height: 15px;
+                            /* border-radius: 50%; */
+                            background: linear-gradient(-45deg, #f857a6, #ff5858);
+                            padding: 5px;
+                        }
+                        .up-course-item svg.icon{
+                            width: 2em;
+                            height: 2em;
+                            vertical-align: middle;
+                            fill: currentColor;
+                            overflow: hidden;
+                        }
+                    </style>
+
+                    <div class="up-course">
+                        <div class="up-course-item">
+                            <div class="amount-box">
+                                <h3>教学大纲</h3>
+                                <a class="js-open-address" href="//www.imooc.com/user/address" target="_blank" style="visibility: hidden;"></a>
+                                <p class="amount"><svg class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1615"><path d="M704 64h-64v128H512v64h128v128h64V256h128v-64H704V64zM768 320v575.89l-0.11 0.11H256.11l-0.11-0.11V128.11l0.11-0.11H576V64H256a64.19 64.19 0 0 0-64 64v768a64.19 64.19 0 0 0 64 64h512a64.19 64.19 0 0 0 64-64V320zM320 320h256v64H320zM320 512h320v64H320zM320 704h384v64H320z" p-id="1616"></path></svg></p>
+                                <a href="javascript:showModal();" class="btn-up" title="您已上传该文档，请等待审核！">立即上传</a>
+                            </div>
+                        </div>
+                        <div class="up-course-item">
+                            <div class="amount-box">
+                                <span class="deadline">距结束 12h</span>
+                                <h3>教学进度表</h3>
+                                <a class="js-open-address" href="//www.imooc.com/user/address" target="_blank" style="visibility: hidden;"></a>
+                                <p class="amount"><svg class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1715"><path d="M500.92 308.92L386 404.71l-98-98-150.63 150.66 45.25 45.26L288 397.25l94 94 164.36-136.89L608 416V256H448zM640 64H128a64.19 64.19 0 0 0-64 64v768a64.19 64.19 0 0 0 64 64h444a289.06 289.06 0 0 1-82.6-64H128.11l-0.11-0.11V128.11l0.11-0.11h511.78l0.11 0.11v295a288.9 288.9 0 0 1 64-7.11V128a64.19 64.19 0 0 0-64-64zM446 576H160v64h263.15A285.9 285.9 0 0 1 446 576zM160 768h263.15a288.91 288.91 0 0 1-7.15-64H160zM704 448c-141.38 0-256 114.62-256 256s114.62 256 256 256 256-114.62 256-256-114.62-256-256-256z m160 197.55l-0.28 0.28-57.81 57.91-135.8 136L512 681.37l45.18-45.25 112.94 113.14 129.71-129.95 0.17-0.17 50.82-50.91 12.9 12.92 0.28 0.28 32 32.06z" p-id="1716"></path></svg></p>
+                                <a href="javascript:void(0);" class="btn-up" title="您已上传该文档，请等待审核！">已上传</a>
+                            </div>
+                        </div>
+                        <div class="up-course-item">
+                            <div class="amount-box">
+                                <h3>教学进度表</h3>
+                                <a class="js-open-address" href="//www.imooc.com/user/address" target="_blank" style="visibility: hidden;"></a>
+                                <p class="amount"><svg class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1595"><path d="M500.92 308.92L386 404.71l-98-98-150.63 150.66 45.25 45.26L288 397.25l94 94 164.36-136.89L608 416V256H448zM640 64H128a64.19 64.19 0 0 0-64 64v768a64.19 64.19 0 0 0 64 64h444a289.06 289.06 0 0 1-82.6-64H128.11l-0.11-0.11V128.11l0.11-0.11h511.78l0.11 0.11v295a288.9 288.9 0 0 1 64-7.11V128a64.19 64.19 0 0 0-64-64zM446 576H160v64h263.15A285.9 285.9 0 0 1 446 576zM160 768h263.15a288.91 288.91 0 0 1-7.15-64H160zM704 448c-141.38 0-256 114.62-256 256s114.62 256 256 256 256-114.62 256-256-114.62-256-256-256zM544 864l26.67-80L624 837.33z m93.33-40L584 770.67l173.33-173.34 53.33 53.33zM824 637.33L770.67 584l40-40L864 597.33z" p-id="1596"></path></svg></p>
+                                <a href="javascript:void(0);" class="btn-up" title="您已上传该文档，请等待审核！">已上传</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+<div th:include="header :: #footer"></div>
+<div th:include="header :: #J_GotoTop"></div>
+
+</body>
+</html>

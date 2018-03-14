@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" type="text/css" href="css/admin.css"/>
+		<script type="text/javascript" src="js/jquery.min.js" ></script>
+		<script type="text/javascript">
+$(document).ready(function() {
+	$("#backTop").click(function() {
+		$("html,body").animate({
+			scrollTop: 0
+		}, 200)
+	});
+
+	function scrolltop() {
+		h = $(window).height();
+		t = $(document).scrollTop();
+		if(t >= 768) {
+			$("#backTop").show();
+			$("#js-elevator-weixin").removeClass("no-goto");
+		} else {
+			$("#backTop").hide();
+			$("#js-elevator-weixin").addClass("no-goto");
+		}
+	};
+	$(window).scroll(function() {
+		scrolltop();
+	});
+	
+	//购物车
+var y = 0;
+$("#shop-cart").on("mouseenter", function() {
+	clearTimeout(y), $(this).hasClass("hover") || ($(this).addClass("hover"), $("#nav").addClass("addZ-index"))
+}).on("mouseleave", function(e) {
+	e.stopPropagation();
+	var a = $(this);
+	y = setTimeout(function() {
+		a.hasClass("hover") && (a.removeClass("hover"), $("#nav").removeClass("addZ-index"), "index" == OP_CONFIG.module && "index" == OP_CONFIG.page ? $("#nav").addClass("addZ-index") : $("#nav").removeClass("addZ-index"))
+}, 300)
+});
+$("#js-app-load").on("mouseover", function() {
+	$(".js-load-box").show();
+	$("#nav").addClass("addZ-indexCode");
+});
+$("#js-app-load").on("mouseout", function() {
+	$(".js-load-box").hide();
+	$("#nav").removeClass("addZ-indexCode");
+});
+//用户头像
+var w = 0;
+$("#header-user-card").on("mouseenter", function() {
+clearTimeout(w), $(this).hasClass("hover") || $(this).addClass("hover")
+}).on("mouseleave", function(e) {
+e.stopPropagation();
+var a = $(this);
+w = setTimeout(function() {
+	a.hasClass("hover") && a.removeClass("hover")
+}, 300)
+});
+});</script>
+	</head>
+	<body>
+		<div id="header">
+    <div class="page-container" id="nav">
+         <div id="logo" class="logo"><a href="/" target="_self" class="hide-text" title="首页">慕课网</a></div>
+      
+
+        <button type="button" class="navbar-toggle visible-xs-block js-show-menu">
+            <i class="icon-menu"></i>
+        </button>
+        <ul class="nav-item">
+                        <li class="set-btn visible-xs-block"><a href="/user/newlogin" target="_self">登录</a> / <a href="/user/newsignup" target="_self">注册</a></li>
+                        
+            <li>
+                <a href="/course/list" target="_self">免费课程</a>
+            </li>           
+            <li><a href="//class.imooc.com" class="program-nav " target="_self">职业路径<i class="icn-new"></i></a></li>
+            <li>
+                <a href="//coding.imooc.com" target="_self">实战</a>
+            </li>
+            <li><a href="/wenda" target="_self">猿问</a></li>
+            <li><a href="/discovery" target="_self">发现</a></li>
+            
+        </ul>
+                <div id="login-area">
+            <ul class="header-unlogin clearfix">
+                <li class="app-load" id="js-app-load">
+                    <a href="//www.imooc.com/mobile/app" target="_blank" style="width:60px;">下载APP</a>
+                    <div class="app-load-box clearfix js-load-box" style="display: none;">
+                        <img src="https://www.imooc.com/static/img/common/appload.png" class="l">
+                        <div class="r">
+                            <p>扫描下载慕课网APP</p>
+                            <a href="https://itunes.apple.com/cn/app/mu-ke-wang/id722179140?mt=8" target="_blank"><i class="icon-apple"></i>App Store下载</a>
+                            <a href="//www.imooc.com/mobile/mukewang.apk" target="_blank"><i class="icon-android"></i>Android下载</a>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="shop-cart" id="shop-cart">
+                    <a href="//order.imooc.com/pay/cart" class="shop-cart-icon" target="_blank">
+                        <span class="icon-shopping-cart js-endcart"></span><span>购物车</span><span class="shopping_icon js-cart-num" data-ordernum="0" data-cartnum="0" style="display: none">0</span>
+                    </a>
+                    <div class="my-cart" id="js-my-cart"><div class="cart-title-box clearfix">                                        <h2 class="l">我的购物车</h2>                                        <h5 class="r">已加入<span class="js-incart-num">0</span>门课程</h5>                                    </div>                                    <div class="cart-wrap">                                        <div class="clear-cart">                                            <span class="cartIcon icon-shopping-cart"></span>                                            <h3>购物车里空空如也</h3>                                            <div class="text">快去这里选购你中意的课程</div>                                            <p><a class="go-link" href="//coding.imooc.com" target="_blank">实战课程</a></p>                                            <p><a class="go-link" href="//class.imooc.com/" target="_blank">职业路径</a></p>                                        </div>                                    </div>                                    <div class="more-box clearfix">                                        <div class="l show-box">                                            <span class="text"><a href="//order.imooc.com/myorder" target="_blank">我的订单中心</a></span>                                        </div>                                        <a href="//order.imooc.com/pay/cart" target="_blank" class="r moco-btn moco-btn-red go-cart">去购物车</a>                                    </div></div>
+                </li>             
+                <li class="remind_warp">
+                    <i class="msg_remind" style="display: inline;"></i>
+                    <a target="_blank" href="/u/6319797/notices">
+                        <i class="icon-notifi"></i>
+                        <!-- <span class="msg_icon" style="display: none;"></span> -->
+                    </a>
+                </li>
+                <li class="header-signin">
+                    <a href="#" id="js-signin-btn">登录</a> / <a href="#" id="js-signup-btn">注册</a>
+                </li>
+                <li class="set_btn user-card-box" id="header-user-card">
+                    <a id="header-avator" class="user-card-item js-header-avator" action-type="my_menu" href="/u/6319797" target="_self">
+                        <img width="40" height="40" src="//img.mukewang.com/5333a1920001d36402200220-100-100.jpg">
+                        <i class="myspace_remind" style="display: none;"></i>
+                        <span style="display: none;">动态提醒</span>
+                    </a>
+                    <div class="g-user-card"><div class="card-inner">                        <div class="card-top clearfix">                            <a href="/u/6319797" class="l"><img src="//img.mukewang.com/5333a1920001d36402200220-100-100.jpg" alt="慕沐6298644"></a>                            <div class="card-top-right-box l">                                <a href="/u/6319797"><span class="name text-ellipsis">慕沐6298644</span></a>                                <div class="meta">                                    <a href="/u/6319797/experience">经验<b id="js-user-mp">70</b></a>                                    <a href="/u/6319797/credit">积分<b id="js-user-credit">0</b></a>                                </div>                            </div>                        </div>                        <div class="user-center-box">                            <ul class="clearfix">                                <li class="l"><a href="/u/6319797/courses" target="_blank"><span class="user-center-icon icon-tick"></span>我的课程</a></li>                                <li class="l">                                    <a href="//order.imooc.com/myorder" target="_blank"><span class="user-center-icon icon-receipt"></span>订单中心</a>                                                                    </li>                                <li class="l"><a href="/mall/index" target="_blank"><span class="user-center-icon icon-score_shop"></span>积分商城</a></li>                                <li class="l"><a href="/user/setbindsns" target="_blank"><span class="user-center-icon icon-set"></span>个人设置</a></li>                            </ul>                        </div><div class="card-history">                            <span class="history-item">                                <span class="tit text-ellipsis">Spring Boot 2.0深度实践-初遇Spring Boot</span>                                <span class="media-name text-ellipsis">2-4 第一个 Spring Boot 应用（三）</span>                                <i class="icon-clock"></i>                                <a href="//www.imooc.com/video/16353" class="continue" title="Spring Boot 2.0深度实践-初遇Spring Boot
+2-4  第一个 Spring Boot 应用（三）">继续</a>                            </span>                    </div><div class="card-sets clearfix"><a href="/passport/user/logout?referer=//www.imooc.com" class="l">安全退出</a></div>                    </div></div>
+                </li>
+            </ul>
+        </div>
+                <div class="search-warp clearfix" style="min-width: 32px; height: 72px;">
+                            <div class="pa searchTags">
+                                    <a href="//class.imooc.com/sc/20" target="_blank">前端入门</a>
+                                    <a href="//class.imooc.com/sc/18" target="_blank">Java入门</a>
+                                    <a href="//class.imooc.com/sc/41" target="_blank">C</a>
+                                </div>
+            
+            <div class="search-area" data-search="top-banner">
+                <input class="search-input" data-suggest-trigger="suggest-trigger" type="text" autocomplete="off">
+                <input type="hidden" class="btn_search" data-search-btn="search-btn">
+                <ul class="search-area-result" data-suggest-result="suggest-result">
+                </ul>
+            </div>
+            <div class="showhide-search" data-show="no"><i class="icon-search"></i></div>
+        </div>
+    </div>
+</div>
+		<div id="main">
+
+	<div class="help-layout clearfix">
+		<div class="help-aside">
+			<div>
+				<h3 class="hd">慕课网</h3>
+				<ul class="menus mooc-menu" data-status="7">
+					<li><a href="//www.imooc.com/about/faq" data-status="1">视频播放<span class="arr"><i class="icon-right2"></i></span></a></li>
+					<li><a href="//www.imooc.com/about/faq?t=3" data-status="3">积分优惠券<span class="arr"><i class="icon-right2"></i></span></a></li>
+					<li><a href="//www.imooc.com/about/faq?t=4" data-status="4">认证申请<span class="arr"><i class="icon-right2"></i></span></a></li>
+					<li><a href="//www.imooc.com/about/faq?t=5" data-status="5">账号问题<span class="arr"><i class="icon-right2"></i></span></a></li>
+					<li><a href="//www.imooc.com/about/faq?t=7" data-status="7" class="on">其他相关<span class="arr"><i class="icon-right2"></i></span></a></li>
+				</ul>
+				<i></i>
+			</div>
+			<div class="hr-line">分割线</div>
+			<div>
+				<h3 class="hd">职业路径</h3>
+				<ul class="menus">
+					<li><a href="//class.imooc.com/user/faq?column_id=1">职业路径<span class="arr"><i class="icon-right2"></i></span></a></li>
+					<li><a href="//class.imooc.com/user/faq?column_id=2">学习服务<span class="arr"><i class="icon-right2"></i></span></a></li>
+					<li><a href="//class.imooc.com/user/faq?column_id=3">版权保护<span class="arr"><i class="icon-right2"></i></span></a></li>
+				</ul>
+				<i></i>
+			</div>
+			
+			<div class="hr-line">分割线</div>
+			<div>
+				<h3 class="hd">实战课程</h3>
+				<ul class="menus shizhan-menu">
+					<li><a href="//coding.imooc.com/user/faq?column_id=1">实战课程<span class="arr"><i class="icon-right2"></i></span></a></li>
+					<li><a href="//coding.imooc.com/user/faq?column_id=2">课程服务<span class="arr"><i class="icon-right2"></i></span></a></li>
+					<li><a href="//coding.imooc.com/user/faq?column_id=3">项目管理<span class="arr"><i class="icon-right2"></i></span></a></li>
+					<li><a href="//coding.imooc.com/user/faq?column_id=4">项目演示<span class="arr"><i class="icon-right2"></i></span></a></li>
+					<li><a href="//coding.imooc.com/user/faq?column_id=5">WebIDE<span class="arr"><i class="icon-right2"></i></span></a></li>
+				</ul>
+				<i></i>
+			</div>
+		</div>
+		<div class="help-main">
+		
+  <div class="help-pannel">
+    <div class="hd clearfix">
+      <div class="l bread">常见问题&nbsp;\&nbsp;慕课网&nbsp;\&nbsp;其他相关&nbsp;\&nbsp;<span>慕课网用户注册协议</span></div>
+            <div class="r bread"><a href="/about/faq?t=7">返回列表</a></div>
+          </div>
+    <div class="bd">
+            <div class="faq-detail">
+        <div class="faq-cnt rich-text">
+          <p>&nbsp; &nbsp; &nbsp;如果您选择接受本条款，即表示您同意接受协议各项条件的约束。如果您不同意本服务条款，则不能获得使用本协议的权利。您若有违反本条款规定，慕课网有权随时中止或终止您对慕课网产品的使用资格并保留追究相关法律责任的权利。本协议条款一旦发生变更，慕课网将在网页上公布修改内容。修改后的服务条款一旦在网页上公布即有效代替原来的服务条款。您可随时登录慕课网官方网站查阅最新版服务条款。</p><p><br></p><h3><strong>一、产品保护条款</strong></h3><p>&nbsp; &nbsp; &nbsp; &nbsp;1、慕课网产品是归属慕课网公司版权所有。慕课网产品的一切版权以及与慕课网产品相关的所有信息内容，包括但不限于：文字表述及其组合、图标、图饰、图表、色彩、版面设计、数据、印刷材料、或电子文档等均受著作权法和国际著作权条约以及其他知识产权法律法规的保护。</p><p>&nbsp; &nbsp; &nbsp; &nbsp;2、您须明白，使用本协议产品涉及到互联网服务，可能会受到各个环节不稳定因素的影响。因此服务存在不可抗力、计算机病毒或黑客攻击、系统不稳定、用户所在位置、用户关机以及其他任何技术、互联网络、通信线路原因等造成的服务中断或不能满足用户要求的风险。您须承担以上风险，慕课网不作担保。</p><p>&nbsp; &nbsp; &nbsp; &nbsp;3、如慕课网的系统发生故障影响到本协议的正常运行，慕课网承诺在第一时间内与相关单位配合，及时处理进行修复。但您因此而产生的经济损失，慕课网不承担责任。此外，慕课网保留不经事先通知为维修保养、升级或其他目的暂停本协议任何部分的权利。</p><p>&nbsp; &nbsp; &nbsp; &nbsp;4、使用本协议必须遵守国家有关法律和政策等，维护国家利益，保护国家安全，并遵守本条款，对于您违法或违反本条款的使用(包括但不限于言论发表、传送等)而引起的一切责任，由您负全部责任，概与慕课网及合作单位无关，导致慕课网及合作单位损失的，慕课网及合作单位有权要求赔偿，并有权立即停止向其提供服务，保留相关记录，并保留配合司法机关追究法律责任的权利。</p><p>&nbsp; &nbsp; &nbsp; &nbsp;5、您同意个人隐私信息是指那些能够对您进行个人辨识或涉及个人通信的信息，包括下列信息：您的姓名，身份证号，手机号码，IP地址，电子邮件地址信息。而非个人隐私信息是指您登录的账号、对软件的操作状态以及使用习惯等您的操作记录信息和其他一切个人隐私信息范围外的普通信息。慕课网将会采取合理的措施保护您的个人隐私信息，除法律或有法律赋予权限的政府部门要求或您同意等原因外，慕课网未经您同意不向除合作单位以外的第三方公开、 透露您个人隐私信息。您同意，为了运营和改善慕课网的技术和服务，慕课网可以在无须再另行通知或提示您的情况下，自己收集使用或向第三方提供使用您的非个人隐私信息，以有助于慕课网及合作单位向用户提供更好的用户体验和提高服务质量。</p><p><br></p><h3><strong>二、用户使用须知</strong></h3><p>　　特别提醒您，使用互联网必须遵守国家有关的政策和法律，如刑法、国家安全法、保密法、计算机信息系统安全保护条例等，保护国家利益，保护国家安全，对于违法使用互联网络而引起的一切责任，由您负全部责任。</p><p>　　1、您不得使用慕课网产品发送或传播任何妨碍社会治安或非法、虚假、骚扰性、侮辱性、恐吓性、伤害性、破坏性、挑衅性、淫秽色情性等内容的信息。</p><p>　　2、您不得使用慕课网产品发送或传播敏感信息和违反国家法律制度的信息。</p><p>　　3、您保证以真实的身份注册使用慕课网的产品，向慕课网所提供的个人身份资料信息真实、完整、有效，依据法律规定和约定对所提供的信息承担相应的法律责任。如果资料发生变化，您应及时更改。慕课网会及时、有效地提供该项服务。在安全完成本协议的登记程序后，您应维持密码及账号的机密安全。您应对任何人利用您的密码及账号所进行的活动负完全的责任，慕课网公司无法对非法或未经您授权使用您账号及密码的行为做出甄别，因此慕课网公司不承担任何责任。</p><p>　　4、盗取他人号码或利用网络通讯骚扰他人，均属于非法行为。您不得采用测试、欺骗等任何非法手段，盗取其他用户的账号和对他人进行骚扰。</p><p>　　5、慕课网在此郑重提请您注意，任何经由本协议以上传、下载、张贴、电子邮件或任何其他方式传送的资讯、资料、文字、软件、音乐、音讯、照片、图形、视讯、信息、用户的登记资料或其他资料等（以下简称“内容”），无论系公开还是私下传送，均由内容提供者承担责任。同时，为了提高、改进慕课网各种服务的用户体验，您同意慕课网对凡是您经由本服务通过上传、张贴等任何方式发布到慕课网产品的任何文字、图片及其他信息资料等进行无偿的修改、复制、传播等使用。慕课网无法监控经由本协议传送之内容，也无法对用户的使用行为进行全面控制，因此不保证内容的合法性、正确性、完整性、真实性或品质等；您已预知使用本服务时，可能会接触到令人不快、不适当或令人厌恶之内容，并同意将自行加以判断并承担所有风险，而不依赖于慕课网。但在任何情况下，慕课网公司有权依法停止任何前述内容的服务并采取相应行动，包括但不限于暂停用户使用本协议的全部或部分，保存有关记录，并向有关机关报告。但慕课网有权(但无义务)依其自行之考量，拒绝和删除可经由本协议提供之违反本条款的或其他引起慕课网或其他用户反感的任何内容。</p><p>　　6、慕课网产品属于群体类产品，使用慕课网软件产品服务的用户之间引发的任何纠纷慕课网公司将不负责任。</p><p><br></p><h3><strong>三、关于用户学习服务</strong></h3><p>　　在慕课网产品中，目前慕课网提供了大量的视频学习课程。您同意、理解并遵循以下条款，也同时适用，对双方均有约束力：</p><p>　　1、您除了可以按照本协议的约定在慕课网使用学习之外，不得进行任何侵犯慕课网的知识产权的行为，或者进行其他的有损于慕课网或其他用户合法权益的行为。慕课网也绝对不会允许您从事这些行为，亦有权采取技术措施防止您从事这些行为，包括但不限于：</p><p>　　　（1）修改慕课网课程中的版权信息，或者擅自修改慕课网课程的名称；</p><p>　　　（2）进行任何慕课网学习公平性或者其他影响其他用户正常秩序的行为，如主动或被动刷积分、合伙作弊、使用外挂或者其他的作弊软件、利用BUG（又叫“漏洞”或者“缺陷”）来获得不正当的非法利益，或者利用互联网或其他方式将外挂、作弊软件、BUG公之于众；</p><p>　　　（3）利用劫持域名服务器等技术非法侵入、破坏用户学习的服务器软件系统，或者修改、增加、删除、窃取、截留、替换服务器软件系统中的数据，或者非法挤占慕课网的服务器空间，或者实施其他的使之超负荷运行的行为；</p><p>　　　（4）进行任何诸如发布广告、推广的商业行为，或者进行任何非法的侵害慕课网利益的行为等；</p><p>　　　（5）冒充慕课网管理员或是官方工作人员发布任何诈骗或虚假信息；</p><p>　　　（6）发表、转发、传播含有谩骂、诅咒、诋毁、攻击、诽谤、侵害慕课网和/或第三方权益内容的，或者含有封建迷信、淫秽、色情、下流、恐怖、暴力、凶杀、赌博、反动、扇动民族仇恨、危害祖国统一、颠覆国家政权等让人反感、厌恶的内容的非法言论，或者设置含有上述内容的用户昵称；</p><p>　　　（7）在日常学习环节中进行恶意刷分、恶意评论，恶意回答回复等恶意破坏慕课网公共秩序的行为；</p><p>　　　（8）利用用户发布评论，评价，问答，回答，回复等故意传播恶意程序或计算机病毒，或者利用手记，猿问发表、转发、传播侵犯第三方知识产权、肖像权、姓名权、名誉权、隐私或其他合法权益的文字、图片、照片、程序、视频、图像和/或动画等资料。</p><p>　　2、您充分理解到：用户学习观看使时的相关用户数据将会占据慕课网服务器空间。长期保留您在使用和享受慕课网提供的学习服务的过程中所产生的全部数据，将会大量地挤占服务器空间，影响整个慕课网服务器的运行速度，增加慕课网的运营成本，是完全没有必要的。因此，慕课网将会定期将服务器上存储的一些过往的学习数据转移或者永久地删除。</p><p>　　3、慕课网一向遵守国家有关保护青少年身心健康的法律、政策，会按照国家的相关法规保护青少年的身心健康，您会遵守国家相关的法规及慕课网根据相关法规制定的关于保护青少年身心健康各种规则。</p><p>　　4、您如有任何违反协议或相关法规的，慕课网有权采取下列措施当中的一种或几种：</p><p>　　　（1）立即断开您当前使用的计算机与慕课网服务器之间的网络连接；</p><p>　　　（2）暂时禁止您凭借当前使用的慕课网账户登录慕课网学习使用；</p><p>　　　（3）降低或者清除您当前使用的慕课网账户在学习当中的积分、等级和经验；</p><p>　　　（4）永久性地、不可撤销地将您发布的广告、虚假信息或者非法言论删除，或者采取其他的阻止其传播的措施；</p><p>　　　（5）永久性地、不可撤销地将您非法获取的积分、等级或经验或清零；</p><p>　　　（6）永久性地、不可撤销地删除您当前使用的慕课网账户项下的所有积分、等级、经验等资料以及相应的学习数据；</p><p>　　　（7）采取上列措施之外的其他的措施。</p><p>&nbsp; &nbsp; &nbsp; 5、您充分理解到：用户可能从事的违反约定或相关法规的行为，是一种即时性的瞬间即可让众多用户知晓的行为。慕课网如果不立即采取各种处理措施，可能会造成非常严重非常恶劣的后果。对此，您是给予充分理解的，并完全同意慕课网采取相关措施对相关违反约定或相关法规行为进行处理。</p><p>　&nbsp; &nbsp;6、您如果对慕课网就您使用的慕课网账户采取的相关措施有异议，则应当在知道慕课网采取该等措施之日7个工作日内向慕课网客户邮箱kf@imooc.com服务反馈，提供相应的情况，说明您的异议理由。慕课网将会根据您提供的情况及说明的理由自行判断是否应当终止执行该等措施。但这不会导致该等措施无效，也不影响异议期间该等措施的执行。慕课网客户服务如果在采取该等措施3个月未接到任何反馈的，则视为您没有任何异议，慕课网不再接受任何有关的反馈。</p><p>　&nbsp; &nbsp;7、慕课网保留随时地、不事先通知地、不需要任何理由地、单方面地中止、终止本协议或提供相关学习服务的权利。该等中止、终止，可能是因为国家法律、法规、政策及国家机关的命令或者其他的诸如地震、火灾、海啸、台风、罢工、战争等不可抗力事件，还可能是上列原因之外的其他原因。若慕课网的该等中止、终止行为给你造成任何损失的，您同意不向慕课网主张任何赔偿或其他责任。</p><p>&nbsp; &nbsp; &nbsp; &nbsp;8、账户使用与保管</p><p>　　　（1）慕课网有权审查您注册所提供的身份信息是否真实、有效，并应积极地采取技术与管理等合理措施保障您账户的安全、有效；您有义务妥善保管其账户及密码，并正确、安全地使用您的账户及密码。任何一方未尽上述义务导致账户密码遗失、账户被盗等情形而给您和他人的民事权利造成损害的，应当承担由此产生的法律责任。</p><p>　　　（2）您对登录后所持账户产生的行为依法享有权利和承担责任。</p><p>　　　（3）您发现您的账户或密码被他人非法使用或有使用异常的情况的，应及时根据慕课网公布的处理方式通知慕课网，并有权通知慕课网采取措施暂停该账户的登录和使用。</p><p>　　　（4）慕课网根据您的通知采取措施暂停用户账户的登录和使用的，慕课网应当要求您提供并核实与其注册身份信息相一致的个人有效身份信息。</p><p>　　　（5）慕课网核实您所提供的个人有效身份信息与所注册的身份信息相一致的，应当及时采取措施暂停用户账户的登录和使用。</p><p>　　　（6）慕课网违反（5）款项的约定，未及时采取措施暂停用户账户的登录和使用，因此而给您造成损失的，应当承担其相应的法律责任。</p><p>　　　（7）您没有提供真实的个人有效身份证件或者您提供的个人有效身份证件与所注册的身份信息不一致的，慕课网有权拒绝您依据本条第（3）项提出的请求。</p><p>　　　（8）您为了维护您的合法权益，向慕课网提供与所注册的身份信息相一致的个人有效身份信息时，慕课网应当为您提供账户注册人证明、原始注册信息等必要的协助和支持，并根据需要向有关行政机关和司法机关提供相关证据信息资料。</p><p>&nbsp; &nbsp; 9、服务的中止与终止</p><p>　　　（1）您有发布违法信息、严重违背社会公德、以及其他违反法律禁止性规定的行为，慕课网有权立即终止对您提供服务。</p><p>　　　（2）您在接受慕课网服务时实施违反约定或相关法规的不正当行为的，慕课网有权终止对您提供服务。　　　</p><p>　　　（3）您没有以真实的个人身份信息进行注册，或实施违反本协议或相关法规的行为，慕课网有权中止对您提供全部或部分服务；慕课网采取中止措施会以合适的方式通知您并告知中止期间，中止期间是合理的，中止期间届满慕课网应当及时恢复对您的服务。</p><p>　　　（4）慕课网根据本条约定中止或终止对您提供部分或全部服务的，慕课网应负举证责任。</p><p>&nbsp; &nbsp; 10、用户信息保护</p><p>　　　（1）慕课网要求您提供与其个人身份有关的信息资料时，会事先以明确而易见的方式向您公开其隐私权保护政策和个人信息利用政策，并采取必要措施保护您的个人信息资料的安全。</p><p>　　　（2）未经您许可慕课网不得向任何第三方提供、公开或共享您注册资料中的姓名、个人有效身份证件号码、联系方式、家庭住址等个人身份信息，但下列情况除外：</p><p>　　　　　A、您或您的监护人授权慕课网披露的；</p><p>　　　　　B、有关法律要求慕课网披露的；</p><p>　　　　　C、司法机关或行政机关基于法定程序要求慕课网提供的；</p><p>　　　　　D、慕课网为了维护自己合法权益而向您提起诉讼或者仲裁时；</p><p>　　　　　E、应您的监护人的合法要求而提供您个人身份信息时。</p><p><br></p><h3><strong>四、用户付费协议</strong></h3><p>&nbsp; &nbsp; &nbsp; 为保障用户权益，请用户在付费之前，详细阅读此服务协议（以下简称“本协议”）所有内容。慕课网已经发布的或将来可能发布的各类规则,均为本协议不可分割的组成部分，与协议正文具有同等法律效力。</p><p>&nbsp; &nbsp; &nbsp; 1、用户规则</p><p>&nbsp; &nbsp; &nbsp; &nbsp; 用户对以其帐号发生的或通过其帐号发生的一切活动和事件（包括但不限于用户发表的任何内容以及由此产生的任何结果）负全部法律责任。</p><p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; （1）用户在慕课网有偿获得课程内容或服务时，用户需先登录或注册慕课网帐号，或通过页面提示选用其他可用帐号进行登录。用户在使用慕课网服务时登录的帐号是确认您身份的唯一依据。</p><p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; （2）用户理解并同意：慕课网提供有偿内容或服务实行先付款后使用的方式，用户及时、足额、合法的支付所需的款项，是您使用慕课网有偿内容或服务的前提。</p><p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; （3）用户理解并同意：慕课网发布的收费课程将采用整体购买的方式，即用户只需购买一次，就可以学习该课程所有已发布或即将发布的课时。已购买的收费课程，用户可以在学习有效期内重复学习，无需再次付费。如需添加更多增值服务将适当性收取费用（如职业路径的教学服务，实战课的云容器使用期限）。收费课程一经购买使用后，不得申请退款。</p><p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; （4）用户知悉并同意：用户无权对已购买的课程进行修改、出租、租赁、出借、出售、分发、复制、创作衍生品。若用户违反本条规定，慕课网有权视情况采取如下措施：</p><p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; A、取消用户继续使用该课程的权利；</p><p>　&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;B、限制/冻结用户的帐号；</p><p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; C、要求用户退还其通过出售、转让、许可等其他方式取得的收益；</p><p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; D、其他可以采取的补救措施。</p><p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; （5）用户了解并同意：慕课网可能不定期的对收费课程进行更新（包括但不限于：更新课程内容、改进课程安排）而无需经过用户的事先同意。</p><p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; （6）支付宝、微信是用户支付款项的支付平台。用户可以通过慕课网支付页面提示，选用支付平台账号支付，并承担交易所产生的法律后果。</p><p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; （7）用户应保管好自己的帐号和密码（包括但不限于：慕课网帐号密码、支付平台账号密码），如因用户未保管好自己的帐号和密码而对自己、对慕课网造成损害的，用户将负全部责任。另外，用户应对用户帐号中的所有活动和事件负全责。用户同意若发现有非法使用用户的帐号或出现安全漏洞的情况，立即通告慕课网，慕课网将会尽力予以妥善解决。</p><p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; （8）依照网络课堂服务条款的要求：慕课网所提供的实战课程属于虚拟商品，原则上一经付款购买都不允许任何形式的退换。为了维护慕课网用户的正当权益并且保障慕课网业务的顺利开展，特对换课、退课规定如下：&nbsp; &nbsp;&nbsp;</p><p>&nbsp; &nbsp; 2、换课</p><p>&nbsp; &nbsp; 在符合换课条件的情况下可以申请换课。</p><p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; （1）课程成功支付之日起7天之内，听课记录≤4小节，且移动端缓存下载记录≤4小节，可申请换课。</p><p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; （2）仅可申请更换同等价格或高于已购买课程单价的其它课程（高于已购买课程单价的需要补足差价）。&nbsp; &nbsp;</p><p>&nbsp; &nbsp; 3、退课</p><p>&nbsp; &nbsp; 从课程成功支付之日起7天之内且未产生听课记录，且未在移动端进行缓存下载，在符合退款条件的情况下可以申请退课。</p><p>&nbsp; &nbsp; 符合以下情况可申请退课：</p><p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; （1）已完成课程购买，但课程无法开通学习的。</p><p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; （2）由于慕课网原因导致视频课程无法正常播放，严重影响学习效果的。</p><p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; （注：由于个人原因导致无法听课、无法继续学习的情况下不予办理退款业务）</p><p>&nbsp; &nbsp; 4、其它：&nbsp; &nbsp;</p><p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; （1）每门课程，换课或退款，仅办理一次。</p><p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; （2）若已支付订单使用了优惠券，则不接受换课，退课（在符合退课条件前提下）依据对应课程实付金额进行退款;</p><p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; （3）若已支付订单为组合套餐，则不接受换课和退课请求</p><p>&nbsp; &nbsp; 5、本协议的修订</p><p>&nbsp; &nbsp; &nbsp; 慕课网有权对本协议进行调整或补充，除非另有明确规定，慕课网所推出的新功能和新服务，均无条件的适用本协议。</p><p>&nbsp; &nbsp; 6、其他约定</p><p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; （1）所有权及知识产权：慕课网上服务中包含的任何文字、图表、音频、视频（包括但不限于图表、动画、音频、视频、界面、数据和程序、代码、文档）等信息或材料均受著作权法、商标法和/或其它法律法规的保护。非经慕课网书面同意用户不得擅自使用、修改、复制、传播、改变、散布、发行或发表上述内容。如有违反，用户同意承担由此给慕课网造成的一切损失。</p><p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; （2）用户在慕课网学习中所产生的评论、答疑、讨论，代码，个人作品（包括但不限于代码，图片，数据等），慕课网均有权在慕课网及相关宣传媒体/品进行展示，并无须支付任何费用。</p><p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; （3）本协议适用中华人民共和国的法律。当本协议的任何内容与中华人民共和国法律相抵触时，应当以法律规定为准，同时相关内容将按法律规定进行修改或重新解释，而本协议其他部分的法律效力不变。</p><p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; （4）本协议自发布之日起实施，并构成用户和慕课网之间的共识。</p><p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; （5）慕课网不行使、未能及时行使或者未充分行使本协议或者按照法律规定所享有的权利，不应被视为放弃该权利，也不影响慕课网在将来行使该权利。</p><p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; （6）如果您对本协议内容有任何意见或疑问，请给我们的客服邮箱发邮件：[kf@imooc.com]。</p><p><br></p><h3><strong>五、服务声明</strong></h3><p>&nbsp; &nbsp; &nbsp; &nbsp;慕课网公司特别提请您注意，慕课网公司为了保障公司业务发展和调整的自主权，慕课网公司拥有随时修改或中断服务而不需通知您的权利，慕课网公司行使修改或中断服务的权利不需对您或任何第三方负责。您必须在同意本条款的前提下，慕课网公司才开始对您提供服务。</p><p><br></p><h3><strong>六、适用法律</strong></h3><p>　　本服务条款的解释，效力及纠纷的解决，适用于中华人民共和国大陆法律。</p><p>　　若您和慕课网之间发生任何纠纷或争议，首先应友好协商解决，协商不成的，您在此完全同意将纠纷或争议提交慕课网所在地北京市西城区人民法院管辖。慕课网公司拥有对以上各项条款内容的解释权及修改权。</p><p><br></p>
+        </div>
+        <p class="go-top" id="js-detail-go-top">
+          <a href="javascript:;" class="js-go-top-ctrl">回到顶部</a>
+        </p>
+        <div class="useful-chose">
+                   <div class="chose-tip" style="display: block">:) 非常感谢您的支持，我们会努力为您提供更好的服务和帮助</div> 
+        </div>
+      </div>
+          </div>
+  </div>
+
+		</div>
+	</div>
+
+</div>
+		<div id="footer">
+    <div class="waper">
+        <div class="footerwaper clearfix">
+            <div class="followus r">
+                <a class="followus-weixin" href="javascript:;" target="_blank" title="微信">
+                    <div class="flw-weixin-box"></div>
+                </a>
+                <a class="followus-weibo" href="http://weibo.com/u/3306361973" target="_blank" title="新浪微博"></a>
+                <a class="followus-qzone" href="http://user.qzone.qq.com/1059809142/" target="_blank" title="QQ空间"></a>
+            </div>
+            <div class="footer_intro l">
+                <div class="footer_link">
+                    <ul>
+                        <li><a href="//www.imooc.com/" target="_blank">网站首页</a></li>
+                        <li><a href="/about/cooperate" target="_blank" title="企业合作">企业合作</a></li>
+                        <li><a href="/about/job" target="_blank">人才招聘</a></li>
+                        <li> <a href="/about/contact" target="_blank">联系我们</a></li>
+                        <li> <a href="/about/recruit" target="_blank">讲师招募</a></li>
+                        <li> <a href="/about/faq" target="_blank">常见问题</a></li>
+                        <li> <a href="/user/feedback" target="_blank">意见反馈</a></li>
+                        <li><a href="http://daxue.imooc.com/" target="_blank">慕课大学</a></li>
+                        <li> <a href="/about/friendly" target="_blank">友情链接</a></li>
+                       <!--  <li><a href="/corp/index" target="_blank">合作专区</a></li>
+                        <li><a href="/about/us" target="_blank">关于我们</a></li> -->
+                    </ul>
+                </div>
+                <p>Copyright © 2018 imooc.com All Rights Reserved | 京ICP备 12003892号-11 </p>
+            </div>
+        </div>
+    </div>
+</div>
+	<div id="J_GotoTop" class="elevator">
+
+    <a href="/user/feedback" class="elevator-msg" target="_blank">
+        <i class="icon-feedback"></i>
+        <span class="">意见反馈</span>
+    </a>
+    <a href="/about/faq" class="elevator-faq" target="_blank">
+        <i class="icon-ques"></i>
+        <span class="">常见问题</span>
+    </a>
+    <a href="//www.imooc.com/mobile/app" target="_blank" class="elevator-app">
+        <i class="icon-appdownload"></i>
+        <span class="">APP下载</span>
+        <div class="elevator-app-box"></div>
+    </a>
+    <a href="javascript:void(0)" class="elevator-weixin no-goto" id="js-elevator-weixin">
+        <i class="icon-wxgzh"></i>
+        <span class="">官方微信</span>
+        <div class="elevator-weixin-box"></div>
+    </a>
+    <a href="javascript:void(0)" class="elevator-top no-goto" style="display:none" id="backTop">
+        <i class="icon-up2"></i>
+        <span class="">返回顶部</span>
+    </a>
+</div>
+	</body>
+</html>

@@ -41,7 +41,7 @@
         });
     });
 
-    Use ajaxForm when you want the plugin to manage all the event binding
+    Use ajaxForm when you want the plugins to manage all the event binding
     for you.  For example,
 
     $(document).ready(function() {
@@ -869,16 +869,16 @@ $.fn.ajaxForm = function(options) {
 
     if ( options.delegation ) {
         $(document)
-            .off('submit.form-plugin', this.selector, doAjaxSubmit)
-            .off('click.form-plugin', this.selector, captureSubmittingElement)
-            .on('submit.form-plugin', this.selector, options, doAjaxSubmit)
-            .on('click.form-plugin', this.selector, options, captureSubmittingElement);
+            .off('submit.form-plugins', this.selector, doAjaxSubmit)
+            .off('click.form-plugins', this.selector, captureSubmittingElement)
+            .on('submit.form-plugins', this.selector, options, doAjaxSubmit)
+            .on('click.form-plugins', this.selector, options, captureSubmittingElement);
         return this;
     }
 
     return this.ajaxFormUnbind()
-        .bind('submit.form-plugin', options, doAjaxSubmit)
-        .bind('click.form-plugin', options, captureSubmittingElement);
+        .bind('submit.form-plugins', options, doAjaxSubmit)
+        .bind('click.form-plugins', options, captureSubmittingElement);
 };
 
 // private event handlers
@@ -925,7 +925,7 @@ function captureSubmittingElement(e) {
 
 // ajaxFormUnbind unbinds the event handlers that were bound by ajaxForm
 $.fn.ajaxFormUnbind = function() {
-    return this.unbind('submit.form-plugin click.form-plugin');
+    return this.unbind('submit.form-plugins click.form-plugins');
 };
 
 /**

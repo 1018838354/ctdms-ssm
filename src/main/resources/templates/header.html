@@ -1,12 +1,1157 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" >
-<head>
+<head th:fragment="pattern">
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title ></title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/css/admin.css"/>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <script type="text/javascript" src="/js/jquery.min.js" ></script>
+
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#backTop").click(function() {
+                $("html,body").animate({
+                    scrollTop: 0
+                }, 200)
+            });
+
+            function scrolltop() {
+                h = $(window).height();
+                t = $(document).scrollTop();
+                if(t >= 768) {
+                    $("#backTop").show();
+                    $("#js-elevator-weixin").removeClass("no-goto");
+                } else {
+                    $("#backTop").hide();
+                    $("#js-elevator-weixin").addClass("no-goto");
+                }
+            };
+            $(window).scroll(function() {
+                scrolltop();
+            });
+
+            //购物车
+            var y = 0;
+            $("#shop-cart").on("mouseenter", function() {
+                clearTimeout(y), $(this).hasClass("hover") || ($(this).addClass("hover"), $("#nav").addClass("addZ-index"))
+            }).on("mouseleave", function(e) {
+                e.stopPropagation();
+                var a = $(this);
+                y = setTimeout(function() {
+                    a.hasClass("hover") && (a.removeClass("hover"), $("#nav").removeClass("addZ-index"), "index" == OP_CONFIG.module && "index" == OP_CONFIG.page ? $("#nav").addClass("addZ-index") : $("#nav").removeClass("addZ-index"))
+                }, 300)
+            });
+            $("#js-app-load").on("mouseover", function() {
+                $(".js-load-box").show();
+                $("#nav").addClass("addZ-indexCode");
+            });
+            $("#js-app-load").on("mouseout", function() {
+                $(".js-load-box").hide();
+                $("#nav").removeClass("addZ-indexCode");
+            });
+//用户头像
+            var w = 0;
+            $("#header-user-card").on("mouseenter", function() {
+                clearTimeout(w), $(this).hasClass("hover") || $(this).addClass("hover")
+            }).on("mouseleave", function(e) {
+                e.stopPropagation();
+                var a = $(this);
+                w = setTimeout(function() {
+                    a.hasClass("hover") && a.removeClass("hover")
+                }, 300)
+            });
+        });
+
+    </script>
+
 </head>
 <body>
-<div th:fragment="head">第一种 用thymeleaf th: 的头</div>
+<div id="header">
+    <div class="page-container" id="nav">
+        <div id="logo" class="logo"><a href="/" target="_self" class="hide-text" title="首页">慕课网</a></div>
 
-<div id="your-header">第二章 用 id 的头</div>
+
+        <button type="button" class="navbar-toggle visible-xs-block js-show-menu">
+            <i class="icon-menu"></i>
+        </button>
+        <ul class="nav-item">
+            <li class="set-btn visible-xs-block"><a href="/user/newlogin" target="_self">登录</a> / <a href="/user/newsignup" target="_self">注册</a></li>
+
+            <li>
+                <a href="/course/list" target="_self">免费课程</a>
+            </li>
+            <li><a href="//class.imooc.com" class="program-nav " target="_self">职业路径<i class="icn-new"></i></a></li>
+            <li>
+                <a href="//coding.imooc.com" target="_self">实战</a>
+            </li>
+            <li><a href="/wenda" target="_self">猿问</a></li>
+            <li><a href="/discovery" target="_self">发现</a></li>
+
+        </ul>
+        <div id="login-area">
+            <ul class="header-unlogin clearfix">
+                <li class="app-load" id="js-app-load">
+                    <a href="//www.imooc.com/mobile/app" target="_blank" style="width:60px;">下载APP</a>
+                    <div class="app-load-box clearfix js-load-box" style="display: none;">
+                        <img src="https://www.imooc.com/static/img/common/appload.png" class="l">
+                        <div class="r">
+                            <p>扫描下载慕课网APP</p>
+                            <a href="https://itunes.apple.com/cn/app/mu-ke-wang/id722179140?mt=8" target="_blank"><i class="icon-apple"></i>App Store下载</a>
+                            <a href="//www.imooc.com/mobile/mukewang.apk" target="_blank"><i class="icon-android"></i>Android下载</a>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="shop-cart" id="shop-cart">
+                    <a href="//order.imooc.com/pay/cart" class="shop-cart-icon" target="_blank">
+                        <span class="icon-shopping-cart js-endcart"></span><span>购物车</span><span class="shopping_icon js-cart-num" data-ordernum="0" data-cartnum="0" style="display: none">0</span>
+                    </a>
+                    <div class="my-cart" id="js-my-cart"><div class="cart-title-box clearfix">                                        <h2 class="l">我的购物车</h2>                                        <h5 class="r">已加入<span class="js-incart-num">0</span>门课程</h5>                                    </div>                                    <div class="cart-wrap">                                        <div class="clear-cart">                                            <span class="cartIcon icon-shopping-cart"></span>                                            <h3>购物车里空空如也</h3>                                            <div class="text">快去这里选购你中意的课程</div>                                            <p><a class="go-link" href="//coding.imooc.com" target="_blank">实战课程</a></p>                                            <p><a class="go-link" href="//class.imooc.com/" target="_blank">职业路径</a></p>                                        </div>                                    </div>                                    <div class="more-box clearfix">                                        <div class="l show-box">                                            <span class="text"><a href="//order.imooc.com/myorder" target="_blank">我的订单中心</a></span>                                        </div>                                        <a href="//order.imooc.com/pay/cart" target="_blank" class="r moco-btn moco-card-red go-cart">去购物车</a>                                    </div></div>
+                </li>
+                <li class="remind_warp">
+                    <i class="msg_remind" style="display: inline;"></i>
+                    <a target="_blank" href="/u/6319797/notices">
+                        <i class="fa fa-bell icon-notifi" aria-hidden="true"></i>
+                        <!-- <span class="msg_icon" style="display: none;"></span> -->
+                    </a>
+                </li>
+                <li class="header-signin">
+                    <a href="#" id="js-signin-btn">登录</a> / <a href="#" id="js-signup-btn">注册</a>
+                </li>
+                <li class="set_btn user-card-box" id="header-user-card">
+                    <a id="header-avator" class="user-card-item js-header-avator" action-type="my_menu" href="/u/6319797" target="_self">
+                        <img width="40" height="40" src="//img.mukewang.com/5333a1920001d36402200220-100-100.jpg">
+                        <i class="myspace_remind" style="display: none;"></i>
+                        <span style="display: none;">动态提醒</span>
+                    </a>
+                    <div class="g-user-card"><div class="card-inner">                        <div class="card-top clearfix">                            <a href="/u/6319797" class="l"><img src="//img.mukewang.com/5333a1920001d36402200220-100-100.jpg" alt="慕沐6298644"></a>                            <div class="card-top-right-box l">                                <a href="/u/6319797"><span class="name text-ellipsis">慕沐6298644</span></a>                                <div class="meta">                                    <a href="/u/6319797/experience">经验<b id="js-user-mp">70</b></a>                                    <a href="/u/6319797/credit">积分<b id="js-user-credit">0</b></a>                                </div>                            </div>                        </div>                        <div class="user-center-box">                            <ul class="clearfix">                                <li class="l"><a href="/u/6319797/courses" target="_blank"><span class="user-center-icon icon-tick"></span>我的课程</a></li>                                <li class="l">                                    <a href="//order.imooc.com/myorder" target="_blank"><span class="user-center-icon icon-receipt"></span>订单中心</a>                                                                    </li>                                <li class="l"><a href="/mall/index" target="_blank"><span class="user-center-icon icon-score_shop"></span>积分商城</a></li>                                <li class="l"><a href="/user/setbindsns" target="_blank"><span class="user-center-icon icon-set"></span>个人设置</a></li>                            </ul>                        </div><div class="card-history">                            <span class="history-item">                                <span class="tit text-ellipsis">Spring Boot 2.0深度实践-初遇Spring Boot</span>                                <span class="media-name text-ellipsis">2-4 第一个 Spring Boot 应用（三）</span>                                <i class="icon-clock"></i>                                <a href="//www.imooc.com/video/16353" class="continue" title="Spring Boot 2.0深度实践-初遇Spring Boot
+2-4  第一个 Spring Boot 应用（三）">继续</a>                            </span>                    </div><div class="card-sets clearfix"><a href="/passport/user/logout?referer=//www.imooc.com" class="l">安全退出</a></div>                    </div></div>
+                </li>
+            </ul>
+        </div>
+        <div class="search-warp clearfix" style="min-width: 32px; height: 72px;">
+            <div class="pa searchTags">
+                <a href="//class.imooc.com/sc/20" target="_blank">前端入门</a>
+                <a href="//class.imooc.com/sc/18" target="_blank">Java入门</a>
+                <a href="//class.imooc.com/sc/41" target="_blank">C</a>
+            </div>
+
+            <div class="search-area" data-search="top-banner">
+                <input class="search-input" data-suggest-trigger="suggest-trigger" type="text" autocomplete="off">
+                <input type="hidden" class="btn_search" data-search-btn="search-btn">
+                <ul class="search-area-result" data-suggest-result="suggest-result">
+                </ul>
+            </div>
+            <div class="showhide-search" data-show="no"><i class="icon-search"></i></div>
+        </div>
+    </div>
+</div>
+<div id="main">
+
+    <div class="help-layout clearfix">
+        <div th:fragment="leftnav">
+        <div class="help-aside">
+            <div>
+                <h3 class="hd">主栏目</h3>
+                <ul class="menus mooc-menu" data-status="7">
+                    <li><a href="home" data-status="1" class="on">网站概要<span class="arr"><i class="fa fa-arrow-right" aria-hidden="true"></i></span></a></li>
+                    <li><a href="//www.imooc.com/about/faq?t=3" data-status="3">个人信息<span class="arr"><i class="fa fa-arrow-right" aria-hidden="true"></i></span></a></li>
+                    <li><a href="//www.imooc.com/about/faq?t=4" data-status="4">账户管理<span class="arr"><i class="fa fa-arrow-right" aria-hidden="true"></i></span></a></li>
+                    <li><a href="//www.imooc.com/about/faq?t=5" data-status="5">网站公告<span class="arr"><i class="fa fa-arrow-right" aria-hidden="true"></i></span></a></li>
+                    <li><a href="//www.imooc.com/about/faq?t=7" data-status="7">网站留言<span class="arr"><i class="fa fa-arrow-right" aria-hidden="true"></i></span></a></li>
+                </ul>
+                <i></i>
+            </div>
+            <div class="hr-line">分割线</div>
+            <div>
+                <h3 class="hd">任务栏</h3>
+                <ul class="menus">
+                    <li><a href="mycourses">我的课程<span class="arr"><i class="fa fa-arrow-right" aria-hidden="true"></i></span></a></li>
+                    <li><a href="//class.imooc.com/user/faq?column_id=2">课程导入<span class="arr"><i class="fa fa-arrow-right" aria-hidden="true"></i></span></a></li>
+                    <li><a href="//class.imooc.com/user/faq?column_id=3">我的云盘<span class="arr"><i class="fa fa-arrow-right" aria-hidden="true"></i></span></a></li>
+                </ul>
+                <i></i>
+            </div>
+
+            <div class="hr-line">分割线</div>
+            <div>
+                <h3 class="hd">管理栏</h3>
+                <ul class="menus shizhan-menu">
+                    <li><a href="//coding.imooc.com/user/faq?column_id=1">用户管理<span class="arr"><i class="fa fa-arrow-right" aria-hidden="true"></i></span></a></li>
+                    <li><a href="//coding.imooc.com/user/faq?column_id=2">权限管理<span class="arr"><i class="fa fa-arrow-right" aria-hidden="true"></i></span></a></li>
+                    <li><a href="//coding.imooc.com/user/faq?column_id=3">分类管理<span class="arr"><i class="fa fa-arrow-right" aria-hidden="true"></i></span></a></li>
+                    <li><a href="//coding.imooc.com/user/faq?column_id=4">栏目管理<span class="arr"><i class="fa fa-arrow-right" aria-hidden="true"></i></span></a></li>
+                    <li><a href="//coding.imooc.com/user/faq?column_id=5">课程管理<span class="arr"><i class="fa fa-arrow-right" aria-hidden="true"></i></span></a></li>
+                </ul>
+                <i></i>
+            </div>
+
+            <div class="hr-line">分割线</div>
+            <div>
+                <h3 class="hd">配置栏</h3>
+                <ul class="menus shizhan-menu">
+                    <li><a href="//coding.imooc.com/user/faq?column_id=1">网站配置<span class="arr"><i class="fa fa-arrow-right" aria-hidden="true"></i></span></a></li>
+                    <li><a href="//coding.imooc.com/user/faq?column_id=2">数据配置<span class="arr"><i class="fa fa-arrow-right" aria-hidden="true"></i></span></a></li>
+                    <li><a href="//coding.imooc.com/user/faq?column_id=3">友情链接<span class="arr"><i class="fa fa-arrow-right" aria-hidden="true"></i></span></a></li>
+                    <li><a href="//coding.imooc.com/user/faq?column_id=4">系统日志<span class="arr"><i class="fa fa-arrow-right" aria-hidden="true"></i></span></a></li>
+                </ul>
+                <i></i>
+            </div>
+        </div>
+        </div>
+            <div class="help-main">
+
+            <link href='/plugins/calendar/fullcalendar.min.css' rel='stylesheet' />
+            <link href='/plugins/calendar/fullcalendar.print.min.css' rel='stylesheet' media='print' />
+
+            <div class="help-pannel">
+                <div class="hd clearfix">
+                    <div class="l bread"><i class="fa fa-home" aria-hidden="true"></i> Home&nbsp;\&nbsp;<i class="fa fa-user-circle" aria-hidden="true"></i> 管理员 &nbsp;\&nbsp;<span><i class="fa fa-tachometer" aria-hidden="true"></i> 管理首页</span></div>
+                    <div class="r bread"><a href="/about/faq?t=7">返回</a></div>
+                    <div class="clearfix cl">
+                        <h3 class="content-title">管理首页</h3>
+                        <!-- DATE RANGE PICKER -->
+                        <span class="title-sec">
+											Overview, Statistics and more
+										</span>
+                        <!-- /DATE RANGE PICKER -->
+                    </div>
+                </div>
+                <div class="bd">
+                    <style>
+                        /* ---dashbord----*/
+                        .dashboard-wrapper{
+                            padding: 6px;
+                            overflow: hidden;
+                        }
+                        .status{
+                            width: 50%;
+                            float: left;
+                        }
+                        .num-status{
+                            width: 100%;
+                            float: left;
+                        }
+                        .num-status i{
+                            color: cornflowerblue;
+                        }
+                        .num-status .status-content{
+                            float: left;
+                            width: 100%;
+                        }
+                        .num-status .status-body{
+                            margin: 0;
+                            padding: 0;
+                        }
+                        .num-status .num-item{
+                            float: left;
+                            width:calc(50% - 6px);
+                            margin: 0 6px 20px 0px;
+                            background-color: #ffffff;
+                            border: 1px solid #DDDDDD;
+                            border-radius: 4px;
+                            -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+                            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+                        }
+                        .num-status .status-body .body-left{
+                            width: 30%;
+                            float: left;
+                            padding: 22px;
+                            border-radius: 4px 0 0 4px;
+                            color: #FFFFFF;
+                            text-align: center;
+                            background-color: #f4f4f4;
+                            border-right: 1px solid #DDDDDD;
+                        }
+                        .num-status .status-body .body-left i{
+                            font-size: 2rem;
+                        }
+                        .num-status .status-body .body-right{
+                            width: 70%;
+                            float: right;
+                            padding-left: 20px;
+                            padding-top: 8px;
+                            border-radius: 0 4px 4px 0;
+                            position: relative;
+                        }
+                        .num-status .body-right .number{
+                            font-size: 30px;
+                            font-weight: 400;
+                            color: #666666;
+                        }
+                        .num-status .body-right .title{
+                            text-transform: uppercase;
+                        }
+                        .num-status .body-right .label{
+                            position: absolute;
+                            right: 5px;
+                            top: 5px;
+                            font-size: 11px;
+                            height: 20px;
+                            line-height: 1.15;
+                            display: inline;
+                            padding: .3em .6em .3em;
+                            font-size: 75%;
+                            font-weight: bold;
+                            line-height: 1;
+                            color: #ffffff;
+                            text-align: center;
+                            white-space: nowrap;
+                            vertical-align: baseline;
+                            border-radius: .25em;
+                            background-color: #a8bc7b;
+                        }
+                        .rate-status{
+                            width: 100%;
+                            float: left;
+                            padding: 0;
+                            padding-right: 4px;
+                        }
+                        .rate-status .status-content{
+                            width: 100%;
+                            border-color: #dddddd;
+                            margin-bottom: 20px;
+                            background-color: #ffffff;
+                            border: 1px solid transparent;
+                            border-radius: 4px;
+                            -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+                            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+                        }
+                        .rate-status .status-content .status-body{
+                            padding: 20px 10px;
+                            border: 1px solid #DDDDDD;
+                            overflow: hidden;
+                            border-radius: 4px;
+                        }
+                        .rate-status .status-content .status-body .rate-item{
+                            width: 33.33333333333333%;
+                            float: left;
+                            padding-left: 15px;
+                            padding-right: 15px;
+                        }
+                        .rate-status .piechart{
+                            position: relative;
+                            display: inline-block;
+                            width: 110px;
+                            height: 110px;
+                            text-align: center;
+                        }
+                        .rate-status .piechart .circleChart_text{
+                            font-size: 1.2em;
+                            font-weight: 600;
+                        }
+                        .rate-status .piechart canvas{
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            display: inline-block;
+                        }
+                        .rate-status .rate-item .title{
+                            color: #555555;
+                            display: block;
+                            font-size: 16px;
+                            font-weight: 400;
+                            margin-top: 14px;
+                            text-transform: uppercase;
+                            background: transparent;
+                            text-align: center;
+                        }
+                        .login-chart{
+                            width: 50%;
+                            float: left;
+                            position: relative;
+                            min-height: 1px;
+                            border: 1px solid #c4c4c4;
+                            border-radius: 4px;
+                            margin-top: 0px;
+                            padding: 0px;
+                        }
+                        .login-chart .chart-item {
+
+                        }
+                        .login-chart .chart-login-wrapper{
+                            padding: 0px;
+                            padding-bottom: 2px;
+                            position: relative;
+                        }
+                        .login-chart .box-title{
+                            color: #FFFFFF !important;
+                            background-color: #6f6f6f !important;
+                            border-bottom: 1px solid #626262;
+                            padding: 8px 10px 2px;
+                            min-height: 30px;
+                            margin-bottom: 0;
+                            border-radius: 4px 4px 0 0;
+                        }
+                        .login-chart .box-title h4{
+                            display: inline-block;
+                            font-size: 18px;
+                            font-weight: 400;
+                            margin: 0;
+                            padding: 0;
+                            margin-bottom: 7px;
+                        }
+                        .login-chart .tools{
+                            display: inline-block;
+                            padding: 0;
+                            margin-bottom: 7px;
+                            float: right;
+                            clear: both;
+                            min-height: 30px;
+                        }
+                        .login-chart .tools .label{
+                            margin-right: 5px;
+                            height: 20px;
+                            line-height: 1.15;
+                            background-color: #d9534f;
+                            display: inline;
+                            padding: .2em .6em .3em;
+                            font-size: 75%;
+                            font-weight: bold;
+                            color: #ffffff;
+                            text-align: center;
+                            white-space: nowrap;
+                            vertical-align: baseline;
+                            border-radius: .25em;
+                        }
+                        .chart-item .box-body{
+
+                        }
+
+                        /*--demand-task---*/
+                        .demand-tasks{
+                            width: 100%;
+                            float: left;
+                            overflow: hidden;
+                            position: relative;
+                            min-height: 1px;
+                            border: 1px solid #d43f3a;
+                            border-radius: 4px;
+                            clear: both;
+                            margin-top: 0px;
+                            margin-bottom: 25px;
+                            padding: 0px;
+                        }
+                        .demand-tasks .tasks-main{
+
+                        }
+                        .demand-tasks .box-title{
+                            color: #FFFFFF !important;
+                            background-color: #d9534f;
+                            border-bottom: 1px solid #d43f3a;
+                            padding: 8px 10px 2px;
+                            min-height: 30px;
+                            /* border-radius: 4px 4px 0 0; */
+                            margin-bottom: 0;
+                        }
+                        .demand-tasks .box-title h4{
+                            color: #FFFFFF !important;
+                            display: inline-block;
+                            font-size: 18px;
+                            font-weight: 400;
+                            margin: 0;
+                            padding: 0;
+                            margin-bottom: 7px;
+                        }
+                        .demand-tasks .box-body{
+                            padding: 30px;
+                            border-radius: 0 0 4px 4px;
+                            padding: 10px;
+                            background-color: #FFFFFF;
+                        }
+                        .demand-tasks .task-item{
+
+                        }
+                        /*---notifications---*/
+                        .noti-msg{
+                            width: calc(50% - 3px);
+                            float: left;
+                            margin-right: 3px;
+                            overflow: hidden;
+                            border: 1px solid #9db36a;
+                            border-radius: 4px;
+                            clear: both;
+                            margin-top: 0px;
+                            margin-bottom: 25px;
+                            padding: 0px;
+                        }
+                        .noti-msg .msg-main{
+
+                        }
+                        .noti-msg .box-title{
+                            color: #FFFFFF !important;
+                            background-color: #a8bc7b;
+                            border-bottom: 1px solid #9db36a;
+                            padding: 8px 10px 2px;
+                            min-height: 30px;
+                            /* border-radius: 4px 4px 0 0; */
+                            margin-bottom: 0;
+                        }
+                        .noti-msg .box-title h4{
+                            color: #FFFFFF !important;
+                            display: inline-block;
+                            font-size: 18px;
+                            font-weight: 400;
+                            margin: 0;
+                            padding: 0;
+                            margin-bottom: 7px;
+                        }
+                        .noti-msg .box-body{
+
+                        }
+                        .noti-msg .msg-item{
+                            margin: 8px 7px;
+                            border-radius: 8px;
+                            padding-right: 35px;
+                            padding: 15px;
+                            margin-bottom: 9px;
+                            border: 1px solid transparent;
+                            color: #404449;
+                            background-color: #e9eefb;
+                            border-color: #cddbe7;
+                        }
+                        .noti-msg .green{
+                            color: #3c763d;
+                            background-color: #dff0d8;
+                            border-color: #d6e9c6
+                        }
+                        .noti-msg .blue{
+                            color: #31708f;
+                            background-color: #d9edf7;
+                            border-color: #bce8f1
+                        }
+                        .noti-msg .yellow{
+                            color: #8a6d3b;
+                            background-color: #fcf8e3;
+                            border-color: #faebcc
+                        }
+                        .noti-msg .red{
+                            color: #a94442;
+                            background-color: #f2dede;
+                            border-color: #ebccd1
+                        }
+                        .noti-msg .msg-item button.close{
+                            position: relative;
+                            top: -2px;
+                            right: -9px;
+                            color: inherit;
+                            -webkit-appearance: none;
+                            padding: 0;
+                            cursor: pointer;
+                            background: 0 0;
+                            border: 0;
+                            float: right;
+                            font-size: 21px;
+                            font-weight: 700;
+                            line-height: 1;
+                            text-shadow: 0 1px 0 #fff;
+                            filter: alpha(opacity=20);
+                            opacity: .2
+                        }
+                        .noti-msg .msg-item strong{
+                            font-weight: 700;
+                        }
+                        .sr-only{
+                            position: absolute;
+                            width: 1px;
+                            height: 1px;
+                            padding: 0;
+                            margin: -1px;
+                            overflow: hidden;
+                            clip: rect(0, 0, 0, 0);
+                            border: 0
+                        }
+                        .noti-msg .msg-item button.close{
+
+                        }
+                        /*---calendar---*/
+                        .calendar{
+                            width: 50%;
+                            float: left;
+                            overflow: hidden;
+                            border: 1px solid #507aa4;
+                            border-radius: 4px;
+                            margin-top: 0px;
+                            margin-bottom: 25px;
+                            padding: 0px;
+                        }
+                        .calendar .calendar-main{
+
+                        }
+                        .calendar .box-title{
+                            color: #FFFFFF !important;
+                            background-color: #5e87b0;
+                            border-bottom: 1px solid #507aa4;
+                            padding: 8px 10px 2px;
+                            min-height: 30px;
+                            /* border-radius: 4px 4px 0 0; */
+                            margin-bottom: 0;
+                        }
+                        .calendar .box-title h4{
+                            color: #FFFFFF !important;
+                            display: inline-block;
+                            font-size: 18px;
+                            font-weight: 400;
+                            margin: 0;
+                            padding: 0;
+                            margin-bottom: 7px;
+                        }
+                        .calendar .box-body{
+                            padding-top: 12px;
+                        }
+                    </style>
+
+                    <div class="dashboard-wrapper shadow">
+                        <div class="status">
+                            <div class="num-status">
+                                <div class="status-content">
+                                    <div class="status-body">
+                                        <div class="num-item" >
+                                            <div class="body-left">
+                                                <i class="fa fa-clone" aria-hidden="true"></i>
+                                            </div>
+                                            <div class="body-right">
+                                                <div class="number">618</div>
+                                                <div class="title">当前文件数</div>
+                                                <span class="label label-success">
+													26% <i class="fa fa-arrow-up"></i>
+												</span>
+                                            </div>
+                                        </div>
+                                        <div class="num-item" >
+                                            <div class="body-left">
+                                                <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                                            </div>
+                                            <div class="body-right">
+                                                <div class="number">23</div>
+                                                <div class="title">未提交人数</div>
+                                                <span class="label label-success">
+													26% <i class="fa fa-arrow-up"></i>
+												</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="rate-status">
+                                <div class="status-content">
+                                    <div class="status-body">
+                                        <div class="rate-item">
+                                            <div id="dash_pie_1" class="piechart" data-percent="59">
+                                                <canvas height="110" width="110"></canvas></div>
+                                            <a href="#" class="title">提交率 <i class="fa fa-angle-right"></i></a>
+                                        </div>
+                                        <div class="rate-item">
+                                            <div id="dash_pie_2" class="piechart" data-percent="73">
+                                                <canvas height="110" width="110"></canvas></div>
+                                            <a href="#" class="title">完成率 <i class="fa fa-angle-right"></i></a>
+                                        </div>
+                                        <div class="rate-item">
+                                            <div id="dash_pie_3" class="piechart" data-percent="90">
+                                                <canvas height="110" width="110"></canvas></div>
+                                            <a href="#" class="title">审核通过率 <i class="fa fa-angle-right"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- login-chart -->
+                        <div class="login-chart">
+                            <div class="chart-item">
+                                <div class="box-title">
+                                    <h4><i class="fa fa-bar-chart" aria-hidden="true"></i> 用户登录频率</h4>
+                                    <div class="tools">
+											<span class="label label-danger">
+												20% <i class="fa fa-arrow-up"></i>
+											</span>
+                                    </div>
+                                </div>
+                                <div class="box-body">
+                                    <div class="chart-login-wrapper">
+                                        <canvas id="chart-login" width="408" height="213" ></canvas>
+                                        <script>
+                                            var ctx = document.getElementById("chart-login");
+                                            var myChart = new Chart(ctx, {
+                                                type: 'line',
+                                                data: {
+                                                    labels:  ["星期一", "星期二", "星期三", "星期四", "星期五", "星期六", "星期天"],
+                                                    datasets: [{
+                                                        backgroundColor: "rgba(255, 99, 132, 0.5)",
+                                                        borderColor: "rgb(255, 99, 132)",
+                                                        data: [76.97, 46.91, 32.31, 7.19, 9.85, 76.91, 50.36],
+                                                        label: '登录数／天',
+                                                        fill: 'start'
+                                                    }]
+                                                },
+                                                options: {
+                                                    scales: {
+                                                        yAxes: [{
+                                                            ticks: {
+                                                                beginAtZero:true
+                                                            }
+                                                        }]
+                                                    }
+                                                }
+                                            });
+                                        </script>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- tasks -->
+                        <div class="demand-tasks">
+                            <!-- BOX -->
+                            <div class="tasks-main">
+                                <div class="box-title">
+                                    <h4><i class="fa fa-tasks" aria-hidden="true"></i> 待办事项</h4>
+                                </div>
+                                <div class="box-body">
+                                    <style>
+                                        .task-item{
+                                            width: 25%;
+                                            float: left;
+                                            position: relative;
+                                            min-height: 1px;
+                                            padding-left: 15px;
+                                            padding-right: 15px
+                                        }
+                                        .task-item .card{
+                                            display: block;
+                                            width: 100%;
+                                            margin: 10px 0;
+                                            padding: 10px;
+                                            transition: all 0.3s ease 0s;
+                                            font-weight: normal;
+                                            text-align: center;
+                                            vertical-align: middle;
+                                            cursor: pointer;
+                                            background-image: none;
+                                            border: 1px solid transparent;
+                                            white-space: nowrap;
+                                            font-size: 14px;
+                                            line-height: 1.428571429;
+                                            border-radius: 4px;
+                                            -webkit-user-select: none;
+                                            -moz-user-select: none;
+                                            -ms-user-select: none;
+                                            -o-user-select: none;
+                                            user-select: none;
+                                            color: #ffffff;
+
+                                            background-color: #4d555dc9;
+                                            border-color: #4d515de6;
+                                        }
+                                        .task-item .card>div{
+                                            padding-top: 9px;
+                                        }
+                                        .task-item .card-red{
+                                            background-color: #d9534f;
+                                            border-color: #d43f3a;
+                                        }
+                                        .task-item .card-blue{
+                                            background-color: #5e87b0;
+                                            border-color: #507aa4;
+                                        }
+                                        .task-item .card-purple{
+                                            background-color: #db5e8c;
+                                            border-color: #d6497d;
+                                        }
+                                        .task-item .card-green{
+                                            background-color: #a8bc7b;
+                                            border-color: #9db36a;
+                                        }
+                                        .task-item .card .label{
+                                            right: 7px;
+                                            border-radius: 12px 12px 12px 12px;
+                                            border-style: solid;
+                                            border-width: 0;
+                                            box-shadow: none;
+                                            color: #FFFFFF !important;
+                                            font-size: 11px !important;
+                                            font-weight: 300;
+                                            padding: 3px 7px;
+                                            position: absolute;
+                                            text-shadow: none;
+                                            top: 1px;
+                                            display: inline;
+                                            text-align: center;
+                                            white-space: nowrap;
+                                            vertical-align: baseline;
+                                            height: 20px;
+                                            line-height: 1.15;
+
+                                            background-color: #f0ad4e;
+                                        }
+                                    </style>
+                                    <div class="task-item">
+                                        <a class="card" href="javascript:void(0);">
+                                            <i class="fa fa-file-text fa-2x" aria-hidden="true"></i>
+                                            <div>待 提 交</div>
+                                            <span class="label label-right label-warning">4</span>
+                                        </a>
+                                    </div>
+                                    <div class="task-item">
+                                        <a class="card card-red" href="javascript:void(0);">
+                                            <i class="fa fa-check-square-o fa-2x" aria-hidden="true"></i>
+                                            <div>待 审 核</div>
+                                            <span class="label label-right label-danger">7+</span>
+                                        </a>
+                                    </div>
+                                    <div class="task-item">
+                                        <a class="card card-purple" href="javascript:void(0);">
+                                            <i class="fa fa-space-shuttle fa-2x" aria-hidden="true"></i>
+                                            <div>待 发 布</div>
+                                            <span class="label label-right label-info">1</span>
+                                        </a>
+                                    </div>
+                                    <div class="task-item">
+                                        <a class="card card-green" href="javascript:void(0);">
+                                            <i class="fa fa-graduation-cap fa-2x" aria-hidden="true"></i>
+                                            <div>待 处 理</div>
+                                        </a>
+                                    </div>
+                                    <hr style="clear: both;"/>
+                                    <style>
+                                        .demand-item {
+                                            float: left;
+                                        }
+
+                                        .demand-item .dashboard_button {
+                                            float: left;
+                                            width: 176px;
+                                            height: 112px;
+                                            overflow: hidden;
+                                            border: 1px solid #c0c0c0;
+                                            padding: 15px;
+                                            margin: 5px;
+                                            background: #eaeaea url(http://demo.cssmoban.com/cssthemes4/cpts_637_bxl/images/highlight_line.gif) repeat-x top left;
+                                            font-size: 12px;
+                                            line-height: 1.4em;
+                                            text-decoration: none;
+                                            color: #a1a1a1;
+                                        }
+
+                                        .demand-item .dashboard_button_heading {
+                                            display: block;
+                                            color: #4a4a4a;
+                                            font-size: 14px;
+                                            padding: 0 0 0 40px;
+                                            line-height: 29px;
+                                            height: 35px;
+                                        }
+
+                                        .demand-item .dashboard_button span {
+                                            display: block;
+                                            padding-top: 7px;
+                                        }
+                                        .demand-item .panel{
+                                            background: transparent url(http://demo.cssmoban.com/cssthemes4/cpts_637_bxl/icons/Computer.png) no-repeat 0px top;
+
+                                        }
+                                        .demand-item .setting{
+                                            background: transparent url(http://demo.cssmoban.com/cssthemes4/cpts_637_bxl/icons/advanced.png) no-repeat 0px top;
+
+                                        }
+                                        .demand-item .app{
+                                            background: transparent url(http://demo.cssmoban.com/cssthemes4/cpts_637_bxl/icons/applications.png) no-repeat 0px top;
+
+                                        }
+                                        .demand-item .edit{
+                                            background: transparent url(http://demo.cssmoban.com/cssthemes4/cpts_637_bxl/icons/edit.png) no-repeat 0px top;
+
+                                        }
+                                        .demand-item .search{
+                                            background: transparent url(http://demo.cssmoban.com/cssthemes4/cpts_637_bxl/icons/search.png) no-repeat 0px top;
+
+                                        }
+                                        .demand-item .trash{
+                                            background: transparent url(http://demo.cssmoban.com/cssthemes4/cpts_637_bxl/icons/trash.png) no-repeat 0px top;
+                                        }
+
+                                    </style>
+                                    <div class="demand-item">
+                                        <a class="dashboard_button" href="#">
+                                            <span class="dashboard_button_heading panel">面板</span>
+                                            <span>编辑各种基本的设置和选项</span>
+                                        </a>
+                                    </div>
+                                    <div class="demand-item">
+                                        <a class="dashboard_button" href="#">
+                                            <span class="dashboard_button_heading setting">设置</span>
+                                            <span>编辑各种先进的设置和选项</span>
+                                        </a>
+                                    </div>
+                                    <div class="demand-item">
+                                        <a class="dashboard_button" href="#">
+                                            <span class="dashboard_button_heading app">应用</span>
+                                            <span>添加和编辑应用程序</span>
+                                        </a>
+                                    </div>
+                                    <div class="demand-item">
+                                        <a class="dashboard_button" href="#">
+                                            <span class="dashboard_button_heading edit">脚本编辑器</span>
+                                            <span>输入您的JavaScript和PHP脚本</span>
+                                        </a>
+                                    </div>
+                                    <div class="demand-item">
+                                        <a class="dashboard_button" href="#">
+                                            <span class="dashboard_button_heading search">搜索</span>
+                                            <span>基本和先进的搜索区</span>
+                                        </a>
+                                    </div>
+                                    <div class="demand-item">
+                                        <a class="dashboard_button" href="#">
+                                            <span class="dashboard_button_heading trash">废纸篓</span>
+                                            <span>删除的项目和数据库条目</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /BOX -->
+
+                        </div>
+                        <div class="noti-msg">
+                            <!-- BOX -->
+                            <div class="msg-main">
+                                <div class="box-title">
+                                    <h4><i class="fa fa-bars"></i> <span class="hidden-inline-mobile">消息通知</span></h4>
+                                </div>
+                                <div class="box-body">
+                                    <div class="msg-item" role="alert">
+                                        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                                        <strong>Success!</strong> Maecenas non lorem sed elit molestie tincidunt.
+                                    </div>
+                                    <div class="msg-item green" role="alert">
+                                        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                                        <strong>Success!</strong> Maecenas non lorem sed elit molestie tincidunt.
+                                    </div>
+                                    <div class="msg-item blue" role="alert">
+                                        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                                        <strong>Success!</strong> Maecenas non lorem sed elit molestie tincidunt.
+                                    </div>
+                                    <div class="msg-item yellow" role="alert">
+                                        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                                        <strong>Success!</strong> Maecenas non lorem sed elit molestie tincidunt.
+                                    </div>
+                                    <div class="msg-item red" role="alert">
+                                        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                                        <strong>Success!</strong> Maecenas non lorem sed elit molestie tincidunt.
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /BOX -->
+                        </div>
+                        <div class="calendar">
+                            <div class="calendar-main">
+                                <div class="box-title">
+                                    <h4><i class="fa fa-calendar"></i> 日历</h4>
+                                </div>
+                                <div class="box-body">
+                                    <div id='calendar'></div>
+                                    <script>
+
+                                        $(document).ready(function() {
+
+                                            $('#calendar').fullCalendar({
+                                                header: {
+                                                    left: 'prev,next today',
+                                                    center: 'title',
+                                                    right: 'month,agendaWeek,listWeek'
+                                                },
+                                                defaultDate: '2018-03-12',
+                                                navLinks: true, // can click day/week names to navigate views
+                                                editable: true,
+                                                eventLimit: true, // allow "more" link when too many events
+                                                events: [
+                                                    {
+                                                        title: 'All Day Event',
+                                                        start: '2018-03-01',
+                                                    },
+                                                    {
+                                                        title: 'Long Event',
+                                                        start: '2018-03-07',
+                                                        end: '2018-03-10'
+                                                    },
+                                                    {
+                                                        id: 999,
+                                                        title: 'Repeating Event',
+                                                        start: '2018-03-09T16:00:00'
+                                                    },
+                                                    {
+                                                        id: 999,
+                                                        title: 'Repeating Event',
+                                                        start: '2018-03-16T16:00:00'
+                                                    },
+                                                    {
+                                                        title: 'Conference',
+                                                        start: '2018-03-11',
+                                                        end: '2018-03-13'
+                                                    },
+                                                    {
+                                                        title: 'Meeting',
+                                                        start: '2018-03-12T10:30:00',
+                                                        end: '2018-03-12T12:30:00'
+                                                    },
+                                                    {
+                                                        title: 'Lunch',
+                                                        start: '2018-03-12T12:00:00'
+                                                    },
+                                                    {
+                                                        title: 'Meeting',
+                                                        start: '2018-03-12T14:30:00'
+                                                    },
+                                                    {
+                                                        title: 'Happy Hour',
+                                                        start: '2018-03-12T17:30:00'
+                                                    },
+                                                    {
+                                                        title: 'Dinner',
+                                                        start: '2018-03-12T20:00:00'
+                                                    },
+                                                    {
+                                                        title: 'Birthday Party',
+                                                        start: '2018-03-13T07:00:00'
+                                                    },
+                                                    {
+                                                        title: 'Click for Google',
+                                                        url: 'http://google.com/',
+                                                        start: '2018-03-28'
+                                                    }
+                                                ]
+                                            });
+
+                                        });
+
+                                    </script>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <script>
+                        $(document).ready(function(){
+                            //cirleProgress
+                            $("#dash_pie_1").circleChart({
+                                size:110,
+                                text: 0,
+                                value: 78,
+                                color:"#378F64",
+                                textWeight:600,
+                                onDraw: function(el, circle) {
+                                    circle.text(Math.round(circle.value) + "%");
+                                }
+                            });
+                            $("#dash_pie_3").circleChart({
+                                size:110,
+                                text: 0,
+                                value: 88,
+                                color:"#3C8E8F",
+                                textWeight:600,
+                                onDraw: function(el, circle) {
+                                    circle.text(Math.round(circle.value) + "%");
+                                }
+                            });
+                            $("#dash_pie_2").circleChart({
+                                size: 110,
+                                color:"#42648F",
+                                text: 0,
+                                textWeight:600,
+                                onDraw: function(el, circle) {
+                                    circle.text(Math.round(circle.value) + "%");
+                                }
+                            });
+                            setInterval(function() {
+                                $("#dash_pie_2").circleChart({
+                                    value: Math.random() * 100
+                                });
+                            }, 4000);
+
+
+                        });
+                    </script>
+                </div>
+            </div>
+
+            <script src="/plugins/chart/circleChart.min.js" type="text/javascript" charset="utf-8"></script>
+
+            <script src="/plugins/chart/js/Chart.min.js"></script>
+            <script src='/plugins/calendar/moment.min.js'></script>
+            <script src='/plugins/calendar/fullcalendar.min.js'></script>
+        </div>
+    </div>
+
+</div>
+<div id="footer">
+    <div class="waper">
+        <div class="footerwaper clearfix">
+            <div class="followus r">
+                <a class="followus-weixin" href="javascript:;" target="_blank" title="微信">
+                    <div class="flw-weixin-box"></div>
+                </a>
+                <a class="followus-weibo" href="http://weibo.com/u/3306361973" target="_blank" title="新浪微博"></a>
+                <a class="followus-qzone" href="http://user.qzone.qq.com/1059809142/" target="_blank" title="QQ空间"></a>
+            </div>
+            <div class="footer_intro l">
+                <div class="footer_link">
+                    <ul>
+                        <li><a href="//www.imooc.com/" target="_blank">网站首页</a></li>
+                        <li><a href="/about/cooperate" target="_blank" title="企业合作">企业合作</a></li>
+                        <li><a href="/about/job" target="_blank">人才招聘</a></li>
+                        <li> <a href="/about/contact" target="_blank">联系我们</a></li>
+                        <li> <a href="/about/recruit" target="_blank">讲师招募</a></li>
+                        <li> <a href="/about/faq" target="_blank">常见问题</a></li>
+                        <li> <a href="/user/feedback" target="_blank">意见反馈</a></li>
+                        <li><a href="http://daxue.imooc.com/" target="_blank">慕课大学</a></li>
+                        <li> <a href="/about/friendly" target="_blank">友情链接</a></li>
+                        <!--  <li><a href="/corp/index" target="_blank">合作专区</a></li>
+                         <li><a href="/about/us" target="_blank">关于我们</a></li> -->
+                    </ul>
+                </div>
+                <p>Copyright © 2018 imooc.com All Rights Reserved | 京ICP备 12003892号-11 </p>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="J_GotoTop">
+<div class="elevator">
+
+    <a href="/user/feedback" class="elevator-msg" target="_blank">
+        <i class="icon-feedback"></i>
+        <span class="">意见反馈</span>
+    </a>
+    <a href="/about/faq" class="elevator-faq" target="_blank">
+        <i class="icon-ques"></i>
+        <span class="">常见问题</span>
+    </a>
+    <a href="//www.imooc.com/mobile/app" target="_blank" class="elevator-app">
+        <i class="icon-appdownload"></i>
+        <span class="">APP下载</span>
+        <div class="elevator-app-box"></div>
+    </a>
+    <a href="javascript:void(0)" class="elevator-weixin no-goto" id="js-elevator-weixin">
+        <i class="icon-wxgzh"></i>
+        <span class="">官方微信</span>
+        <div class="elevator-weixin-box"></div>
+    </a>
+    <a href="javascript:void(0)" class="elevator-top no-goto" style="display:none" id="backTop">
+        <i class="icon-up2"></i>
+        <span class="">返回顶部</span>
+    </a>
+</div>
+</div>
+<h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
+
+<a href="tasks"><span>查看上传任务</span></a>
+<a href="courses"><span>查看上传任务</span></a>
+<a href="files"><span>上传排课计划</span></a>
+<br>
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="Sign Out"/>
+</form>
 </body>
 </html>

@@ -39,7 +39,6 @@ public class UserServiceImpl implements UserService{
         //分配权限  默认用户
         Set<UserProfile> userProfiles = new HashSet<>();
         userProfiles.add(new UserProfile(UserProfileEnum.TEACHER.getProfileTypeId(), UserProfileEnum.TEACHER.getUserProfileType()));
-        userProfiles.add(new UserProfile(UserProfileEnum.USER.getProfileTypeId(), UserProfileEnum.USER.getUserProfileType()));
         user.setUserProfiles(userProfiles);
         setUserPassWord(user);
     }
