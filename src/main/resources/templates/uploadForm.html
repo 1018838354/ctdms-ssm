@@ -1,19 +1,56 @@
-<html xmlns:th="http://www.thymeleaf.org"> 
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>lasjfl</title>
+	<meta name="_csrf" th:content="${_csrf.token}"/>
+	<meta name="_csrf_header" th:content="${_csrf.parameterName}"/>
+</head>
 <body>
 
 	<div th:if="${message}">
 		<h2 th:text="${message}"/>
 	</div>
+	<script type="text/javascript" src="http://www.w3school.com.cn/jquery/jquery.js" ></script>
+	<script type="text/javascript" src="/js/jquery.upload.js" ></script>
+	<script>
+        function doUpload() {
+            var token=$("meta[name='_csrf']").attr("content");
+            var header=$("meta[name='_csrf_header']").attr("content");
 
+            $(document).ajaxSend(function (e,xhr,options) {
+				xhr.setRequestHeader(header,token);
+				alert("laf");
+            });
+
+            // 上传方法
+            $.upload({
+                url : '/upload',
+                // 文件域名字
+                fileName : 'file',
+                // 其他表单数据
+                params : {
+                },
+                // 上传之前回调,return true表示可继续上传
+                onSend : function() {
+                    return true;
+                },
+                dataType: 'json',
+                // 上传之后回调
+                onComplate : function(data) {
+                    alert(data);
+                    /* $('#returnappend').html("<script type='text/javascript'>"+data); */
+                }
+            });
+        }
+	</script>
 	<div>
-		<form method="POST" enctype="multipart/form-data" th:action="@{/cp}">
+		<form method="POST" enctype="multipart/form-data" th:action="@{upload}">
 			<table>
-				<tr><td>File to upload:</td><td><input type="file" name="file" /></td></tr>
-				<tr><td></td><td><input type="submit" value="Upload" /></td></tr>
+				<tr><td>origion File to upload:</td><td><input type="file" name="file" /></td></tr>
+				<tr><td></td><td><input type="submit"  value="Upload" /></td></tr>
 			</table>
 		</form>
 	</div>
-
+	<button type="button" onclick="doUpload()" value="Upload" ></button>
 	<div>
 		<ul>
 			<li th:each="file : ${files}">
@@ -21,6 +58,27 @@
 			</li>
 		</ul>
 	</div>
+	<form class="uploadForm"   action="upload" method="post" enctype="multipart/form-data">
+		<div class="btn btn-primary btn-large btn-block file uploadBtn">
+			上传
+			<input type="file" name="file" />
+			<input type="submit"  value="Upload"  />
+		</div>
+	</form>
+	<script type="text/javascript" src="/js/jquery-form.js"></script>
 
+<script>
+    $('.uploadForm').bind("submit", function() {
+        var options = {
+            dataType : "json",
+            type : "post",
+            success : function(data) {
+                alert(data);
+            }
+        };
+        $(this).ajaxSubmit(options);
+        return false;
+    });
+</script>
 </body>
 </html>

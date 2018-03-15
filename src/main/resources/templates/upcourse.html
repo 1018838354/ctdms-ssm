@@ -214,6 +214,34 @@
 
 
 </style>
+
+<script type="text/javascript" src="/js/jquery.upload.js" ></script>
+<script>
+    /*文件上传*/
+    function doUpload() {
+// 上传方法
+        $.upload({
+// 上传地址
+            url: 'upload',
+// 文件域名字
+            fileName: 'file',
+// 其他表单数据
+            params: {},
+// 上传完成后, 返回json, text
+            dataType: 'application/json',
+// 上传之前回调,return true表示可继续上传
+            onSend: function () {
+                return true;
+            },
+            onSubmit: function () {
+            },
+// 上传之后回调
+            onComplate: function (data) {
+                console.log(data);
+            }
+        });
+    }
+</script>
 <div id="overlay" class="black_overlay"></div>
 <div class="md-modal md-effect-18" id="modal">
 
@@ -223,7 +251,7 @@
         <div class="bubble-content">
             <div class="file">
                 <h4>文件列表</h4>
-                <div class="add-btns"><button class="addpan">从云盘添加</button><button class="upload">上传</button></div>
+                <div class="add-btns"><button class="addpan">从云盘添加</button><button class="upload" onclick="doUpload()">上传</button></div>
                 <ul class="file-box">
                     <li data-packageid="262" class="file-item" data-cid="180"><input type="checkbox" class="checkbox" /><h4 class="file-name">C#文档加萨福萨了解对方卢萨卡江东父老撒江东父老；阿是江东父老；撒酒疯；拉撒酒疯掉了；阿是江东父老看撒酒疯；了.doc</h4>1.2mb<span class="up-time">2018-09-06 22:32</span></li>
                     <li data-packageid="262" class="file-item" data-cid="180"><input type="checkbox" class="checkbox" /><h4 class="file-name">用户体验设计.doc</h4>3mb<span class="up-time">2018-09-06 22:32</span></li>
@@ -426,7 +454,7 @@
 
 
 <div th:include="header :: #footer"></div>
-<div th:include="header :: #J_GotoTop"></div>
+<div th:include="header :: #rightbtn"></div>
 
 </body>
 </html>

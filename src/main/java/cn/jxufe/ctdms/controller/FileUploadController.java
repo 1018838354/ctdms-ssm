@@ -1,5 +1,6 @@
 package cn.jxufe.ctdms.controller;
 
+import cn.jxufe.ctdms.dto.Result;
 import cn.jxufe.ctdms.service.DocService;
 import cn.jxufe.ctdms.util.storage.StorageFileNotFoundException;
 import cn.jxufe.ctdms.service.StorageService;
@@ -52,14 +53,14 @@ public class FileUploadController {
                 "attachment; filename=\"" + file.getFilename() + "\"").body(file);
     }
 
-    @PostMapping("/upload")
-    public String handleFileUpload(@RequestParam("file") MultipartFile file,
+    @PostMapping({"/{uId}/upload","/upload"})
+    @ResponseBody
+    public Result handleFileUpload(@RequestParam("file") MultipartFile file,
             RedirectAttributes redirectAttributes) {
         storageService.store(file);
         redirectAttributes.addFlashAttribute("message",
                 "You successfully uploaded " + file.getOriginalFilename() + "!");
-
-        return "/";
+        return new Result<>(true,file.getOriginalFilename());
     }
     @PostMapping("/cp")
     public String handleCPFileUpload(@RequestParam("file") MultipartFile file,

@@ -21,7 +21,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
+        // 设置CSRF规则
+        http.csrf().requireCsrfProtectionMatcher(new SimpleCsrfSecurityRequestMatcher()).and()
+                // 设置X-Frame-Options规则
+        .headers().frameOptions().sameOrigin().httpStrictTransportSecurity().disable().and()
+                // 设置拦截规则
             .authorizeRequests()
                 .antMatchers("/login","/error").permitAll()
                 .anyRequest().authenticated()
@@ -57,4 +61,5 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .ignoring()
                 .antMatchers("/css/**","/js/**","/img/**","/fonts/**","/plugins/**");
     }
+
 }
