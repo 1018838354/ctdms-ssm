@@ -1,11 +1,11 @@
 package cn.jxufe.ctdms.enums;
 
 public enum DocStateEnum {
-    FAIL(-11,"审核不通过")//需要重新上传
-    , WAIT(0,"待上传")
+     WAIT(0,"待上传")
     , UPLOAD(2,"已上传")   //待审核
-    , PASS_1(4,"通过第一次审核")
-    , PASS_2(8,"通过第二次审核")
+    , FAIL(4,"审核不通过")//需要重新上传
+    , PASS_1(8,"通过第一次审核")
+    , PASS_2(16,"通过第二次审核")
     , SUCCESS(1024,"完成");
 
     private int state;

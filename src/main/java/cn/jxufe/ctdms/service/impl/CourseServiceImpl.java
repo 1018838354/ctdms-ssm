@@ -7,12 +7,12 @@ import cn.jxufe.ctdms.dao.CourseDao;
 import cn.jxufe.ctdms.dto.CourseDto;
 import cn.jxufe.ctdms.dto.UploadTaskDto;
 import cn.jxufe.ctdms.enums.DocTypeEnum;
+import cn.jxufe.ctdms.exception.PermissionDeniedException;
 import cn.jxufe.ctdms.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Set;
 
 @Service
 public class CourseServiceImpl implements CourseService{
@@ -58,5 +58,32 @@ public class CourseServiceImpl implements CourseService{
         });
         tasks.addAll(syllabus);
         return tasks;
+    }
+
+    @Override
+    public void review(long uId, long id, int type, boolean b) throws PermissionDeniedException {
+        //1.根据type 和 id 查找被审核的文档
+        //2.判断该文档用户是否可以审核
+        int state = 0;
+        if(type == DocTypeEnum.TEACH.getTypeId()){
+
+        }else{
+
+        }
+        if(!hasPermission(uId,state)){
+            throw new PermissionDeniedException();
+        }
+
+
+    }
+
+    @Override
+    public int getUnDoneNumsByState(int state) {
+        return courseDao.getUndoneNumsByState(state);
+    }
+
+
+    private boolean hasPermission(long uId, int state) {
+        return true;
     }
 }

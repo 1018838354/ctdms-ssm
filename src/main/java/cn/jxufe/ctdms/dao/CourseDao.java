@@ -63,4 +63,14 @@ public interface CourseDao {
     @ResultMap("cn.jxufe.ctdms.dao.CourseDao.tasks")
     List<UploadTaskDto> getTeachingSYLLABUSByUId(long uId);
 
+
+
+    @Select("select COUNT(DISTINCT uId) from course where state != #{state}")
+    int getUndoneNumsByState(int state);
+
+    @Select("select COUNT(*) from course where state >= #{state}")
+    int getCourseNumsGEThenState(int state);
+
+    @Select("select COUNT(*) from course")
+    int getCourseNums();
 }

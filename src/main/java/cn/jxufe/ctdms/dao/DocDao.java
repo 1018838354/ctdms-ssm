@@ -7,4 +7,6 @@ import javax.print.Doc;
 @Mapper
 public interface DocDao {
 
+    @Select("select count(*) from upload_record")
+    int getFileCount();
 }

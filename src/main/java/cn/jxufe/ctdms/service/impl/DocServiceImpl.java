@@ -1,6 +1,7 @@
 package cn.jxufe.ctdms.service.impl;
 
 import cn.jxufe.ctdms.bean.*;
+import cn.jxufe.ctdms.dao.DocDao;
 import cn.jxufe.ctdms.dao.UploadTaskDao;
 import cn.jxufe.ctdms.enums.DocStateEnum;
 import cn.jxufe.ctdms.enums.DocTypeEnum;
@@ -27,6 +28,18 @@ public class DocServiceImpl implements DocService{
     CourseService courseService;
     @Autowired
     UploadTaskDao uploadTaskDao;
+    @Autowired
+    DocDao docDao;
+
+
+    @Override
+    public int getFileCount() {
+        return docDao.getFileCount();
+    }
+
+
+
+
     @Override
     public void cp(MultipartFile file) throws IOException {
         RunTimeHelp rt = new RunTimeHelp();//检查函数运行时间
